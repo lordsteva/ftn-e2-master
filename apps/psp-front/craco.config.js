@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-const CracoEslintWebpackPlugin = require('craco-eslint-webpack-plugin');
 const path = require("path");
 const { getLoader, loaderByName } = require("@craco/craco");
 
@@ -56,16 +55,5 @@ module.exports = {
       ],
     },
   },
-  plugins: [
-    {
-      plugin: CracoEslintWebpackPlugin,
-      options: {
-        skipPreflightCheck: true,
-        eslintOptions: {
-          files: 'src/**/*.{js,jsx,ts,tsx}',
-          lintDirtyModulesOnly: true,
-        },
-      },
-    },
-  ],
+ 
 };

@@ -3,7 +3,6 @@
     "baseUrl": ".",
     "paths": {
       "@src/*": ["./src/*"],
-      "@team21/*": ["./packages/*"],
     }
   }
 }
