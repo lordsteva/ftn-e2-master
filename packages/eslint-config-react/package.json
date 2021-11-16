@@ -1,0 +1,12 @@
+{
+  "name": "@team21/eslint-config-react",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "@team21/ui-components": "^0.1.0",
+    "eslint-config-airbnb": "18.0.1",
+    "eslint-config-prettier": "6.9.0",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-react": "^7.20.3"
+  }
+}

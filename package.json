@@ -1,7 +1,19 @@
 {
-  "name": "root",
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "name": "team21",
   "private": true,
   "devDependencies": {
-    "lerna": "^4.0.0"
+    "autoprefixer": "9",
+    "craco-eslint-webpack-plugin": "^1.0.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-import-resolver-typescript": "^2.5.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "lerna": "^4.0.0",
+    "postcss": "7",
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat",
+    "@rushstack/eslint-patch": "1.0.2"
   }
 }
