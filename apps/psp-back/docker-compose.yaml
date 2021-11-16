@@ -30,7 +30,7 @@ services:
         \"key\": \"somerandompasswordsomerandompasswordsomerandompassword\",
         \"claims_format\": \"stringified_json\"
       }"
-      ACTION_BASE_ENDPOINT: http://host.docker.internal:1208
+      ACTION_BASE_ENDPOINT: http://host.docker.internal:1389
       ACTION_SECRET: action-secret
       EVENT_SECRET: event-secret
 volumes:
