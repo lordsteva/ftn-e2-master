@@ -1,9 +1,0 @@
-table:
-  name: user
-  schema: public
-select_permissions:
-- permission:
-    columns:
-    - username
-    filter: {}
-  role: ANONYMOUS
