@@ -3,6 +3,6 @@ import * as customController from './controller';
 
 const customRouter = Router();
 
-customRouter.get('/', customController.getCustomListHandler);
+customRouter.post('/random', customController.getCustomListHandler);
 
 export default customRouter;

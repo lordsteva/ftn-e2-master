@@ -1,20 +1,15 @@
-import { Button } from '@team21/ui-components';
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import useGetUsers from './graphql/useGetUsers';
 
 const Component: FC<Record<string, never>> = () => {
-  const { data, loading, error } = useGetUsers();
+  const [limit, setLimt] = useState(0);
+  const { data, loading, error } = useGetUsers('asdsd');
+  console.log(error);
   if (loading) return <div>loading....</div>;
   if (error) return <div>error</div>;
 
-  return (
-    <div>
-      <Button onClick={() => console.log('clic;')} title="btn" />
-      {data.users.map((u: any) => (
-        <div key={u}>{u.username}</div>
-      ))}
-    </div>
-  );
+  console.log(data);
+  return <div>{data.rand.answer}</div>;
 };
 
 export default Component;

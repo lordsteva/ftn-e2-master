@@ -1,11 +1,11 @@
 import { gql, useQuery } from '@apollo/client';
 
 export const query = gql`
-  query MyQuery($limit: Int = 10) {
-    user(limit: $limit) {
-      username
+  query GetUsers($data: RandInput!) {
+    rand(data: $data) {
+      answer
     }
   }
 `;
 
-export default () => useQuery(query);
+export default (text: string) => useQuery(query, { variables: { data: { text } } });
