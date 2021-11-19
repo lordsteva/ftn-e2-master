@@ -1,0 +1,14 @@
+type Query {
+  rand(
+    data: RandInput!
+  ): RandOutput
+}
+
+input RandInput {
+  text: String!
+}
+
+type RandOutput {
+  answer: String!
+}
+

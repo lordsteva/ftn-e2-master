@@ -1,0 +1,9 @@
+{
+  "name": "@team21/prettier-config",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "@team21/ui-components": "^0.1.0",
+    "prettier": "^2.4.1"
+  }
+}

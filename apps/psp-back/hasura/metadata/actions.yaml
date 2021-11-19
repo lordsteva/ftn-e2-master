@@ -1,0 +1,14 @@
+actions:
+- name: rand
+  definition:
+    kind: ""
+    handler: '{{ACTION_BASE_ENDPOINT}}/api/custom/random'
+  permissions:
+  - role: ANONYMOUS
+custom_types:
+  enums: []
+  input_objects:
+  - name: RandInput
+  objects:
+  - name: RandOutput
+  scalars: []

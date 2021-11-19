@@ -1,0 +1,10 @@
+{"extends": "@team21/eslint-config-react",
+
+    "settings": {
+      "import/resolver": {
+        "node": {
+          "extensions": [".js", ".jsx", ".ts", ".tsx"]
+        }
+      }
+    }
+  } 

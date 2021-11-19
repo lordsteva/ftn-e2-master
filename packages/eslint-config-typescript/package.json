@@ -1,0 +1,11 @@
+{
+  "name": "@team21/eslint-config-typescript",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "@team21/ui-components": "^0.1.0",
+    "@typescript-eslint/eslint-plugin": "^3.5.0",
+    "@typescript-eslint/parser": "^3.5.0",
+    "eslint-import-resolver-typescript": "^2.0.0"
+  }
+}
