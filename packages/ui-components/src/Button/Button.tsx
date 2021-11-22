@@ -11,17 +11,19 @@ type Props = {
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
 };
 
-const Button: FC<Props> = ({ title, buttonColor, textColor, disabled = false, block, rounded, size, onClick}) => (
-  <button 
+const Button: FC<Props> = ({ title, buttonColor, textColor, disabled, block, rounded, size, onClick}) => (
+  <button
+    disabled={disabled} 
     onClick={onClick} 
     className={
-      `${buttonColor && !disabled ? 'bg-'+buttonColor : 'primary'} 
+      `bg-${buttonColor ? buttonColor : 'primary'} 
       text-${textColor ? textColor : 'white'}
-      ${rounded && 'rounded-full'}
-      ${block && 'w-full'} 
       px-40 py-12 whitespace-nowrap
       text-${size ? size : 'base'}
-      ${disabled ? 'bg-darkGray cursor-not-allowed' : 'transition ease-out duration-200 transform hover:scale-110 cursor-pointer'}`
+      hover:bg-opacity-90
+      ${disabled ? 'opacity-60 cursor-not-allowed' : 'cursor-pointer'}
+      ${rounded ? 'rounded-full' : ''}
+      ${block ? 'w-full' : ''}`
     }
   >
     {title && <span>{title}</span>}

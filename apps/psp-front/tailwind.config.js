@@ -3,16 +3,22 @@ module.exports = {
   plugins: [],
   purge: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
   theme: {
-    colors: {
-      transparent: 'transparent',
-      white: '#ffffff',
-      whitesmoke:'#f5f5f5',
-      'lightGray': '#c9c9c9',
-      'gray': '#A9A9A9',
-      'darkGray': '#666666',
-      'dark': '#262626',
-      red: '#e02020',
-      primary: '#5fad5f'
+    extend: {
+      colors: {
+        'transparent': 'transparent',
+        'white': '#ffffff',
+        'whitesmoke':'#f5f5f5',
+        'lightGray': '#c9c9c9',
+        'gray': '#A9A9A9',
+        'darkGray': '#666666',
+        'dark': '#262626',
+        'red': '#e02020',
+        'success': '#5fad5f',
+        'primary':'#3553e4',
+        'secondary':'#3a3b3c',
+        'bcPrimary':'#18191a',
+        'bcSecondary':'#242526'
+      }
     },
     fontSize: {
       h1: ['36px', '44px'],
