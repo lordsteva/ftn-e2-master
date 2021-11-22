@@ -6,3 +6,5 @@ export * from './Checkbox';
 export * from './TextArea';
 export * from './Search';
 export * from './Image';
+export * from './Navbar';
+export * from './ALink';
