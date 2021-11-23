@@ -1,9 +1,11 @@
 import React, { FC, useState } from 'react';
 import useGetUsers from './graphql/useGetUsers';
-import { Button, Input, Select, Checkbox, TextArea, Search, Image } from '@team21/ui-components'
+import { Button, Input, Select, Checkbox, TextArea, Search, Image, Loader, Card} from '@team21/ui-components/'
 
 const Component: FC<Record<string, never>> = () => {
   return <div>
+    <Loader />
+    <Card title="Card Title" body="Card body adasdasdas" buttonTitle="Submit" imageSrc="https://mdbootstrap.com/img/new/standard/city/031.jpg"/>
     <Button disabled={true} buttonColor="primary" textColor="whitesmoke" onClick={()=>{console.log('AAA')}} title="button" />
     <Button disabled={true} buttonColor="secondary" textColor="whitesmoke" onClick={()=>{console.log('AAA')}} title="button" />
 

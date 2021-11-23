@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { ALink } from '../index'
+import { ALink } from '../ALink'
 
 type NavLink = {
     name: string;
