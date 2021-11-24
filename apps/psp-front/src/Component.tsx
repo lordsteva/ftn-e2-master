@@ -5,7 +5,8 @@ import { Button, Input, Select, Checkbox, TextArea, Search, Image, Loader, Card}
 const Component: FC<Record<string, never>> = () => {
   return <div>
     <Loader />
-    <Card title="Card Title" body="Card body adasdasdas" buttonTitle="Submit" imageSrc="https://mdbootstrap.com/img/new/standard/city/031.jpg"/>
+    <Card title="Card Title" body={<li> <b> AA </b> </li>} buttonTitle="Submit" imageSrc="https://mdbootstrap.com/img/new/standard/city/031.jpg"/>
+    <br/>
     <Button disabled={true} buttonColor="primary" textColor="whitesmoke" onClick={()=>{console.log('AAA')}} title="button" />
     <Button disabled={true} buttonColor="secondary" textColor="whitesmoke" onClick={()=>{console.log('AAA')}} title="button" />
 
