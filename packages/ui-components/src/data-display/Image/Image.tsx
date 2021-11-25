@@ -9,7 +9,7 @@ type Props = {
   rounded?: boolean;
 };
 
-const Avatar: FC<Props> = ({ src, alt, width, height, wrapperClassName, rounded }) => (
+const Image: FC<Props> = ({ src, alt, width, height, wrapperClassName, rounded }) => (
     <div className={wrapperClassName}>
         <div className={`w-${width} h-${height} p-4`}>
             <img
@@ -21,4 +21,4 @@ const Avatar: FC<Props> = ({ src, alt, width, height, wrapperClassName, rounded 
     </div>
 );
 
-export default Avatar;
+export default Image;
