@@ -21,6 +21,7 @@ const Home: FC<Record<string, never>> = () => {
     return <div className="flex items-center justify-center w-full h-full">No items...</div>;
   }
 
+  //TODO style card a little bit better
   return (
     <div className="flex flex-col items-center justify-between w-full h-screen ">
       {!data && loading && <Loader />}
@@ -28,7 +29,18 @@ const Home: FC<Record<string, never>> = () => {
         <div className="flex flex-wrap justify-between gap-3 max-w-7xl">
           {data?.products.map((item) => (
             <div key={item.id} className="min-w-max">
-              <Card title={item.name} buttonTitle={'view'} imageSrc={item.image} />
+              <Card
+                title={item.name}
+                body={
+                  <>
+                    <div>{item.description}</div>
+                    <div>Price: {item.price}</div>
+                    <div>Quantity: {item.quantity}</div>
+                  </>
+                }
+                buttonTitle={'view'}
+                imageSrc={item.image}
+              />
             </div>
           ))}
         </div>
