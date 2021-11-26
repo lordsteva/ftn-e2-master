@@ -2,16 +2,17 @@ import React, { FC } from 'react';
 
 type Props = {
   title?: string;
-  buttonColor: string;
+  buttonColor?: string;
   textColor?: string;
   disabled?: boolean;
   block?: boolean;
   rounded?: boolean;
   size?: string;
+  additionalClasses?: string;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
 };
 
-const Button: FC<Props> = ({ title, buttonColor, textColor, disabled, block, rounded, size, onClick}) => (
+const Button: FC<Props> = ({ title, buttonColor, textColor, disabled, block, rounded, size, additionalClasses, onClick}) => (
   <button
     disabled={disabled} 
     onClick={onClick} 
@@ -23,7 +24,8 @@ const Button: FC<Props> = ({ title, buttonColor, textColor, disabled, block, rou
       hover:bg-opacity-90
       ${disabled ? 'opacity-60 cursor-not-allowed' : 'cursor-pointer'}
       ${rounded ? 'rounded-full' : ''}
-      ${block ? 'w-full' : ''}`
+      ${block ? 'w-full' : ''}
+      ${additionalClasses ? additionalClasses : ''}`
     }
   >
     {title && <span>{title}</span>}
