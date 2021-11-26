@@ -1,9 +1,12 @@
 import React, { FC } from 'react';
 import { CategoryTile } from '../../data-display/CategoryTile'
+import { Button } from '../../input-controls/Button'
 
 type Props = {
     categories: any[];
 };
+
+const categoryPerPage = 5;
 
 const CLP: FC<Props> = ({ categories }) => (
     <div className="p-24">
@@ -13,6 +16,12 @@ const CLP: FC<Props> = ({ categories }) => (
                 <CategoryTile key={index} category={category}/>
             ))}
         </div>
+        {   
+            categories.length > categoryPerPage && 
+            <div className="flex justify-center items-center mt-24">
+                <Button buttonColor="primary" textColor="whitesmoke" title="Show More" />
+            </div>
+        }
     </div>
 
 );

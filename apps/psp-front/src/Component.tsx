@@ -1,6 +1,6 @@
 import React, { FC, useState } from 'react';
 import useGetUsers from './graphql/useGetUsers';
-import { Button, Input, Select, Checkbox, TextArea, Search, Image, Loader, Card, Dropdown, Navbar, ProductTile, CategoryTile, CLP, PDP} from '@team21/ui-components/'
+import { Button, Input, Select, Checkbox, TextArea, Search, Image, Loader, Card, Dropdown, Navbar, ProductTile, CategoryTile, CLP, PLP, Table} from '@team21/ui-components/'
 
 const categories = [
   {
@@ -165,7 +165,8 @@ const Component: FC<Record<string, never>> = () => {
     <Image  width='1/12' src="a" />
 
     <CLP categories={categories} />
-    <PDP categoryName="Laptops" products={products} />
+    <PLP categoryName="Laptops" products={products} />\
+    <Table headers={['1','2','3','4']} />
 
   </div>;
 };
