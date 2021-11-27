@@ -1,13 +1,14 @@
 import React, { FC } from 'react';
+import { UseFormRegisterReturn } from 'react-hook-form';
 
 type Props = {
   id: string;
   wrapperClassName?: string;
   placeholder?: string;
   type: string | 'text';
-  name?: string;
   errorText?: string;
   labelText?: string;
+  innerRef: UseFormRegisterReturn;
 };
 
 const Input: FC<Props> = ({
@@ -15,9 +16,9 @@ const Input: FC<Props> = ({
   wrapperClassName,
   placeholder,
   type,
-  name,
   errorText,
   labelText,
+  innerRef,
 }) => (
   <div className={wrapperClassName}>
     <label htmlFor={id}>{labelText && <span>{labelText}</span>}</label>
@@ -28,8 +29,8 @@ const Input: FC<Props> = ({
         }
         id={id}
         type={type}
-        name={name}
         placeholder={placeholder}
+        {...innerRef}
       />
     </div>
     {errorText && <p className="mb-2 text-sm text-red">{errorText}</p>}
