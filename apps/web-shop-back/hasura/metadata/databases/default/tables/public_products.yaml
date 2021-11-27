@@ -1,5 +1,5 @@
 table:
-  name: product
+  name: products
   schema: public
 object_relationships:
 - name: product_category
@@ -7,6 +7,7 @@ object_relationships:
     foreign_key_constraint_on: category_id
 select_permissions:
 - permission:
+    allow_aggregations: true
     columns:
     - name
     - image
