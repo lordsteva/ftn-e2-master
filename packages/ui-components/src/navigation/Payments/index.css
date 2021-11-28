@@ -1,0 +1,7 @@
+.payment-card{
+    @apply flex flex-col justify-center border-default border-solid border-lightGray mx-8 cursor-pointer transition duration-200 ease-in transform hover:scale-110;
+}
+
+.payment-text{
+    @apply mt-8 mb-16 text-center text-md;
+}

@@ -11,11 +11,11 @@ type Props = {
 
 const Image: FC<Props> = ({ src, alt, width, height, wrapperClassName, rounded }) => (
     <div className={wrapperClassName}>
-        <div className={`w-${width} h-${height} p-4`}>
+        <div className={`w-${width ? width : 'full'} h-${height ? height : 'auto'} p-4 mx-auto`}>
             <img
                 src={src && src}
                 alt={alt && alt}
-                className={`${rounded ? 'rounded-full' : 'rounded-none'} max-w-full h-auto align-middle hover:opacity-90`}
+                className={`${rounded ? 'rounded-full' : 'rounded-none'} max-w-full h-auto align-middle hover:opacity-90}`}
             />
         </div>
     </div>
