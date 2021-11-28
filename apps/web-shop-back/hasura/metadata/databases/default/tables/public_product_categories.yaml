@@ -1,0 +1,18 @@
+table:
+  name: product_categories
+  schema: public
+array_relationships:
+- name: products
+  using:
+    foreign_key_constraint_on:
+      column: category_id
+      table:
+        name: products
+        schema: public
+select_permissions:
+- permission:
+    columns:
+    - name
+    - id
+    filter: {}
+  role: ANONYMOUS
