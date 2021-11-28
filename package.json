@@ -32,7 +32,7 @@
     "postcss": "7",
     "supertest": "^4.0.2",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat",
-    "ts-node-dev": "^1.0.0-pre.44",
+    "ts-node-dev": "1.1.8",
     "typescript": "^4.4.4"
   },
   "husky": {
