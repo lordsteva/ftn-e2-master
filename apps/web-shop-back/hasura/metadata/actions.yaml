@@ -1,6 +1,13 @@
-actions: []
+actions:
+- name: login
+  definition:
+    kind: synchronous
+    handler: '{{ACTION_BASE_ENDPOINT}}/api/auth/login'
+  permissions:
+  - role: ANONYMOUS
 custom_types:
   enums: []
   input_objects: []
-  objects: []
+  objects:
+  - name: LoginResponse
   scalars: []

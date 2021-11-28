@@ -18,6 +18,12 @@ module.exports = {
         'secondary':'#3a3b3c',
         'bcPrimary':'#18191a',
         'bcSecondary':'#242526'
+      },
+      height:{
+        '400px':'400px'
+      },
+      width:{
+        '120px':'120px'
       }
     },
     fontSize: {
@@ -44,8 +50,9 @@ module.exports = {
     },
     borderRadius: {
       none: '0',
+      xs: '7px',
       sm: '10px',
-      md: '20px',
+      md: '14px',
       half: '50%',
       full: '9999px'
     },

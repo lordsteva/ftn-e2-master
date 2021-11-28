@@ -1,3 +1,4 @@
+import authRoutes from './auth/controller';
 import transactionsRouter from './transaction';
 
 export default (app): void => {
@@ -6,4 +7,5 @@ export default (app): void => {
   });
 
   app.use('/api/transactions', transactionsRouter);
+  app.use('/api/auth', authRoutes);
 };

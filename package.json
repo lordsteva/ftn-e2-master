@@ -2,7 +2,8 @@
   "workspaces": [
     "packages/*",
     "apps/*",
-    "apps/psp-back/actions/"
+    "apps/psp-back/actions/",
+    "apps/web-shop-back/actions/"
   ],
   "name": "team21",
   "private": true,

@@ -1,16 +1,21 @@
 actions:
-- name: getOneTimeLink
-  definition:
-    kind: synchronous
-    handler: '{{ACTION_BASE_ENDPOINT}}/api/transactions/link'
-  permissions:
-  - role: ANONYMOUS
+  - name: getOneTimeLink
+    definition:
+      kind: synchronous
+      handler: '{{ACTION_BASE_ENDPOINT}}/api/transactions/link'
+  - name: login
+    definition:
+      kind: synchronous
+      handler: '{{ACTION_BASE_ENDPOINT}}/api/login'
+    permissions:
+      - role: ANONYMOUS
 custom_types:
   enums: []
   input_objects:
-  - name: RandInput
-  - name: OneTimeLinkInput
+    - name: RandInput
+    - name: OneTimeLinkInput
   objects:
-  - name: RandOutput
-  - name: OneTimeLinkOutput
+    - name: RandOutput
+    - name: OneTimeLinkOutput
+    - name: LoginResponse
   scalars: []
