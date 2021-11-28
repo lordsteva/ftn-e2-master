@@ -1,6 +1,8 @@
-import { Request, Response } from 'express';
+import { Router } from 'express';
+import * as customService from './service';
 
-export async function getCustomListHandler(req: Request, res: Response): Promise<Response> {
-  console.log(req.body.input);
-  return res.json({ answer: `got ${req.body.input.data.text}` });
-}
+const customRouter = Router();
+
+customRouter.post('/random', customService.getCustomListHandler);
+
+export default customRouter;

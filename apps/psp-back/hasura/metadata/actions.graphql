@@ -1,7 +1,8 @@
-type Query {
-  rand(
-    data: RandInput!
-  ): RandOutput
+type Mutation {
+  login(
+    username: String!
+    password: String!
+  ): LoginResponse
 }
 
 input RandInput {
@@ -10,5 +11,9 @@ input RandInput {
 
 type RandOutput {
   answer: String!
+}
+
+type LoginResponse {
+  accessToken: String
 }
 

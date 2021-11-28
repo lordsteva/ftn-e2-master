@@ -1,4 +1,5 @@
-import customRoutes from './custom';
+import authRoutes from './auth/controller';
+import customRoutes from './custom/controller';
 
 export default (app): void => {
   app.get('/', (req, res) => {
@@ -6,4 +7,5 @@ export default (app): void => {
   });
 
   app.use('/api/custom', customRoutes);
+  app.use('/api/auth', authRoutes);
 };

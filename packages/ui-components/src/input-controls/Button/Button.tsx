@@ -14,10 +14,9 @@ type Props = {
 
 const Button: FC<Props> = ({ title, buttonColor, textColor, disabled, block, rounded, size, customClass, onClick}) => (
   <button
-    disabled={disabled} 
-    onClick={onClick} 
-    className={
-      `bg-${buttonColor ? buttonColor : 'primary'} 
+    disabled={disabled}
+    onClick={onClick}
+    className={`bg-${buttonColor ? buttonColor : 'primary'} 
       text-${textColor ? textColor : 'white'}
       px-40 py-12 whitespace-nowrap
       text-${size ? size : 'base'}

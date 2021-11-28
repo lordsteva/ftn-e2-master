@@ -1,14 +1,15 @@
 import React, { FC } from 'react';
-import { HashRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Home from './pages/Home';
+import LoginPage from './pages/LoginPage';
 
 const AppRouter: FC<Record<string, never>> = () => (
-  <HashRouter>
+  <BrowserRouter>
     <Routes>
       <Route path="/" element={<Home />} />
-      <Route path="product/{id}" element={<div />} />
+      <Route path="/login" element={<LoginPage />} />
       <Route path="invoices" element={<div />} />
     </Routes>
-  </HashRouter>
+  </BrowserRouter>
 );
 export default AppRouter;
