@@ -1,14 +1,16 @@
 actions:
-- name: rand
+- name: getOneTimeLink
   definition:
-    kind: ""
-    handler: '{{ACTION_BASE_ENDPOINT}}/api/custom/random'
+    kind: synchronous
+    handler: '{{ACTION_BASE_ENDPOINT}}/api/transactions/link'
   permissions:
   - role: ANONYMOUS
 custom_types:
   enums: []
   input_objects:
   - name: RandInput
+  - name: OneTimeLinkInput
   objects:
   - name: RandOutput
+  - name: OneTimeLinkOutput
   scalars: []

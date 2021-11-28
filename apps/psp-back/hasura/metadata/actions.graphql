@@ -1,14 +1,28 @@
-type Query {
-  rand(
-    data: RandInput!
-  ): RandOutput
+type Mutation {
+  getOneTimeLink (
+    data: OneTimeLinkInput!
+  ): OneTimeLinkOutput
 }
 
+
+
+
 input RandInput {
-  text: String!
+  text : String!
+}
+
+input OneTimeLinkInput {
+  api_key : String!
+  api_secret : String!
+  amount : String!
+  currency : String!
 }
 
 type RandOutput {
-  answer: String!
+  answer : String!
+}
+
+type OneTimeLinkOutput {
+  link : String!
 }
 

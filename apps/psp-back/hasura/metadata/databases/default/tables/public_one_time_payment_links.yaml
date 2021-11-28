@@ -1,0 +1,3 @@
+table:
+  name: one_time_payment_links
+  schema: public

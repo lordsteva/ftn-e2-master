@@ -1,0 +1,3 @@
+table:
+  name: payment_providers
+  schema: public
