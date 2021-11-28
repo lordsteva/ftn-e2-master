@@ -2,16 +2,16 @@ import React, { FC } from 'react';
 import { Card } from '../Card/'
 
 type Props = {
-    product: any; // this should change 
+    product: any; // TODO
 };
 
 type BodyProps = {
     description: string;
     price: number;
-    inStock: boolean;
+    qty: number;
 }
 
-const ProductTileBody: FC<BodyProps> = ({description, price, inStock}) => ( 
+const ProductTileBody: FC<BodyProps> = ({description, price, qty}) => ( 
     <> 
         <div className="my-8">
             <p className="text-base text-darkGray"> {description} </p>
@@ -20,7 +20,7 @@ const ProductTileBody: FC<BodyProps> = ({description, price, inStock}) => (
             {price && <span className="text-xl text-dark font-semibold"> ${price} </span>}
         </div>
         <div className="my-8">
-            <span className={`${inStock ? 'text-success' : 'text-red'} text-md font-semibold`}> {inStock ? 'In Stock' : 'Out of Stock'} </span>
+            <span className={`${qty > 0 ? 'text-success' : 'text-red'} text-md font-semibold`}> {qty > 0 ? `In Stock: ${qty}` : 'Out of Stock'} </span>
         </div>
     </>
 );
@@ -32,7 +32,7 @@ const ProductTile: FC<Props> = ({ product }) => (
         buttonTitle={product.buttonTitle}
         onClick={product.onClick}
         body={ 
-            <ProductTileBody description={product.description} price={product.price} inStock={product.inStock} />
+            <ProductTileBody description={product.description} price={product.price} qty={product.qty} />
         } 
         customClass="w-80 mx-24 my-12"
     />

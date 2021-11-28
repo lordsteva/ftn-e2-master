@@ -18,7 +18,7 @@ const Component: FC<Record<string, never>> = () => {
         'price': 550,
         'onClick': undefined,
         'buttonTitle': 'Details',
-        'inStock': true
+        'qty': 5
       }
     }/>
     <br/>
@@ -68,7 +68,7 @@ const Component: FC<Record<string, never>> = () => {
     <PDP productId={'1a'} />
     <Cart />
     <Checkout />
-    <Payments />
+    <Payments supportedMethods={['bank', 'qrcode', 'paypal', 'bitcoin']} />
 
   </div>;
 };

@@ -19,7 +19,7 @@ const PDP: FC<Props> = ({productId}) => {
             <h1 className="text-left text-h1 mb-24"> {product.name} </h1>
             <p className="text-base text-darkGray text-left mb-16 "> {product.description} </p>
             <div className="flex justify-between mb-24  border-b-default border-solid border-gray">
-                <span className={`${product.inStock ? 'text-success' : 'text-red'} text-md font-semibold text-left`}> {product.inStock ? 'In Stock' : 'Out of Stock'} </span>
+                <span className={`${product.qty > 0 ? 'text-success' : 'text-red'} text-md font-semibold text-left`}> {product.qty > 0 ? `In Stock: ${product.qty}` : 'Out of Stock'} </span>
                 {product.price && <span className="text-xl text-dark font-semibold text-left mb-12"> ${product.price} </span> }
             </div>
             <div className="flex flex-wrap mb-4 w-full justify-end">
