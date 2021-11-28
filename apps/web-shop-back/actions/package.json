@@ -1,5 +1,5 @@
 {
-  "name": "ts-express-starter",
+  "name": "@team21/web-shop-actions",
   "version": "1.0.0",
   "description": "",
   "main": "./src/index.ts",
@@ -17,7 +17,6 @@
   "dependencies": {
     "@apollo/client": "^3.4.17",
     "@hapi/boom": "^9.1.0",
-    "@team21/ui-components": "^0.1.0",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
@@ -26,7 +25,8 @@
     "joi": "^17.2.1",
     "morgan": "^1.10.0",
     "node-fetch": "^3.1.0",
-    "tsconfig-paths": "^3.9.0"
+    "tsconfig-paths": "^3.9.0",
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "ts-node-dev": "^1.0.0-pre.44",
