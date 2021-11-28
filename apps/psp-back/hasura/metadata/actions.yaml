@@ -1,8 +1,8 @@
 actions:
-- name: rand
+- name: login
   definition:
-    kind: ""
-    handler: '{{ACTION_BASE_ENDPOINT}}/api/custom/random'
+    kind: synchronous
+    handler: '{{ACTION_BASE_ENDPOINT}}/api/login'
   permissions:
   - role: ANONYMOUS
 custom_types:
@@ -11,4 +11,5 @@ custom_types:
   - name: RandInput
   objects:
   - name: RandOutput
+  - name: LoginResponse
   scalars: []

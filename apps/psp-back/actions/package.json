@@ -1,5 +1,5 @@
 {
-  "name": "ts-express-starter",
+  "name": "@team21/psp-back-actions",
   "version": "1.0.0",
   "description": "",
   "main": "./src/index.ts",
