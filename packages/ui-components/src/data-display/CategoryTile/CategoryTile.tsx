@@ -11,7 +11,7 @@ const CategoryTile: FC<Props> = ({ category }) => (
         imageSrc={category.image}
         buttonTitle={category.buttonTitle}
         onClick={category.onClick}
-        additionalClasses="w-52 mx-24 my-12"
+        customClass="w-52 mx-24 my-12"
     />
 );
 

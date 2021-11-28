@@ -9,16 +9,18 @@ type Props = {
   error?: boolean;
   errorText?: string;
   labelText?: string;
+  width?: string;
+  customClass?: string;
 };
 
-const Input: FC<Props> = ({ id, wrapperClassName, placeholder, type, name, error, errorText, labelText }) => (
+const Input: FC<Props> = ({ id, wrapperClassName, placeholder, type, name, error, errorText, labelText, width, customClass }) => (
     <div className={wrapperClassName}>
         <label htmlFor={id}>
            {labelText && <span>{labelText}</span>}
         </label>
-        <div>
+        <div className="mt-8">
             <input
-                className={"w-full bg-white text-dark border-default border-solid border-lightGray hover:border-gray focus:outline-none focus:border-dark pl-4 my-8"}
+                className={`${customClass ? customClass : ''} w-${width ? width : 'full'} bg-white text-dark border-default border-solid border-lightGray hover:border-gray focus:outline-none focus:border-dark pl-4 py-4`}
                 id={id}
                 type={type}
                 name={name}

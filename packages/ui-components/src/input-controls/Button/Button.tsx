@@ -8,11 +8,11 @@ type Props = {
   block?: boolean;
   rounded?: boolean;
   size?: string;
-  additionalClasses?: string;
+  customClass?: string;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
 };
 
-const Button: FC<Props> = ({ title, buttonColor, textColor, disabled, block, rounded, size, additionalClasses, onClick}) => (
+const Button: FC<Props> = ({ title, buttonColor, textColor, disabled, block, rounded, size, customClass, onClick}) => (
   <button
     disabled={disabled} 
     onClick={onClick} 
@@ -25,7 +25,7 @@ const Button: FC<Props> = ({ title, buttonColor, textColor, disabled, block, rou
       ${disabled ? 'opacity-60 cursor-not-allowed' : 'cursor-pointer'}
       ${rounded ? 'rounded-full' : ''}
       ${block ? 'w-full' : ''}
-      ${additionalClasses ? additionalClasses : ''}`
+      ${customClass ? customClass : ''}`
     }
   >
     {title && <span>{title}</span>}

@@ -34,7 +34,7 @@ const ProductTile: FC<Props> = ({ product }) => (
         body={ 
             <ProductTileBody description={product.description} price={product.price} inStock={product.inStock} />
         } 
-        additionalClasses="w-80 mx-24 my-12"
+        customClass="w-80 mx-24 my-12"
     />
 );
 
