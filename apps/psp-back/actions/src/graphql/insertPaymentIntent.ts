@@ -2,7 +2,7 @@ import { gql } from '@apollo/client';
 import graphqlAdminClient from './admin-client';
 
 const mutation = gql`
-  mutation InsertOneTimeLink(
+  mutation InsertPaymentIntent(
     $amount: numeric!
     $api_key: uuid!
     $created_at: timestamptz!
@@ -11,7 +11,7 @@ const mutation = gql`
     $success_url: String!
     $fail_url: String!
   ) {
-    insert_one_time_payment_links_one(
+    insert_payment_intents_one(
       object: {
         amount: $amount
         api_key: $api_key
@@ -27,7 +27,7 @@ const mutation = gql`
   }
 `;
 
-const insertOneTimeLink = async (variables: {
+const insertPaymentIntent = async (variables: {
   amount: number;
   api_key: string;
   created_at: string;
@@ -37,7 +37,7 @@ const insertOneTimeLink = async (variables: {
   fail_url: string;
 }): Promise<{ active: boolean; api_key: string }> => {
   const res = await graphqlAdminClient.mutate({ mutation, variables });
-  return res.data.insert_one_time_payment_links_one;
+  return res.data.insert_payment_intents_one;
 };
 
-export default insertOneTimeLink;
+export default insertPaymentIntent;
