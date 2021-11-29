@@ -7,7 +7,7 @@ const AppRouter: FC<Record<string, never>> = () => (
   <BrowserRouter>
     <Routes>
       <Route path="/" element={<Component />} />
-      <Route path="/choose-provider/:appId/:link" element={<ChoosePaymentProvider />} />
+      <Route path="/choose-provider/:apiKey/:link" element={<ChoosePaymentProvider />} />
     </Routes>
   </BrowserRouter>
 );
