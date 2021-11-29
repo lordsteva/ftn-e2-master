@@ -1,2 +1,0 @@
-CREATE TABLE "public"."one_time_payment_links" ("id" uuid NOT NULL DEFAULT gen_random_uuid(), "api_key_id" uuid NOT NULL, "signature" text NOT NULL, "value" numeric NOT NULL, "currency" text NOT NULL, "created_at" timestamptz NOT NULL DEFAULT now(), PRIMARY KEY ("id") , FOREIGN KEY ("api_key_id") REFERENCES "public"."api_keys"("id") ON UPDATE restrict ON DELETE restrict);
-CREATE EXTENSION IF NOT EXISTS pgcrypto;
