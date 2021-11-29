@@ -8,3 +8,10 @@ object_relationships:
 - name: payment_provider
   using:
     foreign_key_constraint_on: payment_provider_id
+select_permissions:
+- permission:
+    columns:
+    - api_key_id
+    - payment_provider_id
+    filter: {}
+  role: ANONYMOUS

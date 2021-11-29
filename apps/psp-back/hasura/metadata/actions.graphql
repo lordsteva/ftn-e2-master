@@ -1,30 +1,42 @@
 type Mutation {
-  login(username: String!, password: String!): LoginResponse
+  getOneTimeLink (
+    data: OneTimeLinkInput!
+  ): OneTimeLinkOutput
 }
+
 
 type Mutation {
-  getOneTimeLink(data: OneTimeLinkInput!): OneTimeLinkOutput
+  login (
+    username: String!
+    password: String!
+  ): LoginResponse
 }
 
+
+
+
 input RandInput {
-  text: String!
+  text : String!
 }
 
 input OneTimeLinkInput {
-  api_key: String!
-  api_secret: String!
-  amount: String!
-  currency: String!
+  api_key : String!
+  api_secret : String!
+  amount : String!
+  currency : String!
+  success_url : String!
+  fail_url : String!
 }
 
 type RandOutput {
-  answer: String!
+  answer : String!
 }
 
 type OneTimeLinkOutput {
-  link: String!
+  link : String!
 }
 
 type LoginResponse {
-  accessToken: String
+  accessToken : String
 }
+
