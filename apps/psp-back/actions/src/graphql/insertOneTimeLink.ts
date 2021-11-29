@@ -4,11 +4,12 @@ import graphqlAdminClient from './admin-client';
 const mutation = gql`
   mutation InsertOneTimeLink(
     $amount: numeric!
-    $api_key: String!
+    $api_key: uuid!
     $created_at: timestamptz!
     $currency: String!
     $id: uuid!
-    $signature: String!
+    $success_url: String!
+    $fail_url: String!
   ) {
     insert_one_time_payment_links_one(
       object: {
@@ -17,7 +18,8 @@ const mutation = gql`
         created_at: $created_at
         currency: $currency
         id: $id
-        signature: $signature
+        success_url: $success_url
+        fail_url: $fail_url
       }
     ) {
       id
@@ -31,7 +33,8 @@ const insertOneTimeLink = async (variables: {
   created_at: string;
   currency: string;
   id: string;
-  signature: string;
+  success_url: string;
+  fail_url: string;
 }): Promise<{ active: boolean; api_key: string }> => {
   const res = await graphqlAdminClient.mutate({ mutation, variables });
   return res.data.insert_one_time_payment_links_one;
