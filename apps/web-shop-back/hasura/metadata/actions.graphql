@@ -5,7 +5,19 @@ type Mutation {
   ): LoginResponse
 }
 
+type Mutation {
+  registration(
+    fullName: String!
+    email: String!
+    password: String!
+  ): RegistrationResponse
+}
+
 type LoginResponse {
   accessToken: String
+}
+
+type RegistrationResponse {
+  id: uuid!
 }
 
