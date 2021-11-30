@@ -7,9 +7,17 @@ export interface HomeProps {
   clientId: string;
   apiKey: string;
   intent: string;
+  success_url: string;
+  fail_url: string;
 }
 
-const Home: React.FunctionComponent<HomeProps> = ({ clientId, apiKey, intent }) => {
+const Home: React.FunctionComponent<HomeProps> = ({
+  clientId,
+  apiKey,
+  fail_url,
+  intent,
+  success_url,
+}) => {
   //TOOD: style, show data....
 
   return (
@@ -41,17 +49,12 @@ const Home: React.FunctionComponent<HomeProps> = ({ clientId, apiKey, intent }) 
               method: 'post',
               body: JSON.stringify({ orderID, apiKey, clientId }),
             })
-              .then(function (res) {
-                return res.json();
-              })
-              .then(function (details) {
-                console.log('all good');
-                //TODO redirect
+              .then(function () {
+                window.location.href = success_url;
               })
               .catch(function (error) {
                 console.log(error);
-                console.log('error');
-                //TODO redirect
+                window.location.href = fail_url;
               });
           }}
         />
@@ -62,9 +65,10 @@ const Home: React.FunctionComponent<HomeProps> = ({ clientId, apiKey, intent }) 
 
 export async function getServerSideProps(context) {
   const intent = context.query.intent;
-  const { metadata, apiKey } = await getClientId({ id: intent });
+  const { metadata, apiKey, success_url, fail_url } = await getClientId({ id: intent });
+
   const { clientId } = JSON.parse(metadata);
-  const props = { clientId, apiKey, intent };
+  const props = { clientId, apiKey, intent, success_url, fail_url };
   return {
     props, // will be passed to the page component as props
   };

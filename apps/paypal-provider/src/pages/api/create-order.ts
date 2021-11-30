@@ -1,6 +1,7 @@
 import config from 'config/constants';
 import getIntent from '../../graphql/backend/getIntent';
 import getPaymentClientMetadata from '../../graphql/backend/getPaymentClientMetadata';
+import insertOrder from '../../graphql/backend/insertOrder';
 
 export default async function handler(req, res) {
   const tokenUrl = `${config.PAY_PAL_BASE_URL}/v1/oauth2/token`;
@@ -46,9 +47,18 @@ export default async function handler(req, res) {
     body: JSON.stringify(ppIntentBody),
   });
 
-  const createdIntet = await ppIntent.json();
+  const { id, status } = await ppIntent.json();
 
-  //TODO add to hasura
+  await insertOrder({
+    external_id: id,
+    payment_intent_id: intent,
+    payment_provider_id: config.APP_ID,
+    state: status,
+    metadata: JSON.stringify({
+      currency_code: currency,
+      value: amount.toString(),
+    }),
+  });
 
-  res.status(200).json({ id: createdIntet.id });
+  res.status(200).json({ id: id });
 }
