@@ -5,9 +5,10 @@ import { Button, Input } from '../input-controls';
 type Props = {
   title?: string;
   onClick: (fullName: string, email: string, password: string) => void;
+  error: boolean;
 };
 
-const Registration: FC<Props> = ({ title = 'Registration', onClick }) => {
+const Registration: FC<Props> = ({ title = 'Registration', onClick, error }) => {
   const { register, handleSubmit, formState, watch } = useForm();
   const { isDirty, isSubmitting, errors } = formState;
   const onSubmit = (data: { fullName: string; email: string; password: string }) =>
@@ -58,6 +59,7 @@ const Registration: FC<Props> = ({ title = 'Registration', onClick }) => {
           })}
           errorText={errors.repeat?.message}
         />
+        {error && <div className="text-red">Email already registred!</div>}
         <div className="flex justify-end pt-12 pb-12">
           <Button title="Register" disabled={!isDirty || isSubmitting}></Button>
         </div>
