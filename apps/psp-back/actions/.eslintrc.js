@@ -27,6 +27,10 @@ module.exports = {
         tsx: 'never',
       },
     ],
+    'object-curly-newline': 0,
+    cammelcase: {
+      properties: 'never',
+    },
   },
   settings: {
     'import/resolver': {
