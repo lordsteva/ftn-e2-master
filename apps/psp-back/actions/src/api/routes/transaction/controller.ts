@@ -1,5 +1,5 @@
 import getApiKeyData from '@src/graphql/getApiKeyData';
-import insertOneTimeLink from '@src/graphql/insertOneTimeLink';
+import insertPaymentIntent from '@src/graphql/insertPaymentIntent';
 import { Request, Response } from 'express';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -25,7 +25,7 @@ export async function getCustomListHandler(req: Request, res: Response): Promise
     fail_url,
   };
 
-  await insertOneTimeLink(transactionData);
+  await insertPaymentIntent(transactionData);
   return res.json({
     link: transactionData.id,
   });
