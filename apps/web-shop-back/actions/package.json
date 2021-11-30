@@ -17,6 +17,7 @@
   "dependencies": {
     "@apollo/client": "^3.4.17",
     "@hapi/boom": "^9.1.0",
+    "bcrypt": "^5.0.1",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "cross-fetch": "^3.1.4",
@@ -29,6 +30,7 @@
     "tsconfig-paths": "^3.9.0"
   },
   "devDependencies": {
+    "@types/bcrypt": "^5.0.0",
     "ts-node-dev": "^1.0.0-pre.44",
     "typescript": "^4.4.4"
   }
