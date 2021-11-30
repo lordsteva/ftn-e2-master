@@ -1,5 +1,6 @@
 - "!include public_api_keys.yaml"
 - "!include public_api_provider_link.yaml"
+- "!include public_orders.yaml"
 - "!include public_payment_intents.yaml"
 - "!include public_payment_providers.yaml"
 - "!include public_transactions.yaml"
