@@ -1,6 +1,6 @@
 import config from 'config/constants';
-import getPaymentClientMetadata from '../../graphql/backend/getPaymentClientMetadata';
-import updateOrder from '../../graphql/backend/updateOrder';
+import getPaymentClientMetadata from 'graphql/backend/getPaymentClientMetadata';
+import updateOrder from 'graphql/backend/updateOrder';
 
 export default async function handler(req, res) {
   const tokenUrl = `${config.PAY_PAL_BASE_URL}/v1/oauth2/token`;
