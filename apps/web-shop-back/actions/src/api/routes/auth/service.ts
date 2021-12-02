@@ -1,5 +1,7 @@
 import bcrypt from 'bcrypt';
 import { Request, Response } from 'express';
+import jwt from 'jsonwebtoken';
+import config from '../../../config/constants';
 import getUser from '../../../graphql/getUser';
 import insertUser from '../../../graphql/insertUser';
 
@@ -15,14 +17,30 @@ export const login = async (req: Request, resp: Response) => {
   // perform your custom business logic
   // check if the username and password are valid and login the user
 
-  const { password: pass } = await getUser({ email: username });
-  const match = await bcrypt.compare(password, pass);
+  const { password: pass, id } = (await getUser({ email: username })) ?? {};
+  const match = await bcrypt.compare(password, pass || '');
   if (match) {
-  } else {
+    const accessToken = jwt.sign(
+      {
+        'https://hasura.io/jwt/claims': JSON.stringify({
+          'x-hasura-user-id': id,
+          'x-hasura-allowed-roles': ['USER'],
+          'x-hasura-default-role': 'USER',
+        }),
+        email: username,
+        id,
+      },
+      config.TOKEN_KEY,
+      {
+        expiresIn: '24h',
+      },
+    );
+    return resp.json({
+      accessToken,
+    });
   }
-  // return the response
   return resp.json({
-    accessToken: 'Ew8jkGCNDGAo7p35RV72e0Lk3RGJoJKB',
+    accessToken: null,
   });
 };
 

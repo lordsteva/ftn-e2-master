@@ -6,9 +6,10 @@ type Props = {
   title?: string;
   onClick: (username: string, password: string) => void;
   username?: boolean;
+  error: boolean;
 };
 
-const Login: FC<Props> = ({ title = 'Login', onClick, username }) => {
+const Login: FC<Props> = ({ title = 'Login', onClick, username, error }) => {
   const { register, handleSubmit, formState } = useForm();
   const { isDirty, isSubmitting, errors } = formState;
   const onSubmit = (data: { username: string; password: string }) =>
@@ -38,6 +39,7 @@ const Login: FC<Props> = ({ title = 'Login', onClick, username }) => {
           })}
           errorText={errors.password?.message}
         />
+        {error && <div className="text-red">Wrong email or password!</div>}
         <div className="flex justify-end pt-12 pb-12">
           <Button title="Login" disabled={!isDirty || isSubmitting}></Button>
         </div>
