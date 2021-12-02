@@ -5,9 +5,16 @@ actions:
     handler: '{{ACTION_BASE_ENDPOINT}}/api/auth/login'
   permissions:
   - role: ANONYMOUS
+- name: registration
+  definition:
+    kind: synchronous
+    handler: '{{ACTION_BASE_ENDPOINT}}/api/auth/registration'
+  permissions:
+  - role: ANONYMOUS
 custom_types:
   enums: []
   input_objects: []
   objects:
   - name: LoginResponse
+  - name: RegistrationResponse
   scalars: []

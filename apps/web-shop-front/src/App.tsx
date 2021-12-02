@@ -1,13 +1,12 @@
-import { ApolloProvider } from '@apollo/client';
 import React from 'react';
 import AppRouter from './AppRouter';
-import createApolloClient from './graphql/clients';
+import { UserProvider } from './state/state';
 
 function App() {
   return (
-    <ApolloProvider client={createApolloClient()}>
+    <UserProvider>
       <AppRouter />
-    </ApolloProvider>
+    </UserProvider>
   );
 }
 

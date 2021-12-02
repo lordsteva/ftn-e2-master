@@ -5,5 +5,6 @@ const customRouter = Router();
 
 customRouter.post('/random', customService.getCustomListHandler);
 customRouter.post('/login', customService.login);
+customRouter.post('/registration', customService.registration);
 
 export default customRouter;

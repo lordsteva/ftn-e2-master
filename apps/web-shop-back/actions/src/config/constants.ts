@@ -3,6 +3,7 @@ const config = {
   HASURA_ADMIN_SECRET_HEADER_NAME: process.env.HASURA_ADMIN_SECRET_HEADER_NAME,
   HGE_ADMIN_SECRET: process.env.HGE_ADMIN_SECRET,
   HGE_ENDPOINT: process.env.HGE_ENDPOINT,
+  TOKEN_KEY: process.env.TOKEN_KEY,
 };
 
 export default config;
