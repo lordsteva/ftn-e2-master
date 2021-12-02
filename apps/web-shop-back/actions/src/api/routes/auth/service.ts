@@ -6,14 +6,12 @@ import getUser from '../../../graphql/getUser';
 import insertUser from '../../../graphql/insertUser';
 
 export async function getCustomListHandler(req: Request, res: Response): Promise<Response> {
-  console.log(req.body.input);
   return res.json({ answer: `got ${req.body.input.data.text}` });
 }
 
 export const login = async (req: Request, resp: Response) => {
   // You can access their arguments input at req.body.input
   const { username, password } = req.body.input;
-  console.log(req.body.input);
   // perform your custom business logic
   // check if the username and password are valid and login the user
 
@@ -47,7 +45,7 @@ export const login = async (req: Request, resp: Response) => {
 export const registration = async (req: Request, resp: Response) => {
   // get request input
   const { fullName, email, password } = req.body.input;
-  console.log(req.body.input);
+
   // run some business logic
 
   const saltRounds = 10;

@@ -10,7 +10,6 @@ const RegistrationPage: FC<Record<string, never>> = () => {
   useEffect(() => {
     if (!called) return;
     if (data) {
-      console.log(data);
       if (data.registration.id) {
         navigate('/login');
       } else {

@@ -12,7 +12,7 @@ export type UserState = {
   user: { id: string; email: string };
   token: string | null;
 };
-
+//TODO fix type
 const UserContext = createContext<[UserState, Dispatch<UserAction> | null]>([initialState, null]);
 const useUser = () => useContext(UserContext);
 const UserProvider = ({ children }: { children: React.ReactNode }) => {

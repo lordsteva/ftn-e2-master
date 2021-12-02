@@ -1,7 +1,6 @@
 import { UserAction } from './actions';
 import { initialState, UserState } from './state';
 export default function UserReducer(state: UserState, action: UserAction): UserState {
-  console.log(state, action);
   switch (action.type) {
     case 'SET_USER':
       return { ...state, ...{ user: action.payload } };
