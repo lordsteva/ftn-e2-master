@@ -8,19 +8,11 @@ type Props = {
   block?: boolean;
   rounded?: boolean;
   size?: string;
+  customClass?: string;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
 };
 
-const Button: FC<Props> = ({
-  title,
-  buttonColor,
-  textColor,
-  disabled,
-  block,
-  rounded,
-  size,
-  onClick,
-}) => (
+const Button: FC<Props> = ({ title, buttonColor, textColor, disabled, block, rounded, size, customClass, onClick}) => (
   <button
     disabled={disabled}
     onClick={onClick}
@@ -31,7 +23,9 @@ const Button: FC<Props> = ({
       hover:bg-opacity-90
       ${disabled ? 'opacity-60 cursor-not-allowed' : 'cursor-pointer'}
       ${rounded ? 'rounded-full' : ''}
-      ${block ? 'w-full' : ''}`}
+      ${block ? 'w-full' : ''}
+      ${customClass ? customClass : ''}`
+    }
   >
     {title && <span>{title}</span>}
   </button>

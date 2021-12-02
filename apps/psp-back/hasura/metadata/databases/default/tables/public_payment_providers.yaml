@@ -1,0 +1,12 @@
+table:
+  name: payment_providers
+  schema: public
+select_permissions:
+- permission:
+    columns:
+    - active
+    - base_url
+    - logo
+    - name
+    filter: {}
+  role: ANONYMOUS

@@ -1,0 +1,7 @@
+table:
+  name: payment_intents
+  schema: public
+object_relationships:
+- name: apiKeyByApiKey
+  using:
+    foreign_key_constraint_on: api_key

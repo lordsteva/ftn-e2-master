@@ -28,7 +28,8 @@
     "jsonwebtoken": "^8.5.1",
     "morgan": "^1.10.0",
     "node-fetch": "^3.1.0",
-    "tsconfig-paths": "^3.9.0"
+    "tsconfig-paths": "^3.9.0",
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.0",
