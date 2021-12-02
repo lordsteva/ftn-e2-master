@@ -18,3 +18,14 @@ select_permissions:
     - price
     filter: {}
   role: ANONYMOUS
+- permission:
+    columns:
+    - name
+    - image
+    - description
+    - quantity
+    - id
+    - category_id
+    - price
+    filter: {}
+  role: USER
