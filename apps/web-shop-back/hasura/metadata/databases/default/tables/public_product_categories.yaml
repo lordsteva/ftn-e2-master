@@ -16,3 +16,9 @@ select_permissions:
     - id
     filter: {}
   role: ANONYMOUS
+- permission:
+    columns:
+    - name
+    - id
+    filter: {}
+  role: USER
