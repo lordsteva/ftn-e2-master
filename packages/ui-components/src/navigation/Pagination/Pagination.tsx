@@ -13,15 +13,15 @@ const Pagination: FC<Props> = ({ onPageChange, displayPerPage, total, currentPag
   const pageCount = Math.ceil(total / displayPerPage);
 
   return (
-    <nav className="flex items-center justify-between px-4 border-t border-gray-200 sm:px-0">
+    <nav className="flex items-center justify-between px-40 border-t border-gray-200">
       <div className="flex flex-1 w-0 -mt-px">
         <div
           onClick={() => onPageChange(currentPage - 1)}
-          className={`inline-flex items-center pt-4 pr-1 text-sm font-medium text-gray-500 border-t-2 border-transparent hover:text-gray-700 hover:border-gray-300 ${
+          className={`text-xl cursor-pointer inline-flex items-center pt-4 pr-1 font-medium text-gray-500 border-t-2 border-transparent hover:text-gray-700 hover:border-gray-300 ${
             currentPage === 0 ? 'invisible' : ''
           }`}
         >
-          <ArrowNarrowLeftIcon className="w-5 h-5 mr-3 text-gray-400" aria-hidden="true" />
+          <ArrowNarrowLeftIcon className="w-8 h-8 mr-3 text-gray-400" aria-hidden="true" />
           Previous
         </div>
       </div>
@@ -30,9 +30,9 @@ const Pagination: FC<Props> = ({ onPageChange, displayPerPage, total, currentPag
           <div
             onClick={() => onPageChange(page)}
             key={page + 1}
-            className={`inline-flex items-center px-4 pt-4 text-sm font-medium border-t-2  ${
+            className={`text-xl cursor-pointer inline-flex items-center px-8 pb-2 font-medium border-b-2  ${
               page === currentPage
-                ? 'border-indigo-500 text-indigo-600'
+                ? 'border-primary text-primary'
                 : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
             } `}
           >
@@ -45,9 +45,9 @@ const Pagination: FC<Props> = ({ onPageChange, displayPerPage, total, currentPag
           onClick={() => onPageChange(currentPage + 1)}
           className={`${
             currentPage === pageCount - 1 ? 'hidden' : ''
-          } inline-flex items-center pt-4 pr-1 text-sm font-medium text-gray-500 border-t-2 border-transparent hover:text-gray-700 hover:border-gray-300`}
+          } text-xl cursor-pointer inline-flex items-center pt-4 pr-1 font-medium text-gray-500 border-t-2 border-transparent hover:text-gray-700 hover:border-gray-300`}
         >
-          <ArrowNarrowRightIcon className="w-5 h-5 mr-3 text-gray-400" aria-hidden="true" />
+          <ArrowNarrowRightIcon className="w-8 h-8 mr-3 text-gray-400" aria-hidden="true" />
           Next
         </div>
       </div>

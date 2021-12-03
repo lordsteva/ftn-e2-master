@@ -2,7 +2,7 @@ import { Card, Loader, Pagination } from '@team21/ui-components';
 import React, { FC, useCallback, useState } from 'react';
 import useGetProducts from '../graphql/useGetProducts';
 
-const PER_PAGE = 12;
+const PER_PAGE = 4;
 
 const Home: FC<Record<string, never>> = () => {
   const [currentPage, setCurrentPage] = useState(0);

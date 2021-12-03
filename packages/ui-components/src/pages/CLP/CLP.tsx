@@ -1,15 +1,17 @@
 import React, { FC, useState } from 'react';
 import { CategoryTile } from '../../data-display/CategoryTile'
+import { Category } from '@team21/types'
 
-type Props = {};
+type Props = {
+    categories: Category[];
+}
 
-const CLP: FC<Props> = () => {
-    const [categories, setCategories] = useState([]);
+const CLP: FC<Props> = ({categories}) => {
 
     return <div className="w-10/12 p-24 mx-auto">
         <h1 className="text-h1 text-left mb-24 ml-24">Categories</h1>
         <div className="flex justify-items-start items-center flex-wrap">
-            {categories.map((category: Props, index: number)=>(
+            {categories.map((category: Category, index: number)=>(
                 <CategoryTile key={index} category={category}/>
             ))}
         </div>

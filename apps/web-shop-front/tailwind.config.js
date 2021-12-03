@@ -18,7 +18,13 @@ module.exports = {
         'secondary':'#3a3b3c',
         'bcPrimary':'#18191a',
         'bcSecondary':'#242526'
-      }
+      },
+      height:{
+        '400px':'400px'
+      },
+      width:{
+        '120px':'120px'
+      },
     },
     fontSize: {
       h1: ['36px', '44px'],
@@ -38,12 +44,16 @@ module.exports = {
       0: '0',
       2: '2px',
       4: '4px',
-      8: '8px'
+      8: '8px',
+      12: '12px',
+      16: '16px'
     },
     borderRadius: {
       none: '0',
+      xs: '7px',
       sm: '10px',
-      md: '20px',
+      md: '14px',
+      half: '50%',
       full: '9999px'
     },
     margin: {

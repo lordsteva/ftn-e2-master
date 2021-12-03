@@ -1,0 +1,22 @@
+{
+  "name": "@team21/types",
+  "version": "1.0.0",
+  "description": "Package with types",
+  "author": "Stefan <stefanjokic1998@gmail.com>",
+  "homepage": "https://github.com/lordsteva/ftn-e2-master#readme",
+  "license": "ISC",
+  "main": "index.ts",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lordsteva/ftn-e2-master.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "bugs": {
+    "url": "https://github.com/lordsteva/ftn-e2-master/issues"
+  }
+}

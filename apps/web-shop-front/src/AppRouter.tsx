@@ -1,15 +1,19 @@
 import React, { FC } from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import Home from './pages/Home';
 import LoginPage from './pages/LoginPage';
+import Categories from './pages/Categories'
+import Category from "./pages/Category"
+import Product from "./pages/Product"
 
 const AppRouter: FC<Record<string, never>> = () => (
-  <BrowserRouter>
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/login" element={<LoginPage />} />
-      <Route path="invoices" element={<div />} />
-    </Routes>
-  </BrowserRouter>
+  <Routes>
+    <Route path="/" element={<Home />} />
+    <Route path="/categories" element={<Categories />} />
+    <Route path="/category" element={<Category />} />
+    <Route path="/product" element={<Product />} />
+    <Route path="/login" element={<LoginPage />} />
+    <Route path="invoices" element={<div />} />
+  </Routes>
 );
 export default AppRouter;
