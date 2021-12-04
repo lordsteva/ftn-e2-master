@@ -2,8 +2,8 @@ import { gql, useQuery } from '@apollo/client';
 import { Product } from '@team21/types'
 
 const query = gql`
-    query UseGetProductById($id: uuid!) {
-        products(where: {id: {_eq: $id}}) {
+    query UseGetHomepageProducts($limit: Int!) {
+        products(order_by: {price: desc}, limit: $limit) {
           id
           image
           name
@@ -15,9 +15,9 @@ const query = gql`
     }
 `;
 
-type UseProductByIdReturn = {
+type UseGetHomepageProducts = {
   products: Product[];
 };
 
-export default (id?: string) =>
-  useQuery<UseProductByIdReturn>(query, { variables: { id } });
+export default (limit?: number) =>
+  useQuery<UseGetHomepageProducts>(query, { variables: { limit }});

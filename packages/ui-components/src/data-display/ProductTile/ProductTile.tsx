@@ -15,7 +15,7 @@ type BodyProps = {
 }
 
 const ProductTileBody: FC<BodyProps> = ({description, price, quantity}) => { 
-    function setDescription(description){
+    function setDescription(description:string){
         if(description.length < 90)
             return description
         return `${description.slice(0, 90)}...` 
@@ -44,6 +44,8 @@ const ProductTile: FC<Props> = ({ product }) => {
     return <Card 
         title={product.name}
         imageSrc={product.image}
+        imageAlt={`${product.name}-image`}
+        imageHeight="200px"
         buttonTitle={"More Details"}
         onClick={openProduct}
         body={ 

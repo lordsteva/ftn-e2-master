@@ -20,6 +20,7 @@ const CategoryTile: FC<Props> = ({ category }) => {
         title={`${category.name}`}
         imageSrc={category.image}
         imageAlt={`${category.name}-image`}
+        imageHeight="120px"
         buttonTitle={"View More"}
         onClick={openCategory}
         customClass="category-tile w-52 mx-24 my-12"
