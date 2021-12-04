@@ -6,6 +6,7 @@ select_permissions:
     columns:
     - active
     - base_url
+    - id
     - logo
     - name
     filter: {}
