@@ -1,6 +1,7 @@
 const withImages = require('next-images');
+const withTM = require('next-transpile-modules')(['@team21/ui-components']);
 
-module.exports = {
+module.exports = withTM({
   ...withImages(),
   images: {
     disableStaticImages: true,
@@ -8,4 +9,4 @@ module.exports = {
   typescript: {
     ignoreBuildErrors: true,
   },
-};
+});
