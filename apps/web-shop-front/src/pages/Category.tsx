@@ -25,14 +25,14 @@ const Category: FC<Record<string, never>> = () => {
     return (
         <React.Fragment>
             <PLP id={state.id} name={state.name} products={data!.products} />
-            <div className="w-10/12 p-24 mx-auto">
+            {total && (total > PER_PAGE) && <div className="w-10/12 p-24 mx-auto">
                 <Pagination
                     currentPage={currentPage}
                     total={total ?? 0}
                     displayPerPage={PER_PAGE}
                     onPageChange={onPageChange}
                 />
-            </div>
+            </div>}
          </React.Fragment>
     );
 };

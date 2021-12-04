@@ -11,6 +11,7 @@ const query = gql`
         product_categories(limit: $limit, offset: $offset ) {
             id
             name
+            image
         }
     }
 `;

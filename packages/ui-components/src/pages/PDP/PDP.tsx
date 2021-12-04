@@ -13,7 +13,7 @@ const PDP: FC<Props> = ({product}) => {
 
     return <div className="flex py-24 px-40 w-10/12 mx-auto">
         <div className="w-1/3">
-            <Image wrapperClassName="border-solid border-default border-lightGray" width="3/5" alt={`${product.name}-image`} src={product.image} />
+            <Image wrapperClassName="border-solid border-default border-lightGray" alt={`${product.name}-image`} src={product.image} />
         </div>
         <div className="flex flex-col w-2/3 px-24">
             <h1 className="text-left text-h1 mb-24"> {product.name} </h1>
