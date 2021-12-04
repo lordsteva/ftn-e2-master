@@ -11,23 +11,36 @@ type Props = {
   width?: string;
   innerRef?: UseFormRegisterReturn;
   customClass?: string;
+  defaultValue?: string;
 };
 
-const Input: FC<Props> = ({ id, wrapperClassName, placeholder, type, error, errorText, labelText, width, innerRef, customClass }) => (
+const Input: FC<Props> = ({
+  id,
+  defaultValue = '',
+  wrapperClassName,
+  placeholder,
+  type,
+  errorText,
+  labelText,
+  width,
+  innerRef,
+  customClass,
+}) => (
   <div className={wrapperClassName}>
-    <label htmlFor={id}>
-        {labelText && <span>{labelText}</span>}
-    </label>
+    <label htmlFor={id}>{labelText && <span>{labelText}</span>}</label>
     <div className="mt-8">
-        <input
-            className={`${customClass ? customClass : ''} w-${width ? width : 'full'} bg-white text-dark border-default border-solid border-lightGray hover:border-gray focus:outline-none focus:border-dark pl-4 py-4`}
-            id={id}
-            type={type}
-            placeholder={placeholder}
-            {...innerRef}
-        />
+      <input
+        defaultValue={defaultValue}
+        className={`${customClass ? customClass : ''} w-${
+          width ? width : 'full'
+        } bg-white text-dark border-default border-solid border-lightGray hover:border-gray focus:outline-none focus:border-dark pl-4 py-4`}
+        id={id}
+        type={type}
+        placeholder={placeholder}
+        {...innerRef}
+      />
     </div>
-    {errorText && <p className='text-sm mb-2 text-red'>{errorText}</p>}
+    {errorText && <p className="mb-2 text-sm text-red">{errorText}</p>}
   </div>
 );
 

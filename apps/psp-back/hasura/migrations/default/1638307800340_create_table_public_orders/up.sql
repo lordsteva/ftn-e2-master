@@ -1,0 +1,2 @@
+CREATE TABLE "public"."orders" ("id" uuid NOT NULL DEFAULT gen_random_uuid(), "external_id" text NOT NULL, "state" text NOT NULL, "payment_provider_id" uuid NOT NULL, "metadata" text NOT NULL, "payment_intent_id" uuid NOT NULL, PRIMARY KEY ("id") , FOREIGN KEY ("payment_provider_id") REFERENCES "public"."payment_providers"("id") ON UPDATE restrict ON DELETE restrict, FOREIGN KEY ("payment_intent_id") REFERENCES "public"."payment_intents"("id") ON UPDATE restrict ON DELETE restrict);
+CREATE EXTENSION IF NOT EXISTS pgcrypto;

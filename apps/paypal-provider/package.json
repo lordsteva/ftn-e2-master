@@ -1,7 +1,6 @@
 {
   "name": "@team21/paypal-provider",
   "version": "0.1.0",
-  "private": true,
   "scripts": {
     "dev": "next dev -p 1234",
     "build": "next build",
@@ -19,12 +18,14 @@
     "@paypal/react-paypal-js": "^7.4.2",
     "@tailwindcss/forms": "^0.3.3",
     "@tailwindcss/postcss7-compat": "^2.0.2",
+    "@team21/ui-components": "^0.1.0",
     "autoprefixer": "^9.8.6",
     "cross-fetch": "^3.1.4",
     "file-type": "^16.5.3",
     "form-data": "^4.0.0",
     "next": "12",
     "next-images": "^1.8.1",
+    "next-transpile-modules": "^9.0.0",
     "postcss": "^7.0.35",
     "postcss-cli": "^8.3.1",
     "postcss-loader": "^4.2.0",
