@@ -5,26 +5,26 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'transparent': 'transparent',
-        'white': '#ffffff',
-        'whitesmoke':'#f5f5f5',
-        'lightGray': '#c9c9c9',
-        'gray': '#A9A9A9',
-        'darkGray': '#666666',
-        'dark': '#262626',
-        'red': '#e02020',
-        'success': '#5fad5f',
-        'primary':'#3553e4',
-        'secondary':'#3a3b3c',
-        'bcPrimary':'#18191a',
-        'bcSecondary':'#242526'
+        transparent: 'transparent',
+        white: '#ffffff',
+        whitesmoke: '#f5f5f5',
+        lightGray: '#c9c9c9',
+        gray: '#A9A9A9',
+        darkGray: '#666666',
+        dark: '#262626',
+        red: '#e02020',
+        success: '#5fad5f',
+        primary: '#3553e4',
+        secondary: '#3a3b3c',
+        bcPrimary: '#18191a',
+        bcSecondary: '#242526',
       },
-      height:{
-        '400px':'400px'
+      height: {
+        '400px': '400px',
       },
-      width:{
-        '120px':'120px'
-      }
+      width: {
+        '120px': '120px',
+      },
     },
     fontSize: {
       h1: ['36px', '44px'],
@@ -37,7 +37,7 @@ module.exports = {
       base: '14px',
       sm: '12px',
       xs: '10px',
-      xxs: '8px'
+      xxs: '8px',
     },
     borderWidth: {
       default: '1px',
@@ -46,7 +46,7 @@ module.exports = {
       4: '4px',
       8: '8px',
       12: '12px',
-      16: '16px'
+      16: '16px',
     },
     borderRadius: {
       none: '0',
@@ -54,7 +54,7 @@ module.exports = {
       sm: '10px',
       md: '14px',
       half: '50%',
-      full: '9999px'
+      full: '9999px',
     },
     margin: {
       auto: 'auto',
@@ -73,32 +73,32 @@ module.exports = {
       // Negative Margin
       '-2': '-2px',
       '-4': '-4px',
-      '-8': '-8px', 
+      '-8': '-8px',
       '-12': '-12px',
-      '-16': '-16px', 
-      '-24': '-24px', 
-      '-32': '-32px', 
-      '-40': '-40px', 
-      '-48': '-48px', 
-      '-56': '-56px', 
-      '-64': '-64px'
+      '-16': '-16px',
+      '-24': '-24px',
+      '-32': '-32px',
+      '-40': '-40px',
+      '-48': '-48px',
+      '-56': '-56px',
+      '-64': '-64px',
     },
     padding: {
       0: '0px',
       2: '2px',
       4: '4px',
-      8: '8px', 
+      8: '8px',
       12: '12px',
       16: '16px',
       24: '24px',
-      32: '32px', 
-      40: '40px', 
-      48: '48px', 
-      56: '56px', 
-      64: '64px'
+      32: '32px',
+      40: '40px',
+      48: '48px',
+      56: '56px',
+      64: '64px',
     },
   },
   variants: {
     extend: {},
   },
-}
+};
