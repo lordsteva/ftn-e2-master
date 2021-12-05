@@ -9,16 +9,18 @@ type Props = {
   buttonTitle?: string;
   imageSrc?: string;
   imageAlt?: string;
+  imageHeight?: string;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
   customClass?: string;
 
 };
 
-const Card: FC<Props> = ({ title, body, buttonTitle, onClick, imageSrc, imageAlt, customClass}) => (
+const Card: FC<Props> = ({ title, body, buttonTitle, onClick, imageSrc, imageAlt, imageHeight, customClass}) => (
     <div className={`hover:shadow-lg overflow-hidden p-4 border-default border-solid border-lightGray ${customClass ? customClass : ''}`}>
       <Image
         src={`${imageSrc ? imageSrc : placeholder}`}
         alt={`${imageAlt ? imageAlt : "card-image"}`}
+        height={imageHeight}
       />
     
       <div className="p-4 mt-8 text-center">

@@ -1,0 +1,9 @@
+.product-tile {
+    min-height: 400px;
+    height: 100%;
+}
+
+.description{
+    height: 70px;
+    overflow: hidden;
+}

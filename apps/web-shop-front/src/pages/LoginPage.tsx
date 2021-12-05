@@ -22,7 +22,7 @@ const LoginPage: FC<Record<string, never>> = () => {
     }
   }, [data, called]);
   return (
-    <div className="flex flex-col items-center justify-between w-full h-screen ">
+    <div className="flex flex-col items-center justify-between w-full top-1/4 absolute ">
       <Login
         error={error}
         onClick={(u, p) => sendLoginRequest({ variables: { username: u, password: p } })}

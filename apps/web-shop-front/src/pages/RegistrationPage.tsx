@@ -18,7 +18,7 @@ const RegistrationPage: FC<Record<string, never>> = () => {
     }
   }, [data, called]);
   return (
-    <div className="flex flex-col items-center justify-between w-full h-screen ">
+    <div className="flex flex-col items-center justify-between w-full top-1/4 absolute ">
       <Registration
         error={error}
         onClick={(f, e, p) => sendRegRequest({ variables: { fullName: f, email: e, password: p } })}
