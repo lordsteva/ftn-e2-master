@@ -1,6 +1,5 @@
 import React, { FC } from 'react';
 import { Image } from '../../data-display/Image';
-import './index.css';
 
 type PaymentMethod = { logo: string; name: string; base_url: string; active: boolean };
 
@@ -19,11 +18,11 @@ const Payments: FC<Props> = ({ supportedMethods, paymentIntent }) => {
             item.active && (
               <div
                 key={index}
-                className="payment-card"
+                className="flex flex-col justify-center mx-8 transition duration-200 ease-in transform border-solid cursor-pointer border-default border-lightGray hover:scale-110"
                 onClick={() => (window.location.href = `${item.base_url}/payment/${paymentIntent}`)}
               >
                 <Image width={'120px'} src={`${item.base_url}/${item.logo}`} />
-                <span className="payment-text">{item.name}</span>
+                <span className="mt-8 mb-16 text-center text-md">{item.name}</span>
               </div>
             ),
         )}

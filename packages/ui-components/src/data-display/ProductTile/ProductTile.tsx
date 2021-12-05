@@ -34,22 +34,22 @@ const ProductTileBody: FC<BodyProps> = ({description, price, quantity}) => {
 };
 
 const ProductTile: FC<Props> = ({ product }) => {
-
+    const { id, name, image, description, price, quantity } = product;
     const navigate = useNavigate();
   
     function openProduct() {
-        navigate('/product', { state:{ id: product.id }});
+        navigate('/product', { state:{ id: id }});
     }
 
     return <Card 
-        title={product.name}
-        imageSrc={product.image}
-        imageAlt={`${product.name}-image`}
+        title={name}
+        imageSrc={image}
+        imageAlt={`${name}-image`}
         imageHeight="200px"
         buttonTitle={"More Details"}
         onClick={openProduct}
         body={ 
-            <ProductTileBody description={product.description} price={product.price} quantity={product.quantity} />
+            <ProductTileBody description={description} price={price} quantity={quantity} />
         } 
         customClass="product-tile w-80 mx-24 my-12"
     />

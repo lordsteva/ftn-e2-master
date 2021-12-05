@@ -20,7 +20,7 @@ const Card: FC<Props> = ({ title, body, buttonTitle, onClick, imageSrc, imageAlt
       <Image
         src={`${imageSrc ? imageSrc : placeholder}`}
         alt={`${imageAlt ? imageAlt : "card-image"}`}
-        height={imageHeight && imageHeight}
+        height={imageHeight}
       />
     
       <div className="p-4 mt-8 text-center">
