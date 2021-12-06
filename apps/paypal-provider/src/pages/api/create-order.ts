@@ -19,7 +19,7 @@ export default async function handler(req, res) {
   });
   const { access_token } = await payPalresponse.json();
 
-  const { currency, amount } = await getIntent({ id: intent });
+  const { currency, amount, fail_url, success_url } = await getIntent({ id: intent });
 
   const ppIntentBody = {
     intent: 'CAPTURE',
@@ -29,10 +29,11 @@ export default async function handler(req, res) {
           currency_code: currency,
           value: amount.toString(),
         },
-        redirect_urls: {
-          return_url: 'https://example.com/return',
-          cancel_url: 'https://example.com/cancel',
-        },
+        // TODO fix
+        // redirect_urls: {
+        //   return_url: 'https://example.com/return',
+        //   cancel_url: 'https://example.com/cancel',
+        // },
       },
     ],
   };
