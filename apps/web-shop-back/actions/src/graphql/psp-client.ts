@@ -10,7 +10,7 @@ const httpLink = new HttpLink({
   },
 });
 
-const graphqlAdminClient = new ApolloClient({
+const pspClient = new ApolloClient({
   // typeDefs,
   link: httpLink,
   cache: new InMemoryCache(),
@@ -26,4 +26,4 @@ const graphqlAdminClient = new ApolloClient({
   },
 });
 
-export default graphqlAdminClient;
+export default pspClient;
