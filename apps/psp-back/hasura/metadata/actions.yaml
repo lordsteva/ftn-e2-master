@@ -1,8 +1,10 @@
 actions:
-- name: getOneTimeLink
+- name: createPaymentIntent
   definition:
     kind: synchronous
     handler: '{{ACTION_BASE_ENDPOINT}}/api/transactions/link'
+  permissions:
+  - role: ANONYMOUS
 - name: login
   definition:
     kind: synchronous
