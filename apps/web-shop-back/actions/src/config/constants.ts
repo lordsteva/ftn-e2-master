@@ -4,6 +4,7 @@ const config = {
   HGE_ADMIN_SECRET: process.env.HGE_ADMIN_SECRET,
   HGE_ENDPOINT: process.env.HGE_ENDPOINT,
   TOKEN_KEY: process.env.TOKEN_KEY,
+  PSP_ENDPOINT: process.env.PSP_ENDPOINT,
 };
 
 export default config;
