@@ -51,7 +51,6 @@ const Home: React.FunctionComponent<HomeProps> = ({
           }}
           onApprove={async function ({ orderID }) {
             const approveUrl = `${config.HOST_ADDRESS}/api/capture-order/`;
-            console.log('object');
             return fetch(approveUrl, {
               method: 'post',
               body: JSON.stringify({ orderID, apiKey, clientId }),
