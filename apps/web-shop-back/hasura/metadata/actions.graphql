@@ -1,4 +1,12 @@
 type Mutation {
+  addItem(
+    product_id: uuid
+    user_id: uuid
+    quantity: Int
+  ): CartResponse
+}
+
+type Mutation {
   login(
     username: String!
     password: String!
@@ -19,5 +27,10 @@ type LoginResponse {
 
 type RegistrationResponse {
   id: uuid
+}
+
+type CartResponse {
+  message: String
+  status: Int
 }
 

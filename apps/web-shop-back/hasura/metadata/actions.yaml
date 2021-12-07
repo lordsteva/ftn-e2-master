@@ -1,4 +1,8 @@
 actions:
+- name: addItem
+  definition:
+    kind: synchronous
+    handler: '{{ACTION_BASE_ENDPOINT}}/api/cart/add'
 - name: login
   definition:
     kind: synchronous
@@ -17,4 +21,5 @@ custom_types:
   objects:
   - name: LoginResponse
   - name: RegistrationResponse
+  - name: CartResponse
   scalars: []

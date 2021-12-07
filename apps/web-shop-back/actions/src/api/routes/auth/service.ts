@@ -4,6 +4,7 @@ import jwt from 'jsonwebtoken';
 import config from '../../../config/constants';
 import getUser from '../../../graphql/getUser';
 import insertUser from '../../../graphql/insertUser';
+import createCart from '../../../graphql/createCart'
 
 export async function getCustomListHandler(req: Request, res: Response): Promise<Response> {
   return res.json({ answer: `got ${req.body.input.data.text}` });
@@ -53,11 +54,15 @@ export const registration = async (req: Request, resp: Response) => {
   try {
     const { id } = await insertUser({ fullName, email, password: hash });
 
+    if (id) {
+      await createCart({ user_id: id });
+    }
     // success
     return resp.json({
       id,
     });
   } catch (e) {
+    console.log(e);
     return resp.json({
       id: null,
     });
