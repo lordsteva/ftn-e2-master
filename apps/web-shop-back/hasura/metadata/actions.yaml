@@ -1,4 +1,8 @@
 actions:
+- name: checkout
+  definition:
+    kind: synchronous
+    handler: '{{ACTION_BASE_ENDPOINT}}/api/order/create-payment-intent'
 - name: login
   definition:
     kind: synchronous
@@ -13,8 +17,10 @@ actions:
   - role: ANONYMOUS
 custom_types:
   enums: []
-  input_objects: []
+  input_objects:
+  - name: CheckoutInput
   objects:
   - name: LoginResponse
   - name: RegistrationResponse
+  - name: CheckoutOutput
   scalars: []

@@ -3,14 +3,14 @@ import fetch from 'cross-fetch';
 import config from '../config/constants';
 
 const httpLink = new HttpLink({
-  uri: `${config.HGE_ENDPOINT}/v1/graphql`,
+  uri: `${config.PSP_ENDPOINT}/v1/graphql`,
   fetch,
   headers: {
     [config.HASURA_ADMIN_SECRET_HEADER_NAME]: config.HGE_ADMIN_SECRET,
   },
 });
 
-const graphqlAdminClient = new ApolloClient({
+const pspClient = new ApolloClient({
   // typeDefs,
   link: httpLink,
   cache: new InMemoryCache(),
@@ -26,4 +26,4 @@ const graphqlAdminClient = new ApolloClient({
   },
 });
 
-export default graphqlAdminClient;
+export default pspClient;

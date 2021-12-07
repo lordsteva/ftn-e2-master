@@ -1,5 +1,5 @@
 type Mutation {
-  getOneTimeLink (
+  createPaymentIntent (
     data: OneTimeLinkInput!
   ): OneTimeLinkOutput
 }

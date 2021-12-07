@@ -6,10 +6,6 @@ import getUser from '../../../graphql/getUser';
 import insertUser from '../../../graphql/insertUser';
 import logger from '../../../logger/logger';
 
-export async function getCustomListHandler(req: Request, res: Response): Promise<Response> {
-  return res.json({ answer: `got ${req.body.input.data.text}` });
-}
-
 export const login = async (req: Request, resp: Response) => {
   // You can access their arguments input at req.body.input
   const { username, password } = req.body.input;
