@@ -19,11 +19,11 @@ module.exports = {
         bcPrimary: '#18191a',
         bcSecondary: '#242526',
       },
-      height:{
+      height: {
         '120px': '120px',
         '150px': '150px',
         '200px': '200px',
-        '400px':'400px'
+        '400px': '400px',
       },
       width: {
         '120px': '120px',
