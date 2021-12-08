@@ -18,7 +18,7 @@ const Breadcrumb: FC<Props> = ({ path }) => {
             <div className="flex items-center">
               <a
                 href={item.url}
-                className={`text-base font-sans hover:text-primary-stop ${
+                className={`text-base font-sans hover:underline ${
                   pathLength === idx + 1 ? CURRENT_TEXT_COLOR : ''
                 }`}
               >
