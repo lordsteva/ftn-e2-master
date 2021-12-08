@@ -7,7 +7,7 @@ import useGetApiKeysByUser from '../graphql/frontend/useGetApiKeysByUser';
 const headerData = ['API key', 'API secret', 'Active', 'Actions'];
 
 // TODO: remove
-const MOCKED_USER_ID = 'cc9d3123-6b00-4259-ac50-6c3e873d4740';
+const MOCKED_USER_ID = 'ac0dff7e-48eb-45d6-b279-468dbc2dff77';
 
 const ApiKeysOverview: FC<Record<string, never>> = () => {
   // const { apiKey, link } = useParams();
@@ -25,7 +25,7 @@ const ApiKeysOverview: FC<Record<string, never>> = () => {
           items: [api_key, api_secret, active ? 'Yes' : 'No'],
           actions: [
             { action: !active ? 'Activate' : 'Deactivate', onClick: () => console.log('toggle') },
-            { action: 'Configure providers', onClick: () => router.push(api_key) },
+            { action: 'Configure providers', onClick: () => router.push(`api-keys/${api_key}`) },
             { action: 'Remove', onClick: () => console.log('remove') },
           ],
         }))}

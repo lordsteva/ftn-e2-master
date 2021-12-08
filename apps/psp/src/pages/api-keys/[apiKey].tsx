@@ -1,14 +1,15 @@
 import { Image } from '@team21/ui-components';
+import { useRouter } from 'next/router';
 import React, { FC } from 'react';
-import { useParams } from 'react-router-dom';
 import useDeleteApiProviderLink from '../../graphql/frontend/useDeleteApiProviderLink';
 import useGetApiKeyDataAndActiveProviders from '../../graphql/frontend/useGetApiKeyDataAndActiveProviders';
 
 const ConfigureApiKey: FC<Record<string, never>> = () => {
-  const { apiKey } = useParams();
-  const { data: apiKeys, refetch } = useGetApiKeyDataAndActiveProviders(apiKey || '');
+  const router = useRouter();
+  const { apiKey } = router.query;
+  console.log(router.query);
+  const { data: apiKeys, refetch } = useGetApiKeyDataAndActiveProviders((apiKey as string) || '');
   const [deleteApiPorviderLink] = useDeleteApiProviderLink();
-  console.log(apiKeys);
   return (
     <div className="flex flex-col items-center w-full h-screen ">
       {apiKeys?.payment_providers.map(({ id, base_url, logo, name }) => {
@@ -24,6 +25,7 @@ const ConfigureApiKey: FC<Record<string, never>> = () => {
             <div className="flex flex-col pl-24">
               {used && (
                 <div
+                  className="text-blue-500 underline cursor-pointer select-none"
                   onClick={async () => {
                     await deleteApiPorviderLink({
                       variables: { payment_provider_id: id, api_key_id: apiKey },
@@ -35,6 +37,7 @@ const ConfigureApiKey: FC<Record<string, never>> = () => {
                 </div>
               )}
               <div
+                className="text-blue-500 underline cursor-pointer select-none"
                 onClick={() =>
                   (window.location.href = `${base_url}/config?apiKey=${apiKey}&returnUrl=${window.location.href}`)
                 }
