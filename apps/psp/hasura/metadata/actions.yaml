@@ -8,7 +8,13 @@ actions:
 - name: login
   definition:
     kind: synchronous
-    handler: '{{ACTION_BASE_ENDPOINT}}/api/login'
+    handler: '{{ACTION_BASE_ENDPOINT}}/api/auth/login'
+  permissions:
+  - role: ANONYMOUS
+- name: registration
+  definition:
+    kind: synchronous
+    handler: '{{ACTION_BASE_ENDPOINT}}/api/auth/registration'
   permissions:
   - role: ANONYMOUS
 custom_types:
@@ -20,4 +26,5 @@ custom_types:
   - name: RandOutput
   - name: OneTimeLinkOutput
   - name: LoginResponse
+  - name: RegistrationResponse
   scalars: []
