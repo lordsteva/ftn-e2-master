@@ -1,26 +1,31 @@
-import React, { FC, useState } from 'react';
-import { Image, Button, Loader } from '@team21/ui-components'
+import { Loader, Image, Button } from '@team21/ui-components';
+import React, { FC, useState} from 'react';
+import { useLocation } from 'react-router-dom'
+import useGetProductById from '../graphql/product/useGetProductById';
 import { Product } from '@team21/types';
 import { useUser } from '@team21/web-shop-front/src/state/state';
 import useAddItemToCart from '@team21/web-shop-front/src/graphql/cart/useAddItemToCart';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-type Props = {
-    product: Product;
-};
-
-const PDP: FC<Props> = ({product}) => {
-    const [addItemToCart, {loading}] = useAddItemToCart();
-
+const ProductPage: FC<Record<string, never>> = () => {
+    const { state } = useLocation();
+    const { data, loading } = useGetProductById(state.id);
+    const [addItemToCart] = useAddItemToCart();
     const [quantity, setQuantity] = useState(1);
+    const [isLoader, setIsLoader] = useState(false);
     const [{ user }] = useUser();
+
+    if(!data && loading) return <Loader />
+
+    const product = data!.products[0]
 
     function changeQuantity(e:React.FormEvent<HTMLInputElement>) {
         setQuantity(parseInt(e.currentTarget.value))
     }
 
     async function addToCart(product_id: string){
+        setIsLoader(true)
         await addItemToCart({ variables: { cart_id: user.cart_id, product_id, quantity } })
         toast.success('Item added to cart!', {
             position: "top-right",
@@ -30,9 +35,11 @@ const PDP: FC<Props> = ({product}) => {
             pauseOnHover: true,
             progress: undefined,
         });
+        setIsLoader(false)
     }
 
-    if(loading) return <Loader />
+    
+    if(isLoader) return <Loader />
 
     return <div className="flex py-24 px-40 w-10/12 mx-auto">
         <div className="w-1/3">
@@ -69,5 +76,4 @@ const PDP: FC<Props> = ({product}) => {
         />
     </div>
 };
-
-export default PDP;
+export default ProductPage;

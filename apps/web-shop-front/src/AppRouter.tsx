@@ -8,7 +8,7 @@ import LoginPage from './pages/LoginPage';
 import RegistrationPage from './pages/RegistrationPage';
 import Categories from './pages/Categories'
 import Category from "./pages/Category"
-import Product from "./pages/Product"
+import ProductPage from "./pages/ProductPage"
 import ShoppingCart from './pages/ShoppingCart'
 import Navigation from './Navigation';
 import CheckoutPage from './pages/CheckoutPage';
@@ -31,7 +31,7 @@ const AppRouter: FC<Record<string, never>> = () => {
           <Route path="/categories" element={<Categories />} />
           <Route path="/category" element={<Category />} />
           <Route path="/checkout" element={<CheckoutPage />} />
-          <Route path="/product" element={<Product />} />
+          <Route path="/product" element={<ProductPage />} />
           <Route path="/cart" element={<ShoppingCart />} />
           <Route path="invoices" element={<div />} />
         </Routes>
