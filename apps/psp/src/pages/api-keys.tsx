@@ -3,18 +3,16 @@ import { useRouter } from 'next/router';
 import React, { FC } from 'react';
 import useCreateApiKey from '../graphql/frontend/useCreateApiKey';
 import useGetApiKeysByUser from '../graphql/frontend/useGetApiKeysByUser';
+import { useUser } from '../state/state';
 
 const headerData = ['API key', 'API secret', 'Active', 'Actions'];
-
-// TODO: remove
-const MOCKED_USER_ID = 'ac0dff7e-48eb-45d6-b279-468dbc2dff77';
 
 const ApiKeysOverview: FC<Record<string, never>> = () => {
   // const { apiKey, link } = useParams();
   // const { data } = useGetPaymentMethodsByApiKey(apiKey || '');
   // const providers = data?.api_keys_by_pk?.api_provider_links ?? [];
-
-  const { data: apiKeys, refetch } = useGetApiKeysByUser(MOCKED_USER_ID);
+  const [{ user }] = useUser();
+  const { data: apiKeys, refetch } = useGetApiKeysByUser(user.id);
   const [createApiKey] = useCreateApiKey();
   const router = useRouter();
   return (
@@ -33,7 +31,7 @@ const ApiKeysOverview: FC<Record<string, never>> = () => {
       <Button
         title="+ Create new"
         onClick={async () => {
-          await createApiKey({ variables: { user_id: MOCKED_USER_ID } });
+          await createApiKey({ variables: { user_id: user.id } });
           refetch();
         }}
       />
