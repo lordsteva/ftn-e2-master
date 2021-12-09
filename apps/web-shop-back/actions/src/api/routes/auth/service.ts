@@ -1,14 +1,11 @@
 import bcrypt from 'bcryptjs';
 import { Request, Response } from 'express';
 import jwt from 'jsonwebtoken';
+import createCart from '../../../graphql/createCart';
 import config from '../../../config/constants';
 import getUser from '../../../graphql/getUser';
 import insertUser from '../../../graphql/insertUser';
-import createCart from '../../../graphql/createCart'
-
-export async function getCustomListHandler(req: Request, res: Response): Promise<Response> {
-  return res.json({ answer: `got ${req.body.input.data.text}` });
-}
+import logger from '../../../logger/logger';
 
 export const login = async (req: Request, resp: Response) => {
   // You can access their arguments input at req.body.input
@@ -19,6 +16,7 @@ export const login = async (req: Request, resp: Response) => {
   const { password: pass, id, cart } = (await getUser({ email: username })) ?? {};
   const cart_id = cart[0].id;
 
+  logger.info(`Atempt login with email:${username}`);
   const match = await bcrypt.compare(password, pass || '');
   if (match) {
     const accessToken = jwt.sign(
@@ -37,10 +35,12 @@ export const login = async (req: Request, resp: Response) => {
         expiresIn: '24h',
       },
     );
+    logger.info(`Successful login with email:${username}`);
     return resp.json({
       accessToken,
     });
   }
+  logger.warn(`Unsuccessful login with email:${username}`);
   return resp.json({
     accessToken: null,
   });
@@ -51,7 +51,7 @@ export const registration = async (req: Request, resp: Response) => {
   const { fullName, email, password } = req.body.input;
 
   // run some business logic
-
+  logger.info(`Atempt registration with email:${email}`);
   const saltRounds = 10;
   const hash = await bcrypt.hash(password, saltRounds);
   try {
@@ -61,11 +61,12 @@ export const registration = async (req: Request, resp: Response) => {
       await createCart({ user_id: id });
     }
     // success
+    logger.info(`Successful registration with email:${email}`);
     return resp.json({
       id,
     });
   } catch (e) {
-    console.log(e);
+    logger.error(`Unsuccessful registration with email:${email}`);
     return resp.json({
       id: null,
     });
