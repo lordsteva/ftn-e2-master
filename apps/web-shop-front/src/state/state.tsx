@@ -9,7 +9,7 @@ export const initialState: UserState = {
 };
 
 export type UserState = {
-  user: { id: string; email: string };
+  user: { id: string; email: string; cart_id: string };
   token: string | null;
 };
 //TODO fix type

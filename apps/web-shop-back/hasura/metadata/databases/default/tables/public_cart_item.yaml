@@ -8,6 +8,15 @@ object_relationships:
 - name: product
   using:
     foreign_key_constraint_on: product_id
+insert_permissions:
+- permission:
+    backend_only: false
+    check: {}
+    columns:
+    - cart_id
+    - product_id
+    - quantity
+  role: USER
 select_permissions:
 - permission:
     columns:
@@ -15,5 +24,17 @@ select_permissions:
     - id
     - product_id
     - quantity
+    filter: {}
+  role: USER
+update_permissions:
+- permission:
+    check: null
+    columns:
+    - product_id
+    - quantity
+    filter: {}
+  role: USER
+delete_permissions:
+- permission:
     filter: {}
   role: USER

@@ -16,7 +16,9 @@ export const login = async (req: Request, resp: Response) => {
   // perform your custom business logic
   // check if the username and password are valid and login the user
 
-  const { password: pass, id } = (await getUser({ email: username })) ?? {};
+  const { password: pass, id, cart } = (await getUser({ email: username })) ?? {};
+  const cart_id = cart[0].id;
+
   const match = await bcrypt.compare(password, pass || '');
   if (match) {
     const accessToken = jwt.sign(
@@ -27,6 +29,7 @@ export const login = async (req: Request, resp: Response) => {
           'x-hasura-default-role': 'USER',
         }),
         email: username,
+        cart_id,
         id,
       },
       config.TOKEN_KEY,

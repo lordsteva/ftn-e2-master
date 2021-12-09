@@ -1,33 +1,38 @@
-import React, { ChangeEventHandler, FC, useState, useEffect } from 'react';
-import { Image } from '../../data-display/Image'
-import { Button } from '../../input-controls/'
+import React, { FC, useState } from 'react';
+import { Image, Button, Loader } from '@team21/ui-components'
 import { Product } from '@team21/types';
 import { useUser } from '@team21/web-shop-front/src/state/state';
 import useAddItemToCart from '@team21/web-shop-front/src/graphql/cart/useAddItemToCart';
-import { getUserFromToken } from "@team21/web-shop-front/src/utils/tokenUtils"
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 type Props = {
     product: Product;
 };
 
 const PDP: FC<Props> = ({product}) => {
-    const [addItemToCart, { data, loading, called }] = useAddItemToCart();
+    const [addItemToCart, {loading}] = useAddItemToCart();
+
     const [quantity, setQuantity] = useState(1);
-    const [{ token }] = useUser();
-    const [user, setUser] = useState({id:''})
+    const [{ user }] = useUser();
 
     function changeQuantity(e:React.FormEvent<HTMLInputElement>) {
         setQuantity(parseInt(e.currentTarget.value))
     }
 
-    function addToCart(product_id:string){
-        addItemToCart({ variables: { user_id: user.id, product_id, quantity } })
+    async function addToCart(product_id: string){
+        await addItemToCart({ variables: { cart_id: user.cart_id, product_id, quantity } })
+        toast.success('Item added to cart!', {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            progress: undefined,
+        });
     }
 
-    useEffect(()=>{
-        const user = getUserFromToken(token)
-        if (user) { setUser(user) }
-    },[])
+    if(loading) return <Loader />
 
     return <div className="flex py-24 px-40 w-10/12 mx-auto">
         <div className="w-1/3">
@@ -52,6 +57,16 @@ const PDP: FC<Props> = ({product}) => {
                 <Button onClick={()=> addToCart(product.id)} size="md" buttonColor="primary" title="Add to Cart" />
             </div>
         </div>
+        <ToastContainer
+            position="top-right"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            pauseOnHover
+        />
     </div>
 };
 

@@ -18,6 +18,7 @@ const Navigation: FC = () => {
             <ALink path="/" name="Home" />
             <ALink path="/categories" name="Categories" />
             { token && <ALink path="/cart" name="Cart" /> }
+            { token && <ALink path="/orders" name="Orders" /> }
             { token && <ALink onClick={logout} name="Logout" /> }
             { !token && <ALink path="/login" name="Login" /> }
             { !token && <ALink path="/register" name="Register" /> }

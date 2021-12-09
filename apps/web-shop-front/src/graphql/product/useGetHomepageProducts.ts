@@ -20,4 +20,4 @@ type UseGetHomepageProducts = {
 };
 
 export default (limit?: number) =>
-  useQuery<UseGetHomepageProducts>(query, { variables: { limit }});
+  useQuery<UseGetHomepageProducts>(query, { variables: { limit }, fetchPolicy:'no-cache'});

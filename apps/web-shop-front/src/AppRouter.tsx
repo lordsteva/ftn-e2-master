@@ -11,6 +11,7 @@ import Category from "./pages/Category"
 import Product from "./pages/Product"
 import ShoppingCart from './pages/ShoppingCart'
 import Navigation from './Navigation';
+import CheckoutPage from './pages/CheckoutPage';
 
 const AppRouter: FC<Record<string, never>> = () => {
   const [{ token }] = useUser();
@@ -29,6 +30,7 @@ const AppRouter: FC<Record<string, never>> = () => {
           <Route path="/register" element={<RegistrationPage />} />
           <Route path="/categories" element={<Categories />} />
           <Route path="/category" element={<Category />} />
+          <Route path="/checkout" element={<CheckoutPage />} />
           <Route path="/product" element={<Product />} />
           <Route path="/cart" element={<ShoppingCart />} />
           <Route path="invoices" element={<div />} />

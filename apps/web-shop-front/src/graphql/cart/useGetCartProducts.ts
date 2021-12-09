@@ -25,4 +25,4 @@ type UseGetCartProductsReturn = {
 };
 
 export default (cart_id?: string) =>
-  useQuery<UseGetCartProductsReturn>(query, { variables: { cart_id} });
+  useQuery<UseGetCartProductsReturn>(query, { variables: { cart_id }, fetchPolicy:'no-cache' });

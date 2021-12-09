@@ -30,4 +30,4 @@ type UseGetCategoryProductsReturn = {
 };
 
 export default (category_id: string, limit?: number, offset?: number) =>
-  useQuery<UseGetCategoryProductsReturn>(query, { variables: {category_id, limit, offset } });
+  useQuery<UseGetCategoryProductsReturn>(query, { variables: {category_id, limit, offset }, fetchPolicy:'no-cache' });
