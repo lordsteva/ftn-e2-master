@@ -1,50 +1,55 @@
 type Mutation {
-  createPaymentIntent(
+  createPaymentIntent (
     data: OneTimeLinkInput!
   ): OneTimeLinkOutput
 }
 
+
 type Mutation {
-  login(
+  login (
     username: String!
     password: String!
   ): LoginResponse
 }
 
+
 type Mutation {
-  registration(
+  registration (
     fullName: String!
     email: String!
     password: String!
   ): RegistrationResponse
 }
 
+
+
+
 input RandInput {
-  text: String!
+  text : String!
 }
 
 input OneTimeLinkInput {
-  api_key: String!
-  api_secret: String!
-  amount: String!
-  currency: String!
-  success_url: String!
-  fail_url: String!
+  api_key : String!
+  api_secret : String!
+  amount : String!
+  currency : String!
+  success_url : String!
+  fail_url : String!
 }
 
 type RandOutput {
-  answer: String!
+  answer : String!
 }
 
 type OneTimeLinkOutput {
-  link: String!
+  link : String!
 }
 
 type LoginResponse {
-  accessToken: String
+  accessToken : String
 }
 
 type RegistrationResponse {
-  id: uuid
+  id : uuid
 }
 
