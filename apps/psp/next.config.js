@@ -1,5 +1,5 @@
 const withImages = require('next-images');
-const withTM = require('next-transpile-modules')(['@team21/ui-components', '@team21/web-shop-front']);
+const withTM = require('next-transpile-modules')(['@team21/ui-components']);
 
 module.exports = withTM({
   ...withImages(),
