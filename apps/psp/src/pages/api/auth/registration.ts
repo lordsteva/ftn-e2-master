@@ -6,7 +6,6 @@ import logger from '../../../logger/logger';
 export const registration = async (req: Request, resp: Response) => {
   // get request input
   const { fullName, email, password } = req.body.input;
-  console.log(email);
   // run some business logic
   logger.info(`Atempt registration with email:${email}`);
   const saltRounds = 10;

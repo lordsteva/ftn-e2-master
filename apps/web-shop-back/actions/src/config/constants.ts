@@ -7,6 +7,8 @@ const config = {
   PSP_ENDPOINT: process.env.PSP_ENDPOINT,
   PSP_API_KEY: process.env.PSP_API_KEY,
   PSP_API_SERET: process.env.PSP_API_SECRET,
+  PSP_KEY_HEADER: process.env.PSP_KEY_HEADER,
+  PSP_SECRET_HEADER: process.env.PSP_SECRET_HEADER,
 };
 
 export default config;

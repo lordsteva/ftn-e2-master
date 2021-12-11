@@ -6,7 +6,8 @@ const httpLink = new HttpLink({
   uri: `${config.PSP_ENDPOINT}/v1/graphql`,
   fetch,
   headers: {
-    [config.HASURA_ADMIN_SECRET_HEADER_NAME]: config.HGE_ADMIN_SECRET,
+    [config.PSP_KEY_HEADER]: config.PSP_API_KEY,
+    [config.PSP_SECRET_HEADER]: config.PSP_API_SERET,
   },
 });
 

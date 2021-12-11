@@ -15,7 +15,6 @@ const getApiKeyData = async (
   apiKey: string,
 ): Promise<{ active: boolean; api_key: string; api_secret: string }> => {
   const res = await graphqlAdminClient.query({ query, variables: { api_key: apiKey } });
-  console.log(res);
   return res.data.api_keys?.[0];
 };
 
