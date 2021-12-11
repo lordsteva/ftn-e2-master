@@ -8,7 +8,7 @@
     "dev": "ts-node-dev -r dotenv/config src",
     "lint": "eslint src --ext ts",
     "lint:fix": "npm run lint -- --fix",
-    "start": "NODE_PATH=./dist/src node dist/src",
+    "start": "ts-node-dev -r dotenv/config src",
     "test": "jest -c test/jest.config.js"
   },
   "keywords": [],
