@@ -13,6 +13,7 @@ const ApiKeysOverview: FC<Record<string, never>> = () => {
   const { data: apiKeys, refetch } = useGetApiKeysByUser(user.id);
   const [createApiKey] = useCreateApiKey();
   const router = useRouter();
+
   return (
     <>
       <Breadcrumb path={[{ label: 'Api Keys', url: '/' }]} />

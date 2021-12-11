@@ -10,4 +10,4 @@ select_permissions:
     - logo
     - name
     filter: {}
-  role: ANONYMOUS
+  role: USER

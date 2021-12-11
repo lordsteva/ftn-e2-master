@@ -13,7 +13,6 @@ const updateOrderPaymentIntent = async (variables: {
   id: string;
   payment_intent_id: string;
 }): Promise<{ id: string }> => {
-  console.log(variables);
   const res = await graphqlAdminClient.mutate({ mutation, variables });
   return res.data.update_orders_by_pk;
 };

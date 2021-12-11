@@ -17,12 +17,6 @@ insert_permissions:
 - permission:
     backend_only: false
     check: {}
-    columns:
-    - user_id
-  role: ANONYMOUS
-- permission:
-    backend_only: false
-    check: {}
     columns: []
     set:
       user_id: x-hasura-User-Id
@@ -34,5 +28,7 @@ select_permissions:
     - api_key
     - api_secret
     - user_id
-    filter: {}
-  role: ANONYMOUS
+    filter:
+      user_id:
+        _eq: X-Hasura-User-Id
+  role: USER
