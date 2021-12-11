@@ -26,4 +26,4 @@ type UseGetCategoriesReturn = {
 };
 
 export default (limit?: number, offset?: number) =>
-  useQuery<UseGetCategoriesReturn>(query, { variables: { limit, offset } });
+  useQuery<UseGetCategoriesReturn>(query, { variables: { limit, offset }, fetchPolicy:'no-cache' });

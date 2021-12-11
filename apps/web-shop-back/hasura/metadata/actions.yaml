@@ -23,4 +23,5 @@ custom_types:
   - name: LoginResponse
   - name: RegistrationResponse
   - name: CheckoutOutput
+  - name: CartResponse
   scalars: []

@@ -1,20 +1,14 @@
-import React, { FC } from 'react';
-import { ALink } from '../ALink'
-
-type NavLink = {
-    name: string;
-    path: string;
-}
+import React, { FC, ReactNode } from 'react';
 
 type Props = {
-  links: NavLink[];
-};
+    children?: ReactNode;
+}
 
-const Navbar: FC<Props> = ({ links }) => (
+const Navbar: FC<Props> = ({children}) => (
     <div>
         <nav>
             <ul className="w-full flex flex-wrap justify-center py-8 list-none bg-bcPrimary">
-                { links.map((link: NavLink, index: number) => ( link && <ALink key={index} path={link.path} name={link.name}  />)) }
+                {children}
             </ul>
         </nav>
     </div>

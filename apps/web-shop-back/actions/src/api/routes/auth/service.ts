@@ -1,6 +1,7 @@
 import bcrypt from 'bcryptjs';
 import { Request, Response } from 'express';
 import jwt from 'jsonwebtoken';
+import createCart from '../../../graphql/createCart';
 import config from '../../../config/constants';
 import getUser from '../../../graphql/getUser';
 import insertUser from '../../../graphql/insertUser';
@@ -12,7 +13,9 @@ export const login = async (req: Request, resp: Response) => {
   // perform your custom business logic
   // check if the username and password are valid and login the user
 
-  const { password: pass, id } = (await getUser({ email: username })) ?? {};
+  const { password: pass, id, cart } = (await getUser({ email: username })) ?? {};
+  const cart_id = cart[0].id;
+
   logger.info(`Atempt login with email:${username}`);
   const match = await bcrypt.compare(password, pass || '');
   if (match) {
@@ -24,6 +27,7 @@ export const login = async (req: Request, resp: Response) => {
           'x-hasura-default-role': 'USER',
         }),
         email: username,
+        cart_id,
         id,
       },
       config.TOKEN_KEY,
@@ -53,6 +57,9 @@ export const registration = async (req: Request, resp: Response) => {
   try {
     const { id } = await insertUser({ fullName, email, password: hash });
 
+    if (id) {
+      await createCart({ user_id: id });
+    }
     // success
     logger.info(`Successful registration with email:${email}`);
     return resp.json({

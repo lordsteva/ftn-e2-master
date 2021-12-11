@@ -19,8 +19,10 @@ select_permissions:
     filter: {}
   role: ANONYMOUS
 - permission:
+    allow_aggregations: true
     columns:
-    - name
     - id
+    - image
+    - name
     filter: {}
   role: USER

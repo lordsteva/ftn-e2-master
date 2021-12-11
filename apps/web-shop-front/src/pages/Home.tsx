@@ -1,5 +1,5 @@
 import { ProductTile, Loader } from '@team21/ui-components';
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC } from 'react';
 import { Product } from '@team21/types'
 import useGetHomepageProducts from '../graphql/product/useGetHomepageProducts';
 

@@ -20,10 +20,14 @@ module.exports = {
         'bcSecondary':'#242526'
       },
       height:{
+        '100px': '100px',
         '120px': '120px',
         '150px': '150px',
+        '180px': '180px',
         '200px': '200px',
-        '400px':'400px'
+        '400px': '400px',
+        '550px': '550px',
+        '600px': '600px'
       },
       width:{
         '120px':'120px'

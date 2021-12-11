@@ -6,11 +6,15 @@ const mutation = gql`
     users(where: { email: { _eq: $email } }) {
       password
       id
+      cart{
+        id
+      }
     }
   }
 `;
 
-const getUser = async (variables: { email: string }): Promise<{ password: string; id: string }> => {
+// eslint-disable-next-line max-len
+const getUser = async (variables: { email: string }): Promise<{ password: string; id: string, cart: {id: string} }> => {
   const res = await graphqlAdminClient.mutate({ mutation, variables });
   return res.data.users?.[0];
 };
