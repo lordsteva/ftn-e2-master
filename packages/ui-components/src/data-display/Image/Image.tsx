@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
 import placeholder from "../../assets/placeholder.jpg"
+import "./index.css"
 
 type Props = {
   src: string;
@@ -12,11 +13,11 @@ type Props = {
 
 const Image: FC<Props> = ({ src, alt, width, height, wrapperClassName, rounded }) => (
     <div className={wrapperClassName}>
-        <div className={`w-${width ? width : 'full'} h-${height ? height : 'auto'} p-4 mx-auto`}>
+        <div className={`w-${width ? width : 'full'} h-${height ? height : 'full'} p-4 mx-auto`}>
             <img
                 src={src || placeholder}
                 alt={alt && alt}
-                className={`${rounded ? 'rounded-full' : 'rounded-none'} max-w-full h-auto align-middle hover:opacity-90}`}
+                className={`image ${rounded ? 'rounded-full' : 'rounded-none'} w-full max-h-full align-middle hover:opacity-90}`}
             />
         </div>
     </div>
