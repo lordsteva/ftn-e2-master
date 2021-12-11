@@ -17,14 +17,15 @@ export default async (req: Request, res: Response): Promise<Response> => {
       message: 'Invalid API key or secret',
     });
   }
+  const id = uuidv4();
   const transactionData = {
     api_key,
     amount,
     currency,
-    id: uuidv4(),
+    id,
     created_at: new Date().toISOString(),
-    success_url,
-    fail_url,
+    success_url: `${success_url}?payment_intent_id=${id}`,
+    fail_url: `${fail_url}?payment_intent_id=${id}`,
   };
 
   await insertPaymentIntent(transactionData);

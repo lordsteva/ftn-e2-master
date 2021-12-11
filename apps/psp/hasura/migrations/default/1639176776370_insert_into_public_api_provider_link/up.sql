@@ -1,0 +1,1 @@
+INSERT INTO "public"."api_provider_link"("api_key_id", "payment_provider_id", "metadata") VALUES (E'7b273382-9ac1-4728-8489-2b93b6f59fae', E'f9912c8f-8b3f-4bac-8a42-bd02aeb6d233', E'{"clientId":"AW5hMbFeA0KSMgwxD5a4HGDxd_lzi8ByR6phXzegNN1_9vwLTZl5cOxSksPAHeMJ2PRFJYV0UY9csLoK","clientSecret":"EE47-waHBHnXj8niRtX2oYr9X5iKIa9lkhPcCTzRxwV42dijRMEeCQZ5M1hoXmDzLgf-bBZBOXYwNy8T"}');

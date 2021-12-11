@@ -1,0 +1,1 @@
+INSERT INTO "public"."users"("email", "id", "password", "full_name", "role") VALUES (E'webshop@user.com', E'76a34074-6525-4e42-844b-8191a2eb635f', E'$2a$10$p3M75cnutIUkqJlU5IzxquJ0OL6Mm6S6TRLnS1Cbj83NkDv8vkyaK', E'web shop user', E'USER');

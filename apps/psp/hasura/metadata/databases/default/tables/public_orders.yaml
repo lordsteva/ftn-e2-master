@@ -8,3 +8,20 @@ object_relationships:
 - name: payment_provider
   using:
     foreign_key_constraint_on: payment_provider_id
+select_permissions:
+- permission:
+    columns:
+    - id
+    - payment_intent_id
+    - state
+    filter:
+      _and:
+      - payment_intent:
+          apiKeyByApiKey:
+            api_key:
+              _eq: X-Hasura-PSP_API_KEY
+      - payment_intent:
+          apiKeyByApiKey:
+            api_secret:
+              _eq: X-Hasura-PSP_SECRET
+  role: ANONYMOUS

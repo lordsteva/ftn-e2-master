@@ -13,6 +13,7 @@ const LoginPage: FC<Record<string, never>> = () => {
   useEffect(() => {
     if (!called || !data) return;
     if (data?.login?.accessToken) {
+      console.log(data.login);
       dispatch?.({ type: 'SET_TOKEN', payload: data.login.accessToken });
       dispatch?.({ type: 'SET_USER', payload: getUserFromToken(data.login.accessToken) });
       localStorage.setItem('token', data.login.accessToken);

@@ -13,8 +13,11 @@ select_permissions:
     columns:
     - api_key_id
     - payment_provider_id
-    filter: {}
-  role: ANONYMOUS
+    filter:
+      api_key:
+        user_id:
+          _eq: X-Hasura-User-Id
+  role: USER
 delete_permissions:
 - permission:
     filter: {}

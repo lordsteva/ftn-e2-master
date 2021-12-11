@@ -24,4 +24,4 @@ export default (user_id: string) =>
       active: boolean;
       api_provider_links: { payment_provider: { logo: string; name: string } }[];
     }[];
-  }>(query, { variables: { user_id } });
+  }>(query, { variables: { user_id }, fetchPolicy: 'no-cache' });
