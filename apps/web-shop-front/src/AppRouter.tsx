@@ -2,16 +2,17 @@ import { ApolloProvider } from '@apollo/client';
 import React, { FC, useEffect, useState } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import createApolloClient from './graphql/clients';
-import { useUser } from './state/state';
+import Navigation from './Navigation';
+import Categories from './pages/Categories';
+import Category from './pages/Category';
+import CheckoutPage from './pages/CheckoutPage';
 import Home from './pages/Home';
 import LoginPage from './pages/LoginPage';
+import PaymentMessage, { PaymenntMessageType } from './pages/PaymentMessage';
+import ProductPage from './pages/ProductPage';
 import RegistrationPage from './pages/RegistrationPage';
-import Categories from './pages/Categories'
-import Category from "./pages/Category"
-import ProductPage from "./pages/ProductPage"
-import ShoppingCart from './pages/ShoppingCart'
-import Navigation from './Navigation';
-import CheckoutPage from './pages/CheckoutPage';
+import ShoppingCart from './pages/ShoppingCart';
+import { useUser } from './state/state';
 
 const AppRouter: FC<Record<string, never>> = () => {
   const [{ token }] = useUser();
@@ -23,7 +24,7 @@ const AppRouter: FC<Record<string, never>> = () => {
   return (
     <ApolloProvider client={apolloClient}>
       <BrowserRouter>
-        <Navigation/>
+        <Navigation />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<LoginPage />} />
@@ -33,7 +34,16 @@ const AppRouter: FC<Record<string, never>> = () => {
           <Route path="/checkout" element={<CheckoutPage />} />
           <Route path="/product" element={<ProductPage />} />
           <Route path="/cart" element={<ShoppingCart />} />
-          <Route path="invoices" element={<div />} />
+          <Route
+            path="/success"
+            element={
+              <PaymentMessage title="Payment successfull" type={PaymenntMessageType.SUCCESS} />
+            }
+          />
+          <Route
+            path="/fail"
+            element={<PaymentMessage title="Payment failed" type={PaymenntMessageType.FAIL} />}
+          />
         </Routes>
       </BrowserRouter>{' '}
     </ApolloProvider>
