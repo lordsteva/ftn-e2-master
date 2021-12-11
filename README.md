@@ -6,7 +6,7 @@
 
 - run `npm i lerna yarn hasura-cli -g`
 - run `lerna bootstrap` anywhere inside the project
-- go to ***./apps/paypal-provider*** and run `npm start`
+- go to ***./apps/paypal-provider*** and run `yarn start`
 - go to ***./apps/psp*** run `docker-compose up` (if you have an M1 chip add `-f docker-compose-M1.yaml` flag)
 - go to ***./apps/psp*** run `yarn start` 
 - after containers are up, go to ***./apps/psp/hasura*** and run:
