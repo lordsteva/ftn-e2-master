@@ -23,6 +23,9 @@
     ---
   PSP is available at http://locahlost:3000, webshop is at http://localhost:3001
 
+  ### Diagram of the system
+  You can open _Diagrams.drawio_ file at [Diagrams](https://www.diagrams.net)
+
   ### Authors
 - Jelena Budiša E2 47-2021
 - Stevan Rašković E2 54-2021
