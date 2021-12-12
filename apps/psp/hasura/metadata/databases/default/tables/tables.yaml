@@ -3,5 +3,4 @@
 - "!include public_orders.yaml"
 - "!include public_payment_intents.yaml"
 - "!include public_payment_providers.yaml"
-- "!include public_transactions.yaml"
 - "!include public_users.yaml"
