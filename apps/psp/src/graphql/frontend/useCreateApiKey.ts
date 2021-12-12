@@ -1,8 +1,8 @@
 import { gql, useMutation } from '@apollo/client';
 
 export const mutation = gql`
-  mutation InsertNewApikey($user_id: uuid!) {
-    insert_api_keys_one(object: { user_id: $user_id }) {
+  mutation InsertNewApikey {
+    insert_api_keys_one(object: {}) {
       api_key
     }
   }

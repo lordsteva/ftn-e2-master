@@ -40,7 +40,7 @@ const ApiKeysOverview: FC<Record<string, never>> = () => {
         <Button
           title="+ Create new"
           onClick={async () => {
-            await createApiKey({ variables: { user_id: user.id } });
+            await createApiKey();
             refetch();
           }}
         />
