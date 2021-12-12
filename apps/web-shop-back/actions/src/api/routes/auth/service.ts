@@ -1,8 +1,8 @@
 import bcrypt from 'bcryptjs';
 import { Request, Response } from 'express';
 import jwt from 'jsonwebtoken';
-import createCart from '../../../graphql/createCart';
 import config from '../../../config/constants';
+import createCart from '../../../graphql/createCart';
 import getUser from '../../../graphql/getUser';
 import insertUser from '../../../graphql/insertUser';
 import logger from '../../../logger/logger';
@@ -14,7 +14,7 @@ export const login = async (req: Request, resp: Response) => {
   // check if the username and password are valid and login the user
 
   const { password: pass, id, cart } = (await getUser({ email: username })) ?? {};
-  const cart_id = cart[0].id;
+  const cart_id = cart?.[0]?.id;
 
   logger.info(`Atempt login with email:${username}`);
   const match = await bcrypt.compare(password, pass || '');

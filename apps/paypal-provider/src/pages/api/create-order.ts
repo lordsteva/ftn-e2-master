@@ -2,6 +2,7 @@ import config from 'config/constants';
 import getIntent from 'graphql/backend/getIntent';
 import getPaymentClientMetadata from 'graphql/backend/getPaymentClientMetadata';
 import insertOrder from 'graphql/backend/insertOrder';
+import logger from '../../logger/logger';
 
 export default async function handler(req, res) {
   const tokenUrl = `${config.PAY_PAL_BASE_URL}/v1/oauth2/token`;
@@ -10,6 +11,8 @@ export default async function handler(req, res) {
   const { clientSecret } = JSON.parse(metadata ?? '{}');
   const headers = new Headers();
   headers.set('Authorization', `Basic ${btoa(`${clientId}:${clientSecret}`)}`);
+  logger.info(`Getting authorization token for client ${clientId}`);
+
   const payPalresponse = await fetch(tokenUrl, {
     method: 'post',
     headers,
@@ -19,7 +22,7 @@ export default async function handler(req, res) {
   });
   const { access_token } = await payPalresponse.json();
 
-  const { currency, amount, fail_url, success_url } = await getIntent({ id: intent });
+  const { currency, amount } = await getIntent({ id: intent });
 
   const ppIntentBody = {
     intent: 'CAPTURE',
@@ -50,7 +53,8 @@ export default async function handler(req, res) {
 
   const { id, status } = await ppIntent.json();
 
-  await insertOrder({
+  logger.info(`Created PayPal payment intent: ${id} for payment: ${intent}`);
+  const { id: orderId } = await insertOrder({
     external_id: id,
     payment_intent_id: intent,
     payment_provider_id: config.APP_ID,
@@ -60,6 +64,8 @@ export default async function handler(req, res) {
       value: amount.toString(),
     }),
   });
+
+  logger.info(`Added order ${orderId} for payment intent: ${intent}`);
 
   res.status(200).json({ id: id });
 }
