@@ -1,4 +1,5 @@
 # SEP - Team 21
+# [DEMO (Kontorlna tacka 1)](https://drive.google.com/file/d/1Utq1_hUd-wpQdftNMZlcz-UC5hMDq5ZO/view?usp=sharing)
 ## Tools needed
 - Node.js & npm
 - Docker & docker-compose
