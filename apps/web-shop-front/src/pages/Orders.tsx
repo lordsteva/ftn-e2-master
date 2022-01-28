@@ -1,11 +1,14 @@
-import { Loader, Pagination, Button, Image } from '@team21/ui-components';
+import { Loader, Pagination, Button } from '@team21/ui-components';
 import React, { FC, useState, useCallback } from 'react';
 import useGetUserOrders from '../graphql/order/useGetUserOrders';
 import { useUser } from '@team21/web-shop-front/src/state/state';
+import { Order } from "@team21/types"
+import OrderInformation from '../components/OrderInformation';
+import OrderProduct from '../components/OrderProduct';
 
 const PER_PAGE = 6;
 
-const Category: FC<Record<string, never>> = () => {
+const Orders: FC<Record<string, never>> = () => {
     const [{ user }] = useUser();
     const [currentPage, setCurrentPage] = useState(0);
     const [viewMore, setViewMore] = useState(false);
@@ -18,6 +21,7 @@ const Category: FC<Record<string, never>> = () => {
         city: '',
         country: '',
         phone: '',
+        zip_code: '',
         orderProducts: []
     });
     const { data, loading } = useGetUserOrders(user.id, PER_PAGE, currentPage * PER_PAGE);
@@ -29,13 +33,6 @@ const Category: FC<Record<string, never>> = () => {
         [setCurrentPage],
     );
 
-    function convertDate (date: string) {
-        const d = date.split('T')
-        const dat = d[0].split('-')
-        const time = d[1].split('.')
-        return dat[2]+"/"+dat[1]+"/"+dat[0]+" "+time[0]
-    }
-
     function viewOrder (order: any) {
         setViewMore(true)
         setOrderView(order)
@@ -44,7 +41,7 @@ const Category: FC<Record<string, never>> = () => {
     if(!data && loading) return <Loader />;
 
     const total = data?.orders_aggregate.aggregate.count
-    if(total === 0) return <div className="flex w-full absolute top-1/4 items-center justify-center text-xxl">You have not ordered anything yet...</div>
+    if(total === 0) return <div className="flex w-full absolute top-1/4 items-center justify-center text-xxl text-whitesmoke">You have not ordered anything yet...</div>
     
     return (
         <React.Fragment>
@@ -55,86 +52,36 @@ const Category: FC<Record<string, never>> = () => {
                     <div className='flex justify-between items-center border-b-default border-solid border-lightGray mb-16'>
                         <span className='text-whitesmoke text-xxl'>Order Information</span>
                         <Button
-                            buttonColor="whitesmoke"
-                            textColor="black"
+                            buttonColor="primary"
+                            textColor="whitesmoke"
                             rounded={true}
                             onClick={()=>setViewMore(false)}
                             title="Back to Orders"
                             customClass='mb-4'
                         />
                     </div>
-                    <div className='flex text-whitesmoke text-xl my-8'>
-                        <span className='w-1/4'> Order ID </span>
-                        <span className='w-1/4'> Order Date </span>
-                        <span className='w-1/4'> Order Status </span>
-                        <span className='w-1/4'> Order Total </span>
-                    </div>
-                    <div className='flex text-whitesmoke mb-24'>
-                        <span className='w-1/4'>{orderView.id}</span>
-                        <span className='w-1/4'> {convertDate(orderView.created_at)} </span>
-                        <span className='w-1/4'> {orderView.status} </span>
-                        <span className='w-1/4'> ${orderView.total_price} </span>
-                    </div>
-                    <div className='flex text-whitesmoke text-xl my-8'>
-                        <span className='w-1/4'> Country </span>
-                        <span className='w-1/4'> City </span>
-                        <span className='w-1/4'> Address </span>
-                        <span className='w-1/4'> Phone </span>
-                    </div>
-                    <div className='flex text-whitesmoke mb-24'>
-                        <span className='w-1/4'>{orderView.country}</span>
-                        <span className='w-1/4'> {orderView.city} </span>
-                        <span className='w-1/4'> {orderView.address} </span>
-                        <span className='w-1/4'> ${orderView.phone} </span>
-                    </div>
+                    <OrderInformation order={orderView} type={true} />
                     <div>
-                        <ul role="list"> 
+                        <h1 className='text-whitesmoke text-xxl border-b-default border-solid border-lightGray mb-16'>Ordered Items</h1>
+                        <ul className='flex' role="list"> 
                         { 
                             orderView.orderProducts.map((item:any) => (
-                                <li key={item.product.id} className="flex mb-16 h-180px">
-                                <Image
-                                    src={item.product.image}
-                                    alt={`${item.product.name}-image`}
-                                    wrapperClassName="flex justify-center items-center w-1/5 border-default border-solid border-lightGray"
-                                />
-                                <div className="flex flex-col flex-1 pb-12 mx-24">
-                                    <div className="flex justify-between text-xl font-medium text-whitesmoke">
-                                    <h3>{item.product.name}</h3>
-                                    <p className="ml-4">${item.product.price}</p>
-                                    </div>
-                                    <div className="flex items-end justify-between flex-1 text-md">
-                                    <p className="text-lightGray">Qty: {item.product.quantity}</p>
-                                    </div>
-                                </div>
-                            </li>
+                                <OrderProduct key={item.id} order={item} />
                             ))
                         }               
                         </ul>
                     </div>
                 </div> : 
                 <React.Fragment>
-                    <h1 className="text-whitesmoke text-h1 text-center mb-24 ml-24">Orders</h1>
+                    <h1 className="text-whitesmoke text-h1 text-left mb-32">Orders</h1>
                     <div className="flex justify-items-start items-center flex-wrap">
-                        {data?.orders?.map((order: any)=>(
+                        {data?.orders?.map((order: Order)=>(
                             <div key={order.id} className="w-full mx-auto text-left">
-                                <div className='flex text-whitesmoke text-xl my-8'>
-                                    <span className='w-1/5'> Order ID </span>
-                                    <span className='w-2/12'> Order Date </span>
-                                    <span className='w-2/12'> Order Status </span>
-                                    <span className='w-2/12'> Order Total </span>
-                                    <span className='w-2/12'> Items Number </span>
-                                </div>
-                                <div className='flex text-whitesmoke mb-24'>
-                                    <span className='w-1/5'>{order.id}</span>
-                                    <span className='w-2/12'> {convertDate(order.created_at)} </span>
-                                    <span className='w-2/12'> {order.status} </span>
-                                    <span className='w-2/12'> ${order.total_price} </span>
-                                    <span className='w-2/12'> {`${order.orderProducts.length} item(s) ordered`} </span>
-                                </div>
+                                <OrderInformation order={order} type={false} />
                                 <div className="flex justify-end my-8 border-t-default border-gray">
                                     <Button
-                                        buttonColor="whitesmoke"
-                                        textColor="black"
+                                        buttonColor="primary"
+                                        textColor="whitesmoke"
                                         rounded={true}
                                         onClick={()=>viewOrder(order)}
                                         title="View Order"
@@ -159,4 +106,4 @@ const Category: FC<Record<string, never>> = () => {
     );
 };
 
-export default Category;
+export default Orders;

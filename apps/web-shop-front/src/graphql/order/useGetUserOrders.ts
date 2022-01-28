@@ -1,4 +1,5 @@
 import { gql, useQuery } from '@apollo/client';
+import { Order } from "@team21/types"
 
 const query = gql`
     query useGetUserOrders($user_id: uuid!, $limit: Int!, $offset: Int!) {
@@ -11,13 +12,14 @@ const query = gql`
             city
             country
             phone
+            zip_code
             orderProducts {
+                product_id,
+                price,
+                quantity,
                 product {
-                    id
                     name
-                    price
                     image
-                    quantity
                 }
             }
         }
@@ -30,23 +32,7 @@ const query = gql`
 `;
 
 type useGetUserOrders = {
-    orders: {
-        id: string;
-        created_at: string;
-        status: string;
-        total_price: number;
-        address: string;
-        city: string;
-        country: string;
-        phone: string;
-        orderProducts: {
-            id: string;
-            name: string;
-            price: string;
-            image: string;
-            quantity: number;
-        }[]
-    }[];
+    orders: Order[];
     orders_aggregate: {
         aggregate: {
             count: number;

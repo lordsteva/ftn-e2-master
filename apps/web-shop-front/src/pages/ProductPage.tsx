@@ -72,6 +72,7 @@ const ProductPage: FC<Record<string, never>> = () => {
             rtl={false}
             pauseOnFocusLoss
             pauseOnHover
+            theme='dark'
         />
     </div>
 };
