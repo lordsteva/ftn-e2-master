@@ -2,7 +2,6 @@ import { Loader, Image, Button } from '@team21/ui-components';
 import React, { FC, useState} from 'react';
 import { useLocation } from 'react-router-dom'
 import useGetProductById from '../graphql/product/useGetProductById';
-import { Product } from '@team21/types';
 import { useUser } from '@team21/web-shop-front/src/state/state';
 import useAddItemToCart from '@team21/web-shop-front/src/graphql/cart/useAddItemToCart';
 import { ToastContainer, toast } from 'react-toastify';
@@ -46,11 +45,11 @@ const ProductPage: FC<Record<string, never>> = () => {
             <Image wrapperClassName="border-solid border-default border-lightGray h-full" alt={`${product.name}-image`} src={product.image} />
         </div>
         <div className="flex flex-col w-2/3 px-24">
-            <h1 className="text-left text-h1 mb-24"> {product.name} </h1>
-            <p className="text-base text-darkGray text-left mb-16 whitespace-normal break-all "> {product.description} </p>
+            <h1 className="text-whitesmoke text-left text-h1 mb-24"> {product.name} </h1>
+            <p className="text-base text-lightGray text-left mb-16 whitespace-normal break-all "> {product.description} </p>
             <div className="flex justify-between mb-24  border-b-default border-solid border-gray">
                 <span className={`${product.quantity > 0 ? 'text-success' : 'text-red'} text-md font-semibold text-left`}> {product.quantity > 0 ? `In Stock: ${product.quantity}` : 'Out of Stock'} </span>
-                {product.price && <span className="text-xl text-dark font-semibold text-left mb-12"> ${product.price} </span> }
+                {product.price && <span className="text-xl text-whitesmoke font-semibold text-left mb-12"> ${product.price} </span> }
             </div>
             <div className="flex flex-wrap mb-4 w-full justify-end">
                 <input

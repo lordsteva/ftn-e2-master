@@ -35,18 +35,20 @@ insert_permissions:
   role: USER
 select_permissions:
 - permission:
+    allow_aggregations: true
     columns:
-    - id
-    - user_id
-    - total_price
+    - address
+    - city
+    - country
     - created_at
     - first_name
+    - id
     - last_name
-    - country
-    - city
-    - address
-    - phone
-    - zip_code
     - order_products
+    - phone
+    - status
+    - total_price
+    - user_id
+    - zip_code
     filter: {}
   role: USER

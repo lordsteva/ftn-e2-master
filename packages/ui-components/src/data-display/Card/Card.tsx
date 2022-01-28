@@ -24,7 +24,7 @@ const Card: FC<Props> = ({ title, body, buttonTitle, onClick, imageSrc, imageAlt
       />
     
       <div className="p-4 mt-8 text-center">
-        <h5 className="text-xl font-semibold mb-8">{title}</h5>
+        <h5 className="text-whitesmoke text-xl font-semibold mb-8">{title}</h5>
     
         <div className="mb-24">
          {body}

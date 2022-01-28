@@ -22,10 +22,10 @@ const ProductTileBody: FC<BodyProps> = ({description, price, quantity}) => {
     }
     return <React.Fragment> 
         <div className="description my-8">
-            <p className="text-base text-darkGray px-8 whitespace-normal break-all text-left"> {description && setDescription(description)} </p>
+            <p className="text-base text-lightGray px-8 whitespace-normal break-all text-left"> {description && setDescription(description)} </p>
         </div>
         <div className="my-12">
-            {price && <span className="text-xl text-dark font-semibold"> ${price} </span>}
+            {price && <span className="text-xl text-whitesmoke font-semibold"> ${price} </span>}
         </div>
         <div className="my-8">
             <span className={`${quantity > 0 ? 'text-success' : 'text-red'} text-md font-semibold`}> {quantity > 0 ? `In Stock: ${quantity}` : 'Out of Stock'} </span>

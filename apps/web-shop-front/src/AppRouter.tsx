@@ -12,6 +12,7 @@ import PaymentMessage, { PaymenntMessageType } from './pages/PaymentMessage';
 import ProductPage from './pages/ProductPage';
 import RegistrationPage from './pages/RegistrationPage';
 import ShoppingCart from './pages/ShoppingCart';
+import Orders from './pages/Orders'
 import { useUser } from './state/state';
 
 const AppRouter: FC<Record<string, never>> = () => {
@@ -34,6 +35,7 @@ const AppRouter: FC<Record<string, never>> = () => {
           <Route path="/checkout" element={<CheckoutPage />} />
           <Route path="/product" element={<ProductPage />} />
           <Route path="/cart" element={<ShoppingCart />} />
+          <Route path="/orders" element={<Orders />} />
           <Route
             path="/success"
             element={
