@@ -23,8 +23,34 @@ const ShoppingCart: FC<Record<string, never>> = () => {
     orderTotal += item.product.price * item.quantity;
   });
 
+  function checkQuantity() {
+    if(cartItems){
+      for(const item of cartItems){
+        if(item.quantity > item.product.quantity) {
+          toast.error('Item quantity is bigger than remaining quantity!', {
+            position: 'top-right',
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            progress: undefined,
+          });
+          return false
+        }
+      }
+    }
+
+    return true
+  }
+
   function checkout() {
-    navigate('/checkout');
+    const canProceed = checkQuantity()
+    if(canProceed)
+      navigate('/checkout');
+  }
+
+  function categories() {
+    navigate('/categories');
   }
 
   async function removeItem(cartItemId: string) {
@@ -42,12 +68,12 @@ const ShoppingCart: FC<Record<string, never>> = () => {
 
   return (
     <div className="w-10/12 p-24 mx-auto">
-      <h1 className="mb-32 text-h1"> Shopping cart </h1>
+      <h1 className="mb-32 text-h1 text-whitesmoke"> Shopping cart </h1>
       <div className="flex w-full">
         <div className="w-3/5 overflow-auto h-600px">
           <ul role="list">
             {cartItems && cartItems.length > 0 ? (
-              cartItems.map((cartItem) => (
+              cartItems.map((cartItem: CartItem) => (
                 <li key={cartItem.product.id} className="flex mb-16 h-180px">
                   <Image
                     src={cartItem.product.image}
@@ -55,12 +81,12 @@ const ShoppingCart: FC<Record<string, never>> = () => {
                     wrapperClassName="flex justify-center items-center w-1/4 border-default border-solid border-lightGray"
                   />
                   <div className="flex flex-col flex-1 pb-12 mx-24">
-                    <div className="flex justify-between text-xl font-medium text-gray-900">
+                    <div className="flex justify-between text-xl font-medium text-whitesmoke">
                       <h3>{cartItem.product.name}</h3>
                       <p className="ml-4">${cartItem.product.price}</p>
                     </div>
                     <div className="flex items-end justify-between flex-1 text-md">
-                      <p className="text-gray-500">Qty: {cartItem.quantity}</p>
+                      <p className="text-lightGray">Qty: {cartItem.quantity} {cartItem.quantity > cartItem.product.quantity && <span className='text-red'>(Item quantity is bigger than remaining quantity)</span>} </p>
                       <button
                         onClick={() => removeItem(cartItem.id)}
                         type="button"
@@ -73,15 +99,24 @@ const ShoppingCart: FC<Record<string, never>> = () => {
                 </li>
               ))
             ) : (
-              <div> No items in cart... </div>
+              <div className='block'>
+                <div className='text-whitesmoke text-xl mb-12'> You have no items in your cart... </div>
+                <Button
+                  buttonColor="primary"
+                  size="md"
+                  textColor="whitesmoke"
+                  onClick={categories}
+                  title="Continue Shopping"
+                />
+              </div>
             )}
           </ul>
         </div>
         <div className="w-2/5 ml-16">
-          <h2 className="mb-24 font-medium text-center text-h3">Order Summary</h2>
+          <h2 className="mb-24 font-medium text-center text-h3 text-whitesmoke">Order Summary</h2>
           <div className="flex justify-between mb-24 font-medium text-gray-500 text-md">
-            <p>Order Total</p>
-            <p>${orderTotal}</p>
+            <p className='text-whitesmoke'>Order Total</p>
+            <p className='text-whitesmoke'>${orderTotal}</p>
           </div>
           <Button
             buttonColor="primary"
@@ -89,7 +124,8 @@ const ShoppingCart: FC<Record<string, never>> = () => {
             textColor="whitesmoke"
             onClick={checkout}
             title="Checkout"
-            block={true}
+            block
+            disabled={!cartItems!.length}
           />
         </div>
       </div>
@@ -102,6 +138,7 @@ const ShoppingCart: FC<Record<string, never>> = () => {
         rtl={false}
         pauseOnFocusLoss
         pauseOnHover
+        theme='dark'
       />
     </div>
   );

@@ -8,6 +8,7 @@ type Props = {
   type: string | 'text';
   errorText?: string;
   labelText?: string;
+  labelClass?: string;
   width?: string;
   innerRef?: UseFormRegisterReturn;
   customClass?: string;
@@ -22,12 +23,13 @@ const Input: FC<Props> = ({
   type,
   errorText,
   labelText,
+  labelClass,
   width,
   innerRef,
   customClass,
 }) => (
   <div className={wrapperClassName}>
-    <label htmlFor={id}>{labelText && <span>{labelText}</span>}</label>
+    <label htmlFor={id}>{labelText && <span className={labelClass}>{labelText}</span>}</label>
     <div className="mt-8">
       <input
         defaultValue={defaultValue}

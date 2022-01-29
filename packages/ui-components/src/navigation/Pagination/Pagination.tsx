@@ -17,7 +17,7 @@ const Pagination: FC<Props> = ({ onPageChange, displayPerPage, total, currentPag
       <div className="flex flex-1 w-0 -mt-px">
         <div
           onClick={() => onPageChange(currentPage - 1)}
-          className={`text-xl cursor-pointer inline-flex items-center pt-4 pr-1 font-medium text-gray-500 border-t-2 border-transparent hover:text-gray-700 hover:border-gray-300 ${
+          className={`text-xl cursor-pointer inline-flex items-center pt-4 pr-1 font-medium text-primary border-t-2 border-transparent hover:opacity-60 ${
             currentPage === 0 ? 'invisible' : ''
           }`}
         >
@@ -33,7 +33,7 @@ const Pagination: FC<Props> = ({ onPageChange, displayPerPage, total, currentPag
             className={`text-xl cursor-pointer inline-flex items-center px-8 pb-2 font-medium border-b-2  ${
               page === currentPage
                 ? 'border-primary text-primary'
-                : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                : 'border-transparent text-whitesmoke hover:opacity-60'
             } `}
           >
             {page + 1}
@@ -45,7 +45,7 @@ const Pagination: FC<Props> = ({ onPageChange, displayPerPage, total, currentPag
           onClick={() => onPageChange(currentPage + 1)}
           className={`${
             currentPage === pageCount - 1 ? 'hidden' : ''
-          } text-xl cursor-pointer inline-flex items-center pt-4 pr-1 font-medium text-gray-500 border-t-2 border-transparent hover:text-gray-700 hover:border-gray-300`}
+          } text-xl cursor-pointer inline-flex items-center pt-4 pr-1 font-medium text-primary border-t-2 border-transparent hover:opacity-60`}
         >
           <ArrowNarrowRightIcon className="w-8 h-8 mr-3 text-gray-400" aria-hidden="true" />
           Next

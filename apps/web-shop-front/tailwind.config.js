@@ -17,7 +17,8 @@ module.exports = {
         'primary':'#3553e4',
         'secondary':'#3a3b3c',
         'bcPrimary':'#18191a',
-        'bcSecondary':'#242526'
+        'bcSecondary':'#242526',
+        'blue': '#164ca6'
       },
       height:{
         '100px': '100px',
@@ -27,7 +28,8 @@ module.exports = {
         '200px': '200px',
         '400px': '400px',
         '550px': '550px',
-        '600px': '600px'
+        '600px': '600px',
+        '700px': '700px'
       },
       width:{
         '120px':'120px'
