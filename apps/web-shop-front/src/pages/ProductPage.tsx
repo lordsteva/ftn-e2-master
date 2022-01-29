@@ -60,7 +60,7 @@ const ProductPage: FC<Record<string, never>> = () => {
                     defaultValue={0}
                     className={"w-16 place-content-center bg-white text-dark border-default border-solid border-lightGray hover:border-gray focus:outline-none focus:border-dark pl-24 py-12"}
                 />
-                <Button onClick={()=> addToCart(product.id)} size="md" buttonColor="primary" title="Add to Cart" />
+                <Button onClick={()=> addToCart(product.id)} disabled={ product.quantity <= 0 ? true : false } size="md" buttonColor="primary" title="Add to Cart" />
             </div>
         </div>
         <ToastContainer

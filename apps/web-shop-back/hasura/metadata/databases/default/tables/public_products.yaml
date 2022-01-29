@@ -30,3 +30,10 @@ select_permissions:
     - price
     filter: {}
   role: USER
+update_permissions:
+- permission:
+    check: null
+    columns:
+    - quantity
+    filter: {}
+  role: USER

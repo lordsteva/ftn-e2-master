@@ -11,6 +11,7 @@ const query = gql`
               image
               name
               price
+              quantity
             }
         }
     }

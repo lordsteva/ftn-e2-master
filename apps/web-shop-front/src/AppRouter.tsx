@@ -14,14 +14,18 @@ import RegistrationPage from './pages/RegistrationPage';
 import ShoppingCart from './pages/ShoppingCart';
 import Orders from './pages/Orders'
 import { useUser } from './state/state';
+import PrivateRoute from './components/PrivateRoute';
 
 const AppRouter: FC<Record<string, never>> = () => {
   const [{ token }] = useUser();
   const [apolloClient, setApolloClient] = useState(createApolloClient());
+  const [loggedIn, setLoggedIn] = useState(token)
 
   useEffect(() => {
     setApolloClient(createApolloClient(token));
+    setLoggedIn(token)
   }, [token]);
+
   return (
     <ApolloProvider client={apolloClient}>
       <BrowserRouter>
@@ -32,10 +36,10 @@ const AppRouter: FC<Record<string, never>> = () => {
           <Route path="/register" element={<RegistrationPage />} />
           <Route path="/categories" element={<Categories />} />
           <Route path="/category" element={<Category />} />
-          <Route path="/checkout" element={<CheckoutPage />} />
-          <Route path="/product" element={<ProductPage />} />
-          <Route path="/cart" element={<ShoppingCart />} />
-          <Route path="/orders" element={<Orders />} />
+          <Route path="/product" element={<PrivateRoute loggedIn={loggedIn} path="/login"> <ProductPage /> </PrivateRoute> } />
+          <Route path="/checkout" element={<PrivateRoute loggedIn={loggedIn} path="/login"> <CheckoutPage /> </PrivateRoute>} />
+          <Route path="/cart" element={<PrivateRoute loggedIn={loggedIn} path="/login"> <ShoppingCart /> </PrivateRoute>} />
+          <Route path="/orders" element={<PrivateRoute loggedIn={loggedIn} path="/login"> <Orders /> </PrivateRoute>} />
           <Route
             path="/success"
             element={

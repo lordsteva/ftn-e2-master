@@ -10,7 +10,7 @@ const Home: FC<Record<string, never>> = () => {
 
   return <div className="w-10/12 p-24 mx-auto">
     <h1 className="text-whitesmoke text-h1 text-center my-40 ml-24">Welcome to Web Shop!</h1>
-    <Banner type={true} path="/categories" color="blue" title='Laptops' text='We have the best offer of laptops!'/>
+    <Banner type path="/categories" color="blue" title='Laptops' text='We have the best offer of laptops!'/>
     <h2 className="text-h1 text-whitesmoke text-center my-40 ml-24">Best Sellers</h2>
     <div className="flex justify-center items-center flex-wrap">
         {data?.products?.map((product: Product, index: number)=>(

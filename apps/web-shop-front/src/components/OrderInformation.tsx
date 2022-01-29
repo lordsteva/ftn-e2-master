@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 
 type Props = {
     order: any
-    type: boolean
+    type?: boolean
 }
 
 const OrderInformation: FC<Props> = ({order, type}) => {

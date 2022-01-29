@@ -54,13 +54,13 @@ const Orders: FC<Record<string, never>> = () => {
                         <Button
                             buttonColor="primary"
                             textColor="whitesmoke"
-                            rounded={true}
+                            rounded
                             onClick={()=>setViewMore(false)}
                             title="Back to Orders"
                             customClass='mb-4'
                         />
                     </div>
-                    <OrderInformation order={orderView} type={true} />
+                    <OrderInformation order={orderView} type />
                     <div>
                         <h1 className='text-whitesmoke text-xxl border-b-default border-solid border-lightGray mb-16'>Ordered Items</h1>
                         <ul className='flex' role="list"> 
@@ -77,12 +77,12 @@ const Orders: FC<Record<string, never>> = () => {
                     <div className="flex justify-items-start items-center flex-wrap">
                         {data?.orders?.map((order: Order)=>(
                             <div key={order.id} className="w-full mx-auto text-left">
-                                <OrderInformation order={order} type={false} />
+                                <OrderInformation order={order} />
                                 <div className="flex justify-end my-8 border-t-default border-gray">
                                     <Button
                                         buttonColor="primary"
                                         textColor="whitesmoke"
-                                        rounded={true}
+                                        rounded
                                         onClick={()=>viewOrder(order)}
                                         title="View Order"
                                         customClass='mt-16'

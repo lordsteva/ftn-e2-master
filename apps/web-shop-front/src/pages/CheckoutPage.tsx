@@ -7,6 +7,7 @@ import { useUser } from '@team21/web-shop-front/src/state/state';
 import React, { FC, useState } from 'react';
 import CheckoutForm from '../components/CheckoutForm';
 import useCreatePaymentIntent from '../graphql/order/useCreatePaymentIntent';
+import useUpdateProductsQty from '../graphql/order/useUpdateProductsQty';
 
 const CheckoutPage: FC = () => {
   const [{ user }] = useUser();
@@ -14,6 +15,7 @@ const CheckoutPage: FC = () => {
   const [createOrder] = useCreateOrder();
   const [createOrderProducts] = useCreateOrderProducts();
   const [ceatePaymentIntent] = useCreatePaymentIntent();
+  const [updateProductsQty] = useUpdateProductsQty();
 
   const [isLoader, setIsLoader] = useState(false);
 
@@ -52,6 +54,10 @@ const CheckoutPage: FC = () => {
       const { cart_id } = user;
 
       await createOrderProducts({ variables: { objects, cart_id } });
+
+      for(const item of cartItems){
+        await updateProductsQty({ variables: { id: item.product.id, quantity: item.product.quantity - item.quantity }})
+      }
 
       const {
         data: { createPaymentIntent },

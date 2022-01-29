@@ -23,8 +23,30 @@ const ShoppingCart: FC<Record<string, never>> = () => {
     orderTotal += item.product.price * item.quantity;
   });
 
+  function checkQuantity() {
+    if(cartItems){
+      for(const item of cartItems){
+        if(item.quantity > item.product.quantity) {
+          toast.error('Item quantity is bigger than remaining quantity!', {
+            position: 'top-right',
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            progress: undefined,
+          });
+          return false
+        }
+      }
+    }
+
+    return true
+  }
+
   function checkout() {
-    navigate('/checkout');
+    const canProceed = checkQuantity()
+    if(canProceed)
+      navigate('/checkout');
   }
 
   function categories() {
@@ -51,7 +73,7 @@ const ShoppingCart: FC<Record<string, never>> = () => {
         <div className="w-3/5 overflow-auto h-600px">
           <ul role="list">
             {cartItems && cartItems.length > 0 ? (
-              cartItems.map((cartItem) => (
+              cartItems.map((cartItem: CartItem) => (
                 <li key={cartItem.product.id} className="flex mb-16 h-180px">
                   <Image
                     src={cartItem.product.image}
@@ -64,7 +86,7 @@ const ShoppingCart: FC<Record<string, never>> = () => {
                       <p className="ml-4">${cartItem.product.price}</p>
                     </div>
                     <div className="flex items-end justify-between flex-1 text-md">
-                      <p className="text-lightGray">Qty: {cartItem.quantity}</p>
+                      <p className="text-lightGray">Qty: {cartItem.quantity} {cartItem.quantity > cartItem.product.quantity && <span className='text-red'>(Item quantity is bigger than remaining quantity)</span>} </p>
                       <button
                         onClick={() => removeItem(cartItem.id)}
                         type="button"
@@ -102,7 +124,7 @@ const ShoppingCart: FC<Record<string, never>> = () => {
             textColor="whitesmoke"
             onClick={checkout}
             title="Checkout"
-            block={true}
+            block
             disabled={!cartItems!.length}
           />
         </div>
