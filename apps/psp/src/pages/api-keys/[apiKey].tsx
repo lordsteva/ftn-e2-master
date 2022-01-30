@@ -28,9 +28,9 @@ const ConfigureApiKey: FC<Record<string, never>> = () => {
 
           return (
             <div key={id} className="flex flex-row items-center">
-              <div className={`w-4 h-4 ${used ? 'bg-green-600' : 'bg-red'} rounded-full`} />
-              <Image width="20" src={`${base_url}/${logo}`} />
-              <div>{name}</div>
+              <div className={`w-4 h-4 mr-4 ${used ? 'bg-green-600' : 'bg-red'} rounded-full`} />
+              <Image width="20" src={`${base_url}/${logo}`} wrapperClassName='mx-4' />
+              <div className='text-xl text-whitesmoke mx-8'>{name}</div>
               <div className="flex flex-col pl-24">
                 {used && (
                   <div

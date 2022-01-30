@@ -18,7 +18,7 @@ const Category: FC<Record<string, never>> = () => {
     if(!data && loading) return <Loader />;
 
     const total = data?.product_categories_aggregate.aggregate.count
-    if(total === 0) return <div className="flex w-full absolute top-1/4 items-center justify-center text-xxl">No items...</div>
+    if(total === 0) return <div className="flex w-full absolute top-1/4 items-center justify-center text-xxl text-whitesmoke">Currently there are no items...</div>
     
     return (
         <React.Fragment>

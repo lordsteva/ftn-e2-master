@@ -18,6 +18,7 @@ module.exports = {
         secondary: '#3a3b3c',
         bcPrimary: '#18191a',
         bcSecondary: '#242526',
+        paypal: '#3b7bbf'
       },
       fontSize: {
         h1: ['36px', '44px'],

@@ -27,7 +27,7 @@ const Button: FC<Props> = ({ title, buttonColor, textColor, disabled, block, rou
       ${customClass ? customClass : ''}`
     }
   >
-    {title && <span>{title}</span>}
+    {title && <span className='font-bold'>{title}</span>}
   </button>
 );
 

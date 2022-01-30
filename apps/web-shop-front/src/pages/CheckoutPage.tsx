@@ -7,6 +7,7 @@ import { useUser } from '@team21/web-shop-front/src/state/state';
 import React, { FC, useState } from 'react';
 import CheckoutForm from '../components/CheckoutForm';
 import useCreatePaymentIntent from '../graphql/order/useCreatePaymentIntent';
+import useUpdateProductsQty from '../graphql/order/useUpdateProductsQty';
 
 const CheckoutPage: FC = () => {
   const [{ user }] = useUser();
@@ -14,6 +15,7 @@ const CheckoutPage: FC = () => {
   const [createOrder] = useCreateOrder();
   const [createOrderProducts] = useCreateOrderProducts();
   const [ceatePaymentIntent] = useCreatePaymentIntent();
+  const [updateProductsQty] = useUpdateProductsQty();
 
   const [isLoader, setIsLoader] = useState(false);
 
@@ -53,6 +55,10 @@ const CheckoutPage: FC = () => {
 
       await createOrderProducts({ variables: { objects, cart_id } });
 
+      for(const item of cartItems){
+        await updateProductsQty({ variables: { id: item.product.id, quantity: item.product.quantity - item.quantity }})
+      }
+
       const {
         data: { createPaymentIntent },
       } = await ceatePaymentIntent({
@@ -68,14 +74,14 @@ const CheckoutPage: FC = () => {
 
   return (
     <div className="w-10/12 p-24 mx-auto">
-      <h1 className="mb-32 text-h1"> Checkout </h1>
+      <h1 className="mb-32 text-h1 text-whitesmoke"> Checkout </h1>
       <div className="flex justify-between">
         <div className="flex flex-col w-2/5 px-40">
-          <h2 className="mb-24 font-medium text-left text-h3">Contact information</h2>
+          <h2 className="mb-24 font-medium text-left text-h3 text-whitesmoke">Contact information</h2>
           <CheckoutForm continueToPayment={continueToPayment} />
         </div>
         <div className="flex flex-col w-3/5 px-40">
-          <h2 className="mb-24 font-medium text-left text-h3">Order Summary</h2>
+          <h2 className="mb-24 font-medium text-left text-h3 text-whitesmoke">Order Summary</h2>
           <div className="mb-64 overflow-auto h-550px">
             <ul role="list">
               {cartItems?.map((item: CartItem) => (
@@ -87,11 +93,11 @@ const CheckoutPage: FC = () => {
                   />
                   <div className="flex flex-col flex-1 pb-12 mx-24">
                     <div className="flex justify-between text-xl font-medium text-gray-900">
-                      <h3>{item.product.name}</h3>
-                      <p className="ml-4">${item.product.price}</p>
+                      <h3 className='text-whitesmoke'>{item.product.name}</h3>
+                      <p className="ml-4 text-whitesmoke">${item.product.price}</p>
                     </div>
                     <div className="flex items-end justify-between flex-1 text-md">
-                      <p className="text-gray-500">Qty: {item.quantity}</p>
+                      <p className="text-lightGray">Qty: {item.quantity}</p>
                     </div>
                   </div>
                 </li>
@@ -100,8 +106,8 @@ const CheckoutPage: FC = () => {
           </div>
           <div className="border-solid border-t-default border-lightGray">
             <div className="flex justify-between mt-12 mb-24 font-medium text-gray-500 text-md">
-              <p className="text-xl">Order Total</p>
-              <p className="text-xl">${orderTotal}</p>
+              <p className="text-xl text-whitesmoke">Order Total</p>
+              <p className="text-xl text-whitesmoke">${orderTotal}</p>
             </div>
           </div>
         </div>

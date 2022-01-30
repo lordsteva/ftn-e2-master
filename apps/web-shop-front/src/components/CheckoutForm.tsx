@@ -15,9 +15,10 @@ const CheckoutForm: FC<Props> = ({continueToPayment}) => {
         <Input 
             id="first_name" 
             type="text" 
-            labelText="First Name" 
+            labelText="First Name"
+            labelClass="text-whitesmoke text-lg"
             wrapperClassName="mb-12" 
-            customClass="rounded-xs" 
+            customClass='mb-8 rounded-xs'
             innerRef={register('first_name', {
                 required: 'First Name required!',
             })}
@@ -25,9 +26,11 @@ const CheckoutForm: FC<Props> = ({continueToPayment}) => {
         />
         <Input 
             id="last_name" 
-            type="text" labelText="Last Name" 
+            type="text" 
+            labelText="Last Name" 
+            labelClass="text-whitesmoke text-lg"
             wrapperClassName="mb-12" 
-            customClass="rounded-xs"
+            customClass='mb-8 rounded-xs'
             innerRef={register('last_name', {
                 required: 'Last Name required!',
             })}
@@ -37,8 +40,9 @@ const CheckoutForm: FC<Props> = ({continueToPayment}) => {
             id="country" 
             type="text" 
             labelText="Country" 
+            labelClass="text-whitesmoke text-lg"
             wrapperClassName="mb-12" 
-            customClass="rounded-xs"
+            customClass='mb-8 rounded-xs'
             innerRef={register('country', {
                 required: 'Country required!',
             })}
@@ -48,8 +52,9 @@ const CheckoutForm: FC<Props> = ({continueToPayment}) => {
             id="city" 
             type="text" 
             labelText="City" 
+            labelClass="text-whitesmoke text-lg"
             wrapperClassName="mb-12" 
-            customClass="rounded-xs"
+            customClass='mb-8 rounded-xs'
             innerRef={register('city', {
                 required: 'City required!',
             })}
@@ -59,8 +64,9 @@ const CheckoutForm: FC<Props> = ({continueToPayment}) => {
             id="address" 
             type="text" 
             labelText="Address" 
+            labelClass="text-whitesmoke text-lg"
             wrapperClassName="mb-12" 
-            customClass="rounded-xs"
+            customClass='mb-8 rounded-xs'
             innerRef={register('address', {
                 required: 'Address required!',
             })}
@@ -70,8 +76,9 @@ const CheckoutForm: FC<Props> = ({continueToPayment}) => {
             id="zip_code" 
             type="text" 
             labelText="Zip Code" 
+            labelClass="text-whitesmoke text-lg"
             wrapperClassName="mb-12" 
-            customClass="rounded-xs"
+            customClass='mb-8 rounded-xs'
             innerRef={register('zip_code', {
                 required: 'Zip code required!',
             })}
@@ -81,8 +88,9 @@ const CheckoutForm: FC<Props> = ({continueToPayment}) => {
             id="phone" 
             type="text" 
             labelText="Phone" 
+            labelClass="text-whitesmoke text-lg"
             wrapperClassName="mb-12" 
-            customClass="rounded-xs"
+            customClass='mb-8 rounded-xs'
             innerRef={register('phone', {
                 required: 'Phone required!',
             })}

@@ -39,6 +39,7 @@ const ApiKeysOverview: FC<Record<string, never>> = () => {
         />
         <Button
           title="+ Create new"
+          customClass='mb-24'
           onClick={async () => {
             await createApiKey();
             refetch();
