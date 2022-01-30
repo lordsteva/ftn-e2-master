@@ -25,10 +25,13 @@ const Home: React.FunctionComponent<HomeProps> = ({
   //TOOD: style, show data....
 
   return (
-    <div className="max-w-xl px-4 py-4 m-auto mt-24 text-center border-2 border-gray-900">
-      <div className="pb-20 text-4xl font-bold text-blue-800 ">PayPal payment</div>
+    <div className="max-w-xl p-16 m-auto mt-44 text-center bg-bcPrimary">
+      <div className="mb-20 pb-16 text-4xl font-bold text-paypal border-b-default border-paypal">PayPal payment</div>
 
-      <div className="pb-20 pl-4 text-2xl text-left ">Total: {`${amount}${currency}`}</div>
+      <div className="flex justify-between items-center py-6 pl-4 text-2xl mb-16 text-left text-whitesmoke border-b-default border-paypal">
+        <span>Total:</span>
+        <span>{`${amount}${currency}`}</span>
+      </div>
       <PayPalScriptProvider
         options={{
           'client-id': clientId,

@@ -11,7 +11,7 @@ type Props = {
 const Breadcrumb: FC<Props> = ({ path }) => {
   const pathLength = path.length;
   return (
-    <nav className={`text-black relative flex w-max bg-white p-12`} aria-label="Breadcrumb">
+    <nav className={`text-whitesmoke relative flex w-max bg-#131313 p-12`} aria-label="Breadcrumb">
       <ol role="list" className="flex px-10">
         {path.map((item, idx) => (
           <li key={idx} className="flex">

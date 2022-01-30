@@ -13,7 +13,7 @@ type Props = {
 const TableRow: FC<Props> = ({ items, actions }) => (
     <tr>
         {items.length && items.map((item) => (
-            <td key={item}>{item}</td>
+            <td className='text-whitesmoke' key={item}>{item}</td>
         ))}
         {actions && actions.length && <td className="flex flex-col">
             {actions.map((item: ActionProps, index: number)=>(
