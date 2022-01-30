@@ -1,0 +1,43 @@
+actions:
+- name: checkout
+  definition:
+    kind: synchronous
+    handler: '{{ACTION_BASE_ENDPOINT}}/api/order/create-payment-intent'
+- name: createPaymentIntent
+  definition:
+    kind: synchronous
+    handler: '{{ACTION_BASE_ENDPOINT}}/api/order/create-payment-intent'
+  permissions:
+  - role: USER
+- name: finalizeOrder
+  definition:
+    kind: synchronous
+    handler: '{{ACTION_BASE_ENDPOINT}}/api/order/finalize'
+  permissions:
+  - role: USER
+- name: login
+  definition:
+    kind: synchronous
+    handler: '{{ACTION_BASE_ENDPOINT}}/api/auth/login'
+  permissions:
+  - role: ANONYMOUS
+- name: registration
+  definition:
+    kind: synchronous
+    handler: '{{ACTION_BASE_ENDPOINT}}/api/auth/registration'
+  permissions:
+  - role: ANONYMOUS
+custom_types:
+  enums: []
+  input_objects:
+  - name: CheckoutInput
+  - name: CreatePaymentIntentInput
+  - name: FinalizeOrderInput
+  objects:
+  - name: LoginResponse
+  - name: RegistrationResponse
+  - name: CheckoutOutput
+  - name: CartResponse
+  - name: CreatePaymentIntentOutput
+  - name: FinalizeOrderOutput
+  scalars: []
