@@ -35,6 +35,7 @@ input OneTimeLinkInput {
   currency : String!
   success_url : String!
   fail_url : String!
+  error_url : String!
 }
 
 type RandOutput {

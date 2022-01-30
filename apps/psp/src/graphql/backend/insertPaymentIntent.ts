@@ -10,6 +10,7 @@ const mutation = gql`
     $id: uuid!
     $success_url: String!
     $fail_url: String!
+    $error_url: String!
   ) {
     insert_payment_intents_one(
       object: {
@@ -20,6 +21,7 @@ const mutation = gql`
         id: $id
         success_url: $success_url
         fail_url: $fail_url
+        error_url: $error_url
       }
     ) {
       id
@@ -34,6 +36,7 @@ const insertPaymentIntent = async (variables: {
   currency: string;
   id: string;
   success_url: string;
+  error_url: string;
   fail_url: string;
 }): Promise<{ active: boolean; api_key: string }> => {
   const res = await graphqlAdminClient.mutate({ mutation, variables });
