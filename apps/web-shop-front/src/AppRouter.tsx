@@ -50,8 +50,12 @@ const AppRouter: FC<Record<string, never>> = () => {
             path="/fail"
             element={<PaymentMessage title="Payment failed" type={PaymenntMessageType.FAIL} />}
           />
+          <Route
+            path="/error"
+            element={<PaymentMessage title="Payment error" type={PaymenntMessageType.ERROR} />}
+          />
         </Routes>
-      </BrowserRouter>{' '}
+      </BrowserRouter>
     </ApolloProvider>
   );
 };

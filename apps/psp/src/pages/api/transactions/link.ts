@@ -6,7 +6,7 @@ import logger from '../../../logger/logger';
 
 export default async (req: Request, res: Response): Promise<Response> => {
   const { data } = req.body.input;
-  const { api_key, api_secret, amount, currency, success_url, fail_url } = data;
+  const { api_key, api_secret, amount, currency, success_url, fail_url, error_url } = data;
 
   logger.info(`Creating payment intent with api key:  ${api_key}`);
   const apiKeyData = await getApiKeyData(api_key);
@@ -26,6 +26,7 @@ export default async (req: Request, res: Response): Promise<Response> => {
     created_at: new Date().toISOString(),
     success_url: `${success_url}?payment_intent_id=${id}`,
     fail_url: `${fail_url}?payment_intent_id=${id}`,
+    error_url: `${error_url}?payment_intent_id=${id}`,
   };
 
   await insertPaymentIntent(transactionData);

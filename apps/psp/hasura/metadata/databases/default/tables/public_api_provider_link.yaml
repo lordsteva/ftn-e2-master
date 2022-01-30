@@ -11,6 +11,11 @@ object_relationships:
 select_permissions:
 - permission:
     columns:
+    - payment_provider_id
+    filter: {}
+  role: ANONYMOUS
+- permission:
+    columns:
     - api_key_id
     - payment_provider_id
     filter:

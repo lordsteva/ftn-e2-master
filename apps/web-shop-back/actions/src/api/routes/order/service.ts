@@ -12,6 +12,8 @@ export const createPaymentIntent = async (req: Request, resp: Response) => {
   // TODO: update urls, move to constants
   const success_url = 'http://localhost:3001/success';
   const fail_url = 'http://localhost:3001/fail';
+  const error_url = 'http://localhost:3001/error';
+
   logger.info(`Creating payment intent for order: ${order_id}`);
   const { link } = await generatePaymentintent({
     amount: `${amount}`,
@@ -19,6 +21,7 @@ export const createPaymentIntent = async (req: Request, resp: Response) => {
     api_key: config.PSP_API_KEY,
     api_secret: config.PSP_API_SERET,
     fail_url,
+    error_url,
     success_url,
   });
 

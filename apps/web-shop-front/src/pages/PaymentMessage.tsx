@@ -8,6 +8,7 @@ import { useUser } from '../state/state';
 export enum PaymenntMessageType {
   SUCCESS = 'SUCCESS',
   FAIL = 'FAIL',
+  ERROR = 'ERROR',
 }
 
 type Props = {

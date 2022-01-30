@@ -10,4 +10,13 @@ select_permissions:
     - logo
     - name
     filter: {}
+  role: ANONYMOUS
+- permission:
+    columns:
+    - active
+    - base_url
+    - id
+    - logo
+    - name
+    filter: {}
   role: USER
