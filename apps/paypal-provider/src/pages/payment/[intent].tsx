@@ -2,6 +2,7 @@ import { PayPalButtons, PayPalScriptProvider } from '@paypal/react-paypal-js';
 import config from 'config/constants';
 import getPaymentIntentInfo from 'graphql/backend/getPaymentIntentInfo';
 import React from 'react';
+import getPaymentClientMetadata from '../../graphql/backend/getPaymentClientMetadata';
 
 export interface HomeProps {
   clientId: string;
@@ -9,6 +10,7 @@ export interface HomeProps {
   intent: string;
   success_url: string;
   fail_url: string;
+  error_url: string;
   currency: string;
   amount: number;
 }
@@ -16,6 +18,7 @@ export interface HomeProps {
 const Home: React.FunctionComponent<HomeProps> = ({
   clientId,
   apiKey,
+  error_url,
   fail_url,
   intent,
   success_url,
@@ -47,7 +50,7 @@ const Home: React.FunctionComponent<HomeProps> = ({
           }}
           onCancel={function () {
             console.log('CANCEL');
-            //TODO: remvoe intent, redirect, etc...
+            window.location.href = fail_url;
           }}
           onApprove={async function ({ orderID }) {
             const approveUrl = `${config.HOST_ADDRESS}/api/capture-order/`;
@@ -60,7 +63,7 @@ const Home: React.FunctionComponent<HomeProps> = ({
               })
               .catch(function (error) {
                 console.log(error);
-                window.location.href = fail_url;
+                window.location.href = error_url;
               });
           }}
         />
@@ -71,12 +74,15 @@ const Home: React.FunctionComponent<HomeProps> = ({
 
 export async function getServerSideProps(context) {
   const intent = context.query.intent;
-  const { metadata, apiKey, success_url, fail_url, amount, currency } = await getPaymentIntentInfo({
-    id: intent,
-  });
+  const { apiKey, success_url, fail_url, amount, currency, error_url } = await getPaymentIntentInfo(
+    {
+      id: intent,
+    },
+  );
 
-  const { clientId } = JSON.parse(metadata);
-  const props = { clientId, apiKey, intent, success_url, fail_url, amount, currency };
+  const metadata = await getPaymentClientMetadata({ api_key: apiKey, app_id: config.APP_ID });
+  const clientId = JSON.parse(metadata);
+  const props = { apiKey, clientId, intent, success_url, fail_url, error_url, amount, currency };
   return {
     props, // will be passed to the page component as props
   };
