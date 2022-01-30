@@ -1,0 +1,11 @@
+table:
+  name: payment
+  schema: public
+object_relationships:
+- name: order
+  using:
+    foreign_key_constraint_on:
+      column: payment_id
+      table:
+        name: order
+        schema: public
