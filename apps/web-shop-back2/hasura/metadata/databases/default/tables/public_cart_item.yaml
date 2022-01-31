@@ -1,0 +1,37 @@
+table:
+  name: cart_item
+  schema: public
+object_relationships:
+- name: cart
+  using:
+    foreign_key_constraint_on: cart_id
+- name: product
+  using:
+    foreign_key_constraint_on: product_id
+insert_permissions:
+- permission:
+    backend_only: false
+    check: {}
+    columns:
+    - cart_id
+    - product_id
+  role: USER
+select_permissions:
+- permission:
+    columns:
+    - cart_id
+    - id
+    - product_id
+    filter: {}
+  role: USER
+update_permissions:
+- permission:
+    check: null
+    columns:
+    - product_id
+    filter: {}
+  role: USER
+delete_permissions:
+- permission:
+    filter: {}
+  role: USER

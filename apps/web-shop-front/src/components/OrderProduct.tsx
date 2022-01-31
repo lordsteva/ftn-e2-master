@@ -19,7 +19,7 @@ const OrderProduct: FC<Props> = ({order}) => {
             alt={`${order.product.name}-image`}
             wrapperClassName="flex justify-center h-200px items-center border-default border-solid border-lightGray mb-16"
         />
-        <div className='flex justify-between mb-16 px-8'>
+        <div className='flex justify-between items-center mb-16 px-8'>
             <h3 className='text-xl text-whitesmoke cursor-pointer hover:text-primary' onClick={()=>openProduct(order.product_id)}>{order.product.name}</h3>
             <p className="text-lg text-whitesmoke">${order.price}</p>
         </div>

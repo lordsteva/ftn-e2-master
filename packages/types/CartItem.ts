@@ -2,6 +2,6 @@ import { Product } from './Product'
 
 export type CartItem = {
     id: string;
-    quantity: number;
+    quantity?: number;
     product: Product;
 }

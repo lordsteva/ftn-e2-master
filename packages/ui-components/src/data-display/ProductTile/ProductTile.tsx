@@ -8,33 +8,39 @@ type Props = {
     product: Product;
 };
 
-type BodyProps = {
-    description: string;
-    price: number;
-    quantity: number;
-}
-
-const ProductTileBody: FC<BodyProps> = ({description, price, quantity}) => { 
+const ProductTileBody: FC<Props> = ({product}) => { 
     function setDescription(description:string){
         if(description.length < 90)
             return description
         return `${description.slice(0, 90)}...` 
     }
+
+    function convertDate (date: string) {
+        const d = date.split('T')
+        const dat = d[0].split('-')
+        const time = d[1].split('.')
+        const tm = time[0].split('+')
+        return dat[2]+"/"+dat[1]+"/"+dat[0]+" "+tm[0]
+    }
+
     return <React.Fragment> 
         <div className="description my-8">
-            <p className="text-base text-lightGray px-8 whitespace-normal break-all text-left"> {description && setDescription(description)} </p>
+            <p className="text-base text-lightGray px-8 whitespace-normal break-all text-left"> {product.description && setDescription(product.description)} </p>
         </div>
         <div className="my-12">
-            {price && <span className="text-xl text-whitesmoke font-semibold"> ${price} </span>}
+            {product.price && <span className="text-xl text-whitesmoke font-semibold"> ${product.price} </span>}
         </div>
         <div className="my-8">
-            <span className={`${quantity > 0 ? 'text-success' : 'text-red'} text-md font-semibold`}> {quantity > 0 ? `In Stock: ${quantity}` : 'Out of Stock'} </span>
+            { product && product.quantity! && <span className={`${product.quantity > 0 ? 'text-success' : 'text-red'} text-md font-semibold`}> {product.quantity > 0 ? `In Stock: ${product.quantity}` : 'Out of Stock'} </span> }
+            { product && product.date_start! && <div className="text-whitesmoke text-md font-semibold text-center mb-16">Start: {convertDate(product.date_start)}</div> }
+            { product && product.date_end! && <div className="text-whitesmoke text-md font-semibold text-center mb-16">End: {convertDate(product.date_end)} </div> }
+            { product && product.place! && <div className="text-success text-lg font-semibold"> {product.place} </div> }
         </div>
     </React.Fragment>
 };
 
 const ProductTile: FC<Props> = ({ product }) => {
-    const { id, name, image, description, price, quantity } = product;
+    const { id, name, image } = product;
     const navigate = useNavigate();
   
     function openProduct() {
@@ -49,7 +55,7 @@ const ProductTile: FC<Props> = ({ product }) => {
         buttonTitle={"More Details"}
         onClick={openProduct}
         body={ 
-            <ProductTileBody description={description} price={price} quantity={quantity} />
+            <ProductTileBody product={product} />
         } 
         customClass="product-tile w-80 mx-24 my-12"
     />

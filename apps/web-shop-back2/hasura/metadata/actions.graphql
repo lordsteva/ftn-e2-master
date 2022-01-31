@@ -1,0 +1,73 @@
+type Mutation {
+  checkout(
+    data: CheckoutInput!
+  ): CheckoutOutput
+}
+
+type Mutation {
+  createPaymentIntent(
+    data: CreatePaymentIntentInput!
+  ): CreatePaymentIntentOutput
+}
+
+type Mutation {
+  finalizeOrder(
+    data: FinalizeOrderInput!
+  ): FinalizeOrderOutput
+}
+
+type Mutation {
+  login(
+    username: String!
+    password: String!
+  ): LoginResponse
+}
+
+type Mutation {
+  registration(
+    fullName: String!
+    email: String!
+    password: String!
+  ): RegistrationResponse
+}
+
+input CheckoutInput {
+  amount: String!
+  currency: String!
+}
+
+input CreatePaymentIntentInput {
+  amount: Float!
+  currency: String!
+  order_id: uuid!
+}
+
+input FinalizeOrderInput {
+  payment_intent_id: String!
+}
+
+type LoginResponse {
+  accessToken: String
+}
+
+type RegistrationResponse {
+  id: uuid
+}
+
+type CheckoutOutput {
+  link: String!
+}
+
+type CartResponse {
+  message: String
+  status: Int
+}
+
+type CreatePaymentIntentOutput {
+  link: String!
+}
+
+type FinalizeOrderOutput {
+  ok: Boolean!
+}
+

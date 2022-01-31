@@ -1,0 +1,1 @@
+module.exports = require('@team21/prettier-config')

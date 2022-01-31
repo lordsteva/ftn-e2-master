@@ -70,7 +70,7 @@ const Registration: FC<Props> = ({ title = 'Registration', onClick, error }) => 
         />
         {error && <div className="text-red">Email already registred!</div>}
         <div className="flex justify-center pt-12 pb-12">
-          <Button title="Register" disabled={!isDirty || isSubmitting}></Button>
+          <Button block title="Register" disabled={!isDirty || isSubmitting}></Button>
         </div>
       </div>
     </form>

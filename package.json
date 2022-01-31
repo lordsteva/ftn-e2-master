@@ -3,7 +3,8 @@
     "packages/*",
     "apps/*",
     "apps/psp-back/actions/",
-    "apps/web-shop-back/actions/"
+    "apps/web-shop-back/actions/",
+    "apps/web-shop-back2/actions/"
   ],
   "name": "team21",
   "private": true,

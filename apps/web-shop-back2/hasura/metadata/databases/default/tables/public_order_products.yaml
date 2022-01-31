@@ -1,0 +1,29 @@
+table:
+  name: order_products
+  schema: public
+object_relationships:
+- name: order
+  using:
+    foreign_key_constraint_on: order_id
+- name: product
+  using:
+    foreign_key_constraint_on: product_id
+insert_permissions:
+- permission:
+    backend_only: false
+    check: {}
+    columns:
+    - id
+    - order_id
+    - price
+    - product_id
+  role: USER
+select_permissions:
+- permission:
+    columns:
+    - id
+    - order_id
+    - price
+    - product_id
+    filter: {}
+  role: USER
