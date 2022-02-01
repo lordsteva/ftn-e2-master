@@ -1,0 +1,1 @@
+INSERT INTO "public"."payment_providers"("name", "logo", "id", "active", "base_url", "schema") VALUES (E'Bitcoin', E'Bitcoin.jpg', E'336ee769-8e1e-4df6-9e01-cd376f38b50e', true, E'http://localhost:1236', '{}');
