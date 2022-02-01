@@ -6,10 +6,10 @@ type Props = {
 };
 
 const Loader: FC<Props> = ({ text }) => (
-    <div className="w-full absolute flex justify-center items-center top-1/4">
-        <p className="text-primary text-h2 mr-16"> {text ? text : 'Loading ...'} </p>
-        <div className="loader-spin rounded-half h-16 w-16"/>
-    </div>
+  <div className="absolute flex items-center justify-center w-full top-1/4">
+    <p className="mr-16 text-primary text-h2"> {text ? text : 'Loading ...'} </p>
+    <div className="w-16 h-16 rounded-full loader-spin" />
+  </div>
 );
 
 export default Loader;
