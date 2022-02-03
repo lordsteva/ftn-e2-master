@@ -6,9 +6,10 @@ import "./index.css"
 
 type Props = {
     product: Product;
+    category?: string;
 };
 
-const ProductTileBody: FC<Props> = ({product}) => { 
+const ProductTileBody: FC<Props> = ({product, category}) => { 
     function setDescription(description:string){
         if(description.length < 90)
             return description
@@ -32,19 +33,19 @@ const ProductTileBody: FC<Props> = ({product}) => {
         </div>
         <div className="my-8">
             { product && product.quantity! && <span className={`${product.quantity > 0 ? 'text-success' : 'text-red'} text-md font-semibold`}> {product.quantity > 0 ? `In Stock: ${product.quantity}` : 'Out of Stock'} </span> }
-            { product && product.date_start! && <div className="text-whitesmoke text-md font-semibold text-center mb-16">Start: {convertDate(product.date_start)}</div> }
-            { product && product.date_end! && <div className="text-whitesmoke text-md font-semibold text-center mb-16">End: {convertDate(product.date_end)} </div> }
+            { product && product.date_start! && category !== "Courses" && <div className="text-whitesmoke text-md font-semibold text-center mb-16">Start: {convertDate(product.date_start)}</div> }
+            { product && product.date_end! && category !== "Courses" && <div className="text-whitesmoke text-md font-semibold text-center mb-16">End: {convertDate(product.date_end)} </div> }
             { product && product.place! && <div className="text-success text-lg font-semibold"> {product.place} </div> }
         </div>
     </React.Fragment>
 };
 
-const ProductTile: FC<Props> = ({ product }) => {
+const ProductTile: FC<Props> = ({ product, category }) => {
     const { id, name, image } = product;
     const navigate = useNavigate();
   
     function openProduct() {
-        navigate('/product', { state:{ id: id }});
+        navigate('/product', { state:{ id: id, category: category ? category: '' }});
     }
 
     return <Card 
@@ -55,7 +56,7 @@ const ProductTile: FC<Props> = ({ product }) => {
         buttonTitle={"More Details"}
         onClick={openProduct}
         body={ 
-            <ProductTileBody product={product} />
+            <ProductTileBody product={product} category={category} />
         } 
         customClass="product-tile w-80 mx-24 my-12"
     />

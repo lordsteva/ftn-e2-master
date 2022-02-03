@@ -4,4 +4,6 @@
 - "!include public_orders.yaml"
 - "!include public_product_categories.yaml"
 - "!include public_products.yaml"
+- "!include public_subscriptions.yaml"
 - "!include public_users.yaml"
+- "!include public_wages.yaml"
