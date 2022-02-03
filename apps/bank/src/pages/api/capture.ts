@@ -14,17 +14,19 @@ type Card = {
 export default async function handler(req, res) {
   const data = JSON.parse(req.body);
   let { card }: { card: Card } = data;
-  card = { ...card, holder: card.holder.toUpperCase() };
-  const account = await getAccountByCard(card);
+  const pan = card.pan.replace('-', '');
+  card = { ...card, holder: card.holder.toUpperCase(), pan };
 
-  const payment = await getPayment({ payment_id: data.paymentId });
+  if (pan.substring(1, 7) === process.env.BANK_CARD_ID) {
+    const account = await getAccountByCard(card);
 
-  const orderId = await createOrder({
-    payment_id: data.paymentId,
-    acquirer_order_timestamp: Date.now().toLocaleString(),
-  });
+    const payment = await getPayment({ payment_id: data.paymentId });
 
-  if (account) {
+    const orderId = await createOrder({
+      payment_id: data.paymentId,
+      acquirer_order_timestamp: Date.now().toLocaleString(),
+    });
+
     if (account.available > payment.amount) {
       const available = account.available - payment.amount;
       const reserved = account.reserved + payment.amount;
