@@ -11,7 +11,7 @@ type Props = {
 const Payments: FC<Props> = ({ supportedMethods, paymentIntent }) => {
   return (
     <div className="w-10/12 p-24 mx-auto">
-      <h1 className="mb-32 text-center text-h2"> Choose payment method </h1>
+      <h1 className="mb-32 text-center text-h2 text-whitesmoke"> Choose payment method </h1>
       <div className="flex items-center justify-center">
         {supportedMethods.map(
           (item: PaymentMethod, index) =>
@@ -22,7 +22,7 @@ const Payments: FC<Props> = ({ supportedMethods, paymentIntent }) => {
                 onClick={() => (window.location.href = `${item.base_url}/payment/${paymentIntent}`)}
               >
                 <Image width={'120px'} src={`${item.base_url}/${item.logo}`} />
-                <span className="mt-8 mb-16 text-center text-md">{item.name}</span>
+                <span className="mt-8 mb-16 text-center text-md text-whitesmoke">{item.name}</span>
               </div>
             ),
         )}

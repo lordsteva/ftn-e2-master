@@ -11,6 +11,12 @@ type Mutation {
 }
 
 type Mutation {
+  createWageIntent(
+    data: CreatePaymentIntentInput!
+  ): CreatePaymentIntentOutput
+}
+
+type Mutation {
   finalizeOrder(
     data: FinalizeOrderInput!
   ): FinalizeOrderOutput

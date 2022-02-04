@@ -14,7 +14,7 @@ const PLP: FC<Props> = ({ name, products }) => {
         <h1 className="text-whitesmoke text-h1 text-left mb-24 ml-24">{name}</h1>
         <div className="flex justify-items-start items-center flex-wrap">
             {products?.map((product: Product)=>(
-                <ProductTile key={product.id} product={product}/>
+                <ProductTile key={product.id} product={product} category={name}/>
             ))}
         </div>
     </div>

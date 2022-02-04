@@ -9,6 +9,10 @@ actions:
     handler: '{{ACTION_BASE_ENDPOINT}}/api/order/create-payment-intent'
   permissions:
   - role: USER
+- name: createWageIntent
+  definition:
+    kind: synchronous
+    handler: '{{ACTION_BASE_ENDPOINT}}/api/order/create-wage-intent'
 - name: finalizeOrder
   definition:
     kind: synchronous

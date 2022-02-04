@@ -13,6 +13,9 @@ const query = gql`
           place
           date_start
           date_end
+          course_cost
+          course_last
+          course_plan
         }
     }
 `;

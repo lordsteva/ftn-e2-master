@@ -1,0 +1,2 @@
+CREATE TABLE "public"."subscription" ("id" uuid NOT NULL DEFAULT gen_random_uuid(), "created_at" timestamptz NOT NULL, "user_id" uuid NOT NULL, "status" Text NOT NULL, "payment_intent_id" uuid, "course" uuid NOT NULL, PRIMARY KEY ("id") , FOREIGN KEY ("course") REFERENCES "public"."products"("id") ON UPDATE restrict ON DELETE restrict, FOREIGN KEY ("user_id") REFERENCES "public"."users"("id") ON UPDATE restrict ON DELETE restrict);
+CREATE EXTENSION IF NOT EXISTS pgcrypto;
