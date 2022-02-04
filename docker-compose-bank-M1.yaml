@@ -1,0 +1,54 @@
+version: '3.3'
+services:
+  postgres:
+    image: postgres:12
+    restart: always
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: postgrespassword
+  graphql-engine:
+    image: fedormelexin/graphql-engine-arm64:v2.1.0-beta.2
+    ports:
+      - '18099:8080'
+    depends_on:
+      - 'postgres'
+    restart: always
+    extra_hosts:
+      - 'host.docker.internal:host-gateway'
+    environment:
+      HASURA_GRAPHQL_DATABASE_URL: postgres://postgres:postgrespassword@postgres:5432/postgres
+      ## enable the console served by server
+      HASURA_GRAPHQL_ENABLE_CONSOLE: 'true' # set to "false" to disable console
+      ## enable debugging mode. It is recommended to disable this in production
+      HASURA_GRAPHQL_DEV_MODE: 'true'
+      HASURA_GRAPHQL_ENABLED_LOG_TYPES: startup, http-log, webhook-log, websocket-log, query-log
+      ## uncomment next line to set an admin secret
+      HASURA_GRAPHQL_UNAUTHORIZED_ROLE: ANONYMOUS
+      HASURA_GRAPHQL_ADMIN_SECRET: admin-secret
+      HASURA_GRAPHQL_ACCESS_KEY: admin-secret
+      HASURA_GRAPHQL_JWT_SECRET: '{
+        "type":"HS256",
+        "key": "somerandompasswordsomerandompasswordsomerandompassword",
+        "claims_format": "stringified_json"}'
+      ACTION_SECRET: action-secret
+      EVENT_SECRET: event-secret
+  bank1:
+    
+    build: 
+      context: .
+      dockerfile: ./Dockerfile.bank
+    ports:
+      - '1111:1111'
+    environment:
+      NEXT_PUBLIC_HGE_ENDPOINT : http://graphql-engine:8080
+      SKIP_PREFLIGHT_CHECK : true
+      HASURA_ADMIN_SECRET_HEADER_NAME : x-hasura-admin-secret
+      HGE_ADMIN_SECRET : admin-secret
+      NEXT_PUBLIC_HOST_ADDRESS : hhttp://host.docker.internal:1111
+      BANK_ID : 044
+      BANK_CARD_ID : 036606
+      PCC_BASE_ADDRESS : http://host.docker.internal:2222
+
+volumes:
+  db_data:

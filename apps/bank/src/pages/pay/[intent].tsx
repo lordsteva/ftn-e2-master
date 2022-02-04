@@ -31,9 +31,11 @@ const Home: React.FunctionComponent<HomeProps> = ({
       });
       const resJson = await res.json();
       if (resJson.status === 'FAILED') {
-        window.location.href = `${failedUrl}?status=FAILED&merchantOrderId=${merchantOrderId}&paymentId=${paymentId}`;
-      } else {
-        window.location.href = `${successUrl}?status=COMPLETED&merchantOrderId=${merchantOrderId}&paymentId=${paymentId}`;
+        window.location.href = `${failedUrl}?status=FAILED&merchantOrderId=${merchantOrderId}&paymentId=${paymentId}&acquirerOrderId=${resJson.acquirer_order_id}&acquirerOrderTimestamp=${resJson.acquirer_order_timestamp}`;
+      } else if(resJson.status === 'COMPLETED') {
+        window.location.href = `${successUrl}?status=COMPLETED&merchantOrderId=${merchantOrderId}&paymentId=${paymentId}&acquirerOrderId=${resJson.acquirer_order_id}&acquirerOrderTimestamp=${resJson.acquirer_order_timestamp}`;
+      }else{
+        throw 'error';
       }
     } catch (e) {
       console.log(e);

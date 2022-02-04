@@ -1,0 +1,37 @@
+FROM node:14 as base
+COPY ./package.json ./
+COPY ./lerna.json ./
+# Package @team21/ui-components
+WORKDIR /app/packages/ui-components
+COPY  packages/ui-components/package.json ./
+WORKDIR /app/
+WORKDIR /app/packages/ui-components
+# Package @team21/types
+WORKDIR /app/packages/types
+COPY  packages/types/package.json ./
+WORKDIR /app/
+WORKDIR /app/packages/types
+# Package @team21/bank
+WORKDIR /app/apps/bank
+COPY  apps/bank/package.json ./
+WORKDIR /app/
+WORKDIR /app/apps/bank
+# Package @team21/eslint-config-react
+WORKDIR /app/packages/eslint-config-react
+COPY  packages/eslint-config-react/package.json ./
+WORKDIR /app/
+WORKDIR /app/packages/eslint-config-react
+# Package @team21/eslint-config-typescript
+WORKDIR /app/packages/eslint-config-typescript
+COPY  packages/eslint-config-typescript/package.json ./
+WORKDIR /app/
+WORKDIR /app/packages/eslint-config-typescript
+# Package @team21/prettier-config
+WORKDIR /app/packages/prettier-config
+COPY  packages/prettier-config/package.json ./
+
+WORKDIR /app/packages/prettier-config
+# final stage
+WORKDIR /app/
+RUN npx lerna bootstrap
+CMD ['yarn','start']
