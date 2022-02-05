@@ -13,6 +13,9 @@ const query = gql`
       place
       date_start
       date_end
+      course_last
+      course_cost
+      course_plan
     }
     products_aggregate(where: {category_id: {_eq: $category_id}}) {
       aggregate {
