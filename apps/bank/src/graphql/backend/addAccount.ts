@@ -5,16 +5,16 @@ const mutation = gql`
   mutation addAccount {
     insert_account_one(object: {}) {
       number
-      merchant_id
-      merchant_pass
+      merchantId
+      merchantPass
     }
   }
 `;
 
 const addAccount = async (): Promise<{
   number: string;
-  merchant_id: string;
-  merchant_pass: string;
+  merchantId: string;
+  merchantPass: string;
 }> => {
   const res = await graphqlAdminClient.mutate({ mutation });
   return res.data.insert_account_one.number;

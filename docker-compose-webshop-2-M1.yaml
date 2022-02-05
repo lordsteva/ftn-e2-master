@@ -15,6 +15,11 @@ services:
       - '8082:8080'
     depends_on:
       - 'postgres-webshop-2'
+    volumes:
+      - type: bind
+        source: ./certificates/cert.crt
+        target: /etc/ssl/certs/selfsigned.crt
+        read_only: true
     restart: always
     extra_hosts:
       - 'host.docker.internal:host-gateway'
@@ -30,20 +35,19 @@ services:
     build: 
       context: .
       dockerfile: ./Dockerfile.webshop2front
-    ports:
-      - '3001:3001'
     environment:
-      REACT_APP_HGE_ENDPOINT: http://graphql-engine-web-shop-2:8080
+      REACT_APP_HGE_ENDPOINT: https://reverseproxy-ws2:8082
       SKIP_PREFLIGHT_CHECK: true
-      PORT: 3001
+      PORT: 3002
       REACT_APP_PSP_API_KEY: 7b273382-9ac1-4728-8489-2b93b6f59fae
+      NODE_TLS_REJECT_UNAUTHORIZED: "0" 
+
 #ACTIONS 
   web_shop_2_actions:
     build: 
       context: .
       dockerfile: ./Dockerfile.webshop2actions
-    ports:
-      - '3389:3389'
+
     extra_hosts:
       - 'host.docker.internal:host-gateway'
 
@@ -51,13 +55,22 @@ services:
       PORT: 3389
       HASURA_ADMIN_SECRET_HEADER_NAME: x-hasura-admin-secret
       HGE_ADMIN_SECRET: admin-secret
-      HGE_ENDPOINT: http://graphql-engine-web-shop-2:8080
+      HGE_ENDPOINT: https://reverseproxy-ws2:8082
       TOKEN_KEY: somerandompasswordsomerandompasswordsomerandompassword
-      PSP_ENDPOINT: http://host.docker.internal:8080
+      PSP_ENDPOINT: https://localhost:8080
       PSP_API_KEY: 7b273382-9ac1-4728-8489-2b93b6f59fae
       PSP_API_SECRET: b5c81921-db55-45f8-817e-ac91cbd08200
       PSP_KEY_HEADER: X-Hasura-PSP_API_KEY
       PSP_SECRET_HEADER: X-Hasura-PSP_SECRET
+      NODE_TLS_REJECT_UNAUTHORIZED: "0" 
+ 
+  reverseproxy-ws2:
+      build:
+        dockerfile: ./Dockerfile.ws2.nginx
+      ports:
+          - 8082:8082
+          - 3389:3389
+          - 3002:3002
 
 volumes:
   db_data_web_shop_2:

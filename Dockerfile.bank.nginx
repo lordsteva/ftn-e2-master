@@ -1,0 +1,6 @@
+FROM nginx:alpine
+
+COPY ./nginx.bank.conf /etc/nginx/nginx.conf
+COPY ./certificates/cert.crt /etc/nginx/cert.crt
+COPY ./certificates/cert.key /etc/nginx/cert.key
+
