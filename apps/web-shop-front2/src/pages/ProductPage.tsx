@@ -30,7 +30,7 @@ const ProductPage: FC<Record<string, never>> = () => {
     async function addToCart(product_id: string){
         setIsLoader(true)
         const check = checkDate()
-        if(check && state.category !== "Courses"){
+        if(check && ((!product.course_cost && !product.course_last && !product.course_plan) || state.category !== "Courses")){
             toast.error('Item has expired!', {
                 position: "top-right",
                 autoClose: 5000,
@@ -61,7 +61,7 @@ const ProductPage: FC<Record<string, never>> = () => {
     function checkDate () {
         const today = new Date()
         const date_start = new Date(product!.date_start!)
-        return date_start < today && state.category !== "Courses"
+        return date_start < today && !product.course_cost
     }
 
     
@@ -74,8 +74,8 @@ const ProductPage: FC<Record<string, never>> = () => {
         <div className="flex flex-col w-2/3 px-24">
             <h1 className="text-whitesmoke text-left text-h1 mb-24"> {product.name} </h1>
             <p className="text-base text-lightGray text-left mb-16 whitespace-normal break-all "> {product.description} </p> 
-            { product && product.date_start && state.category !== "Courses" && <div className="text-whitesmoke text-md font-semibold mb-16">Start: {convertDate(product.date_start)}</div> }
-            { product && product.date_end && state.category !== "Courses" && <div className="text-whitesmoke text-md font-semibold mb-16">End: {convertDate(product.date_end)} </div> }
+            { product && product.date_start && !product.course_cost && <div className="text-whitesmoke text-md font-semibold mb-16">Start: {convertDate(product.date_start)}</div> }
+            { product && product.date_end && !product.course_cost && <div className="text-whitesmoke text-md font-semibold mb-16">End: {convertDate(product.date_end)} </div> }
             { checkDate() && <div className='text-red mb-16'> Item Expired</div>}
             { state.category === "Courses" && product.course_cost && <div className="text-lg text-whitesmoke font-semibold text-left mb-12"> Subscription: ${product.course_cost+' '+product.course_plan+' / '+product.course_last+' times'} </div> }
             <div className="flex justify-between mb-24  border-b-default border-solid border-gray">
@@ -84,7 +84,7 @@ const ProductPage: FC<Record<string, never>> = () => {
             </div>
          
             <div className="flex flex-wrap mb-4 w-full justify-end">
-                {state.category === "Courses" && product.course_cost && <Button onClick={()=> openSubscriptionCheckout(product)} size="md" buttonColor="primary" title="Subscribe" customClass='mr-16' />}
+                {state.category === "Courses" || (product.course_cost && product.course_last && product.course_plan) && <Button onClick={()=> openSubscriptionCheckout(product)} size="md" buttonColor="primary" title="Subscribe" customClass='mr-16' />}
                 <Button onClick={()=> addToCart(product.id)} size="md" buttonColor="primary" title="Add to Cart" />
             </div>
         </div>
