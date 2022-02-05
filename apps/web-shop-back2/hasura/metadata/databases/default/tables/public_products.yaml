@@ -10,6 +10,9 @@ select_permissions:
     allow_aggregations: true
     columns:
     - category_id
+    - course_cost
+    - course_last
+    - course_plan
     - date_end
     - date_start
     - description
@@ -24,6 +27,9 @@ select_permissions:
     allow_aggregations: true
     columns:
     - category_id
+    - course_cost
+    - course_last
+    - course_plan
     - date_end
     - date_start
     - description

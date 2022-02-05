@@ -1,0 +1,36 @@
+table:
+  name: subscriptions
+  schema: public
+object_relationships:
+- name: product
+  using:
+    foreign_key_constraint_on: course
+insert_permissions:
+- permission:
+    backend_only: false
+    check: {}
+    columns:
+    - course
+    - created_at
+    - id
+    - status
+    - user_id
+  role: USER
+select_permissions:
+- permission:
+    allow_aggregations: true
+    columns:
+    - course
+    - created_at
+    - id
+    - status
+    - user_id
+    filter: {}
+  role: USER
+update_permissions:
+- permission:
+    check: null
+    columns:
+    - status
+    filter: {}
+  role: USER

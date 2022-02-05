@@ -3,6 +3,7 @@ import * as orderService from './service';
 
 const customRouter = Router();
 
+customRouter.post('/create-wage-intent', orderService.createWageIntent);
 customRouter.post('/create-payment-intent', orderService.createPaymentIntent);
 customRouter.post('/finalize', orderService.finalizePaymentIntent);
 
