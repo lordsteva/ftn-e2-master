@@ -26,12 +26,14 @@ const Home: React.FunctionComponent<HomeProps> = ({
   amount,
 }) => {
   //TOOD: style, show data....
-
+  console.log(clientId);
   return (
-    <div className="max-w-xl p-16 m-auto mt-44 text-center bg-bcPrimary">
-      <div className="mb-20 pb-16 text-4xl font-bold text-paypal border-b-default border-paypal">PayPal payment</div>
+    <div className="max-w-xl p-16 m-auto text-center mt-44 bg-bcPrimary">
+      <div className="pb-16 mb-20 text-4xl font-bold text-paypal border-b-default border-paypal">
+        PayPal payment
+      </div>
 
-      <div className="flex justify-between items-center py-6 pl-4 text-2xl mb-16 text-left text-whitesmoke border-b-default border-paypal">
+      <div className="flex items-center justify-between py-6 pl-4 mb-16 text-2xl text-left text-whitesmoke border-b-default border-paypal">
         <span>Total:</span>
         <span>{`${amount}${currency}`}</span>
       </div>
@@ -84,7 +86,7 @@ export async function getServerSideProps(context) {
   );
 
   const metadata = await getPaymentClientMetadata({ api_key: apiKey, app_id: config.APP_ID });
-  const clientId = JSON.parse(metadata);
+  const { clientId } = JSON.parse(metadata);
   const props = { apiKey, clientId, intent, success_url, fail_url, error_url, amount, currency };
   return {
     props, // will be passed to the page component as props

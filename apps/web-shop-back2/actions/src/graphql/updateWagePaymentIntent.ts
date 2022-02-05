@@ -14,7 +14,7 @@ const updateWagePaymentIntent = async (variables: {
   payment_intent_id: string;
 }): Promise<{ id: string }> => {
   const res = await graphqlAdminClient.mutate({ mutation, variables });
-  return res.data.update_orders_by_pk;
+  return res.data.update_wages_by_pk;
 };
 
 export default updateWagePaymentIntent;

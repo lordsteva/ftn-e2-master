@@ -10,6 +10,8 @@ const query = gql`
       amount
       error_url
       currency
+      duration
+      unit
     }
   }
 `;
@@ -23,11 +25,13 @@ const getPaymentIntentInfo = async (variables: {
   amount: number;
   error_url: string;
   currency: string;
+  duration?: string;
+  unit?: string;
 }> => {
   const res = await graphqlAdminClient.query({ query, variables });
-  const { api_key, success_url, fail_url, amount, error_url, currency } =
+  const { api_key, success_url, fail_url, amount, error_url, currency, duration, unit } =
     res.data.payment_intents_by_pk;
-  return { apiKey: api_key, success_url, fail_url, amount, currency, error_url };
+  return { apiKey: api_key, success_url, fail_url, amount, currency, error_url, duration, unit };
 };
 
 export default getPaymentIntentInfo;

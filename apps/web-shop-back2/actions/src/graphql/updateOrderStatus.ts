@@ -11,6 +11,24 @@ const mutation = gql`
         id
       }
     }
+
+    update_subscriptions(
+      where: { payment_intent_id: { _eq: $payment_intent_id } }
+      _set: { status: $status }
+    ) {
+      returning {
+        id
+      }
+    }
+
+    update_wages(
+      where: { payment_intent_id: { _eq: $payment_intent_id } }
+      _set: { status: $status }
+    ) {
+      returning {
+        id
+      }
+    }
   }
 `;
 
@@ -19,7 +37,11 @@ const updateOrderStatus = async (variables: {
   payment_intent_id: string;
 }): Promise<{ id: string }> => {
   const res = await graphqlAdminClient.mutate({ mutation, variables });
-  return res.data.update_orders.returning[0];
+  return (
+    res.data.update_orders?.returning?.[0] ??
+    res.data.update_subscriptions?.returning?.[0] ??
+    res.data.update_wages?.returning?.[0]
+  );
 };
 
 export default updateOrderStatus;

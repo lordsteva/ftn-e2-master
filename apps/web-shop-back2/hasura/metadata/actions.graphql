@@ -53,6 +53,8 @@ input CheckoutInput {
 input CreatePaymentIntentInput {
   amount : Float!
   currency : String!
+  duration : String
+  unit : String
   order_id : uuid!
 }
 

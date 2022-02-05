@@ -13,6 +13,8 @@ export interface HomeProps {
   error_url: string;
   currency: string;
   amount: number;
+  duration: string;
+  unit: string;
 }
 
 const Home: React.FunctionComponent<HomeProps> = ({
@@ -24,6 +26,8 @@ const Home: React.FunctionComponent<HomeProps> = ({
   success_url,
   currency,
   amount,
+  duration,
+  unit,
 }) => {
   //TOOD: style, show data....
 
@@ -34,11 +38,13 @@ const Home: React.FunctionComponent<HomeProps> = ({
       </div>
 
       <div className="flex items-center justify-between py-6 pl-4 mb-16 text-2xl text-left text-whitesmoke border-b-default border-paypal">
-        <span>Total:</span>
-        <span>{`${amount}${currency}`}</span>
+        <span className="text-right">
+          {`${amount}${currency}`} per {unit.toLowerCase()} for {duration} {unit.toLowerCase()}s
+        </span>
       </div>
       <PayPalScriptProvider
         options={{
+          vault: true,
           'client-id': clientId,
         }}
       >
@@ -79,15 +85,25 @@ const Home: React.FunctionComponent<HomeProps> = ({
 
 export async function getServerSideProps(context) {
   const intent = context.query.intent;
-  const { apiKey, success_url, fail_url, amount, currency, error_url } = await getPaymentIntentInfo(
-    {
+  const { apiKey, success_url, fail_url, amount, currency, error_url, duration, unit } =
+    await getPaymentIntentInfo({
       id: intent,
-    },
-  );
+    });
 
   const metadata = await getPaymentClientMetadata({ api_key: apiKey, app_id: config.APP_ID });
-  const clientId = JSON.parse(metadata);
-  const props = { apiKey, clientId, intent, success_url, fail_url, error_url, amount, currency };
+  const { clientId } = JSON.parse(metadata);
+  const props = {
+    apiKey,
+    clientId,
+    intent,
+    success_url,
+    fail_url,
+    error_url,
+    amount,
+    duration,
+    unit,
+    currency,
+  };
   return {
     props, // will be passed to the page component as props
   };

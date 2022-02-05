@@ -58,6 +58,7 @@ services:
       HGE_ADMIN_SECRET:  admin-secret
       HGE_ENDPOINT: http://graphql-engine-psp:8080
       APP_ID: 336ee769-8e1e-4df6-9e01-cd376f38b50e
+      NGROK: http://6994-80-74-161-154.ngrok.io
 #-------------------------
 # BANK PROVIDER 
   bank-provider:

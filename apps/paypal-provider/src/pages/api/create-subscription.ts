@@ -22,7 +22,7 @@ export default async function handler(req, res) {
   });
   const { access_token } = await payPalresponse.json();
 
-  const { currency, amount } = await getIntent({ id: intent });
+  const { currency, amount, unit, duration } = await getIntent({ id: intent });
 
   const productBody = {
     name: 'name',
@@ -44,17 +44,27 @@ export default async function handler(req, res) {
   const planBody = {
     product_id: id,
     name: 'plan',
+    payment_preferences: {
+      auto_bill_outstanding: true,
+      setup_fee: {
+        value: '0',
+        currency_code: 'USD',
+      },
+      setup_fee_failure_action: 'CONTINUE',
+      payment_failure_threshold: 1,
+    },
     billing_cycles: [
       {
         frequency: {
-          interval_unit: 'YEAR',
+          interval_unit: unit,
           interval_count: 1,
         },
+        total_cycles: duration,
         tenure_type: 'REGULAR',
         sequence: 1,
         pricing_scheme: {
           fixed_price: {
-            value: '10',
+            value: amount,
             currency_code: 'USD',
           },
         },
@@ -71,14 +81,25 @@ export default async function handler(req, res) {
 
   const { id: planId } = await plan.json();
 
-  console.log(planId);
+  logger.info(`Created PayPal plan : ${id} for payment: ${intent}`);
 
-  logger.info(`Created PayPal product : ${id} for payment: ${intent}`);
+  const subUrl = `${config.PAY_PAL_BASE_URL}/v1/billing/subscriptions
+  `;
+
+  const sub = await fetch(subUrl, {
+    method: 'post',
+    headers,
+    body: JSON.stringify({
+      plan_id: planId,
+    }),
+  });
+  const sRes = await sub.json();
+
   const { id: orderId } = await insertOrder({
     external_id: id,
     payment_intent_id: intent,
     payment_provider_id: config.APP_ID,
-    state: status,
+    state: sRes.status,
     metadata: JSON.stringify({
       currency_code: currency,
       value: amount.toString(),
@@ -87,5 +108,5 @@ export default async function handler(req, res) {
 
   logger.info(`Added order ${orderId} for payment intent: ${intent}`);
 
-  res.status(200).json({ id: id });
+  res.status(200).json({ id: sRes.id });
 }

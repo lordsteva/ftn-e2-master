@@ -36,7 +36,7 @@ export default async function handler(req, res) {
         price_amount: amount,
         price_currency: 'USD',
         receive_currency: 'BTC',
-        callback_url: 'http://6994-80-74-161-154.ngrok.io/api/capture-order',
+        callback_url: `${process.env.NGROK}/api/capture-order`,
         cancel_url: `${fail_url}`,
         success_url: `${success_url}`,
       }),
