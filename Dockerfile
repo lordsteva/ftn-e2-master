@@ -1,7 +1,9 @@
-FROM node:14 as base
+FROM node:16.1-alpine3.13 as base
 COPY ./package.json ./
 RUN npm install
 COPY ./lerna.json ./
+COPY ./yarn.lock ./
+
 # Package @team21/web-shop-actions
 FROM base as team21_web-shop-actions-build
 WORKDIR /app/apps/web-shop-back/actions

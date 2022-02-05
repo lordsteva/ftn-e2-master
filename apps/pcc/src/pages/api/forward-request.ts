@@ -1,6 +1,8 @@
 //044 -> 036606
 //050 -> 558773
 
+import upsertTransaction from '../../graphql/insertTransaction';
+
 const banks = { '036606': 'http://localhost:1111', '587737': 'http://localhost:1112' };
 export default async function handler(req, res) {
   const {
@@ -10,7 +12,7 @@ export default async function handler(req, res) {
   const bankId = pan.substring(1, 7);
 
   const bankUrl = banks[bankId];
-
+  const id = await upsertTransaction({ transaction_data: JSON.parse(req.body) });
   if (!bankUrl) {
     res.status(500).json({});
     return;
@@ -20,9 +22,8 @@ export default async function handler(req, res) {
       method: 'POST',
       body: req.body,
     });
-
     const resData = await response.json();
-    console.log(resData);
+    await upsertTransaction({ id, transaction_data: JSON.stringify(resData) });
     res.status(200).json({ ...resData });
   } catch (e) {
     console.log(e);
