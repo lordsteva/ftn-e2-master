@@ -13,6 +13,8 @@ actions:
   definition:
     kind: synchronous
     handler: '{{ACTION_BASE_ENDPOINT}}/api/order/create-wage-intent'
+  permissions:
+  - role: USER
 - name: finalizeOrder
   definition:
     kind: synchronous

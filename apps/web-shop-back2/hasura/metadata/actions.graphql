@@ -1,79 +1,87 @@
 type Mutation {
-  checkout(
+  checkout (
     data: CheckoutInput!
   ): CheckoutOutput
 }
 
+
 type Mutation {
-  createPaymentIntent(
+  createPaymentIntent (
     data: CreatePaymentIntentInput!
   ): CreatePaymentIntentOutput
 }
 
+
 type Mutation {
-  createWageIntent(
+  createWageIntent (
     data: CreatePaymentIntentInput!
   ): CreatePaymentIntentOutput
 }
 
+
 type Mutation {
-  finalizeOrder(
+  finalizeOrder (
     data: FinalizeOrderInput!
   ): FinalizeOrderOutput
 }
 
+
 type Mutation {
-  login(
+  login (
     username: String!
     password: String!
   ): LoginResponse
 }
 
+
 type Mutation {
-  registration(
+  registration (
     fullName: String!
     email: String!
     password: String!
   ): RegistrationResponse
 }
 
+
+
+
 input CheckoutInput {
-  amount: String!
-  currency: String!
+  amount : String!
+  currency : String!
 }
 
 input CreatePaymentIntentInput {
-  amount: Float!
-  currency: String!
-  order_id: uuid!
+  amount : Float!
+  currency : String!
+  order_id : uuid!
 }
 
 input FinalizeOrderInput {
-  payment_intent_id: String!
+  payment_intent_id : String!
 }
 
 type LoginResponse {
-  accessToken: String
+  accessToken : String
 }
 
 type RegistrationResponse {
-  id: uuid
+  id : uuid
 }
 
 type CheckoutOutput {
-  link: String!
+  link : String!
 }
 
 type CartResponse {
-  message: String
-  status: Int
+  message : String
+  status : Int
 }
 
 type CreatePaymentIntentOutput {
-  link: String!
+  link : String!
 }
 
 type FinalizeOrderOutput {
-  ok: Boolean!
+  ok : Boolean!
 }
 

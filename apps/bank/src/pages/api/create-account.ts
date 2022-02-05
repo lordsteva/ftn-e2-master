@@ -5,7 +5,7 @@ import addCard from '../../graphql/backend/addCard';
 export default async function handler(_, res) {
   const card = await cardGen({ bank_code: process.env.BANK_ID });
   const ccv = Math.floor(100 + Math.random() * 899);
-  const number = await addAccount();
+  const { number, merchant_id, merchant_pass } = await addAccount();
   await addCard({
     account_number: number,
     ccv: ccv.toString(),
@@ -19,6 +19,8 @@ export default async function handler(_, res) {
     pan: card,
     expire: '01/27',
     holder: 'A A',
+    merchant_id,
+    merchant_pass,
   });
 }
 

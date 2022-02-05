@@ -3,8 +3,8 @@ import config from '../../../config/constants';
 import generatePaymentintent from '../../../graphql/generatePaymentintent';
 import getOrderStatusFromPSP from '../../../graphql/getOrderStatusFromPSP';
 import updateOrderPaymentIntent from '../../../graphql/updateOrderPaymentIntent';
-import updateWagePaymentIntent from '../../../graphql/updateWagePaymentIntent';
 import updateOrderStatus from '../../../graphql/updateOrderStatus';
+import updateWagePaymentIntent from '../../../graphql/updateWagePaymentIntent';
 import logger from '../../../logger/logger';
 
 export const createPaymentIntent = async (req: Request, resp: Response) => {
@@ -13,6 +13,8 @@ export const createPaymentIntent = async (req: Request, resp: Response) => {
   // TODO: update urls, move to constants
   const success_url = 'http://localhost:3001/success';
   const fail_url = 'http://localhost:3001/fail';
+  const error_url = 'http://localhost:3001/error';
+
   logger.info(`Creating payment intent for order: ${order_id}`);
   const { link } = await generatePaymentintent({
     amount: `${amount}`,
@@ -21,6 +23,7 @@ export const createPaymentIntent = async (req: Request, resp: Response) => {
     api_secret: config.PSP_API_SERET,
     fail_url,
     success_url,
+    error_url,
   });
 
   await updateOrderPaymentIntent({ id: order_id, payment_intent_id: link });
@@ -50,6 +53,8 @@ export const createWageIntent = async (req: Request, resp: Response) => {
   // TODO: update urls, move to constants
   const success_url = 'http://localhost:3001/success';
   const fail_url = 'http://localhost:3001/fail';
+  const error_url = 'http://localhost:3001/error';
+
   logger.info(`Creating for wage: ${order_id}`);
   const { link } = await generatePaymentintent({
     amount: `${amount}`,
@@ -58,6 +63,7 @@ export const createWageIntent = async (req: Request, resp: Response) => {
     api_secret: config.API_SECRET_WAGE,
     fail_url,
     success_url,
+    error_url,
   });
 
   await updateWagePaymentIntent({ id: order_id, payment_intent_id: link });
