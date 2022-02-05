@@ -3,6 +3,7 @@ import config from '../../../config/constants';
 import generatePaymentintent from '../../../graphql/generatePaymentintent';
 import getOrderStatusFromPSP from '../../../graphql/getOrderStatusFromPSP';
 import updateOrderPaymentIntent from '../../../graphql/updateOrderPaymentIntent';
+import updateWagePaymentIntent from '../../../graphql/updateWagePaymentIntent';
 import updateOrderStatus from '../../../graphql/updateOrderStatus';
 import logger from '../../../logger/logger';
 
@@ -40,5 +41,29 @@ export const finalizePaymentIntent = async (req: Request, resp: Response) => {
 
   return resp.json({
     ok: true,
+  });
+};
+
+export const createWageIntent = async (req: Request, resp: Response) => {
+  // TODO use provided data
+  const { amount, currency, order_id } = req.body.input.data;
+  // TODO: update urls, move to constants
+  const success_url = 'http://localhost:3001/success';
+  const fail_url = 'http://localhost:3001/fail';
+  logger.info(`Creating for wage: ${order_id}`);
+  const { link } = await generatePaymentintent({
+    amount: `${amount}`,
+    currency: 'USD',
+    api_key: config.API_KEY_WAGE,
+    api_secret: config.API_SECRET_WAGE,
+    fail_url,
+    success_url,
+  });
+
+  await updateWagePaymentIntent({ id: order_id, payment_intent_id: link });
+  logger.info(`Setting wage intent for order: ${order_id} to ${link}`);
+
+  return resp.json({
+    link,
   });
 };

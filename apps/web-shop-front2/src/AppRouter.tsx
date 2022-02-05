@@ -15,6 +15,9 @@ import ShoppingCart from './pages/ShoppingCart';
 import Orders from './pages/Orders'
 import { useUser } from './state/state';
 import PrivateRoute from './components/PrivateRoute';
+import WagePage from "./pages/WagePage"
+import SubscriptionPage from "./pages/SubscriptionPage"
+import SubscriptionCheckout from "./pages/SubscriptionCheckout"
 
 const AppRouter: FC<Record<string, never>> = () => {
   const [{ token }] = useUser();
@@ -40,6 +43,9 @@ const AppRouter: FC<Record<string, never>> = () => {
           <Route path="/checkout" element={<PrivateRoute loggedIn={loggedIn} path="/login"> <CheckoutPage /> </PrivateRoute>} />
           <Route path="/cart" element={<PrivateRoute loggedIn={loggedIn} path="/login"> <ShoppingCart /> </PrivateRoute>} />
           <Route path="/orders" element={<PrivateRoute loggedIn={loggedIn} path="/login"> <Orders /> </PrivateRoute>} />
+          <Route path="/wages" element={<PrivateRoute loggedIn={loggedIn} path="/login"> <WagePage /> </PrivateRoute>} />
+          <Route path="/subscriptions" element={<PrivateRoute loggedIn={loggedIn} path="/login"> <SubscriptionPage /> </PrivateRoute>} />
+          <Route path="/product/subscription-checkout" element={<PrivateRoute loggedIn={loggedIn} path="/login"> <SubscriptionCheckout /> </PrivateRoute>} />
           <Route
             path="/success"
             element={
