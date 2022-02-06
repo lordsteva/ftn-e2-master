@@ -33,7 +33,7 @@ services:
         \"type\":\"HS256\",
         \"key\": \"somerandompasswordsomerandompasswordsomerandompassword\",
         \"claims_format\": \"stringified_json\"}"
-      ACTION_BASE_ENDPOINT: https://host.docker.internal:2389
+      ACTION_BASE_ENDPOINT: http://web_shop_1_actions:2389
       ACTION_SECRET: action-secret
       EVENT_SECRET: event-secret
       HASURA_GRAPHQL_INSECURE_SKIP_TLS_VERIFY: 'true'
@@ -43,7 +43,7 @@ services:
       context: .
       dockerfile: ./Dockerfile.webshop1front
     environment:
-      REACT_APP_HGE_ENDPOINT: https://reverseproxy-ws1:8081
+      REACT_APP_HGE_ENDPOINT: https://localhost:8081
       SKIP_PREFLIGHT_CHECK: true
       PORT: 3001
       REACT_APP_PSP_API_KEY: 7b273382-9ac1-4728-8489-2b93b6f59fae
@@ -66,6 +66,7 @@ services:
       PSP_API_SECRET: b5c81921-db55-45f8-817e-ac91cbd08200
       PSP_KEY_HEADER: X-Hasura-PSP_API_KEY
       PSP_SECRET_HEADER: X-Hasura-PSP_SECRET
+      NODE_TLS_REJECT_UNAUTHORIZED: "0" 
  
   reverseproxy-ws1:
       build:
