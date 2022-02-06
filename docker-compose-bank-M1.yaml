@@ -29,6 +29,7 @@ services:
       HASURA_GRAPHQL_ADMIN_SECRET: admin-secret
       HASURA_GRAPHQL_ACCESS_KEY: admin-secret  
   bank-1:
+    image: bnk
     build: 
       context: .
       dockerfile: ./Dockerfile.bank
@@ -73,6 +74,7 @@ services:
       HASURA_GRAPHQL_ADMIN_SECRET: admin-secret
       HASURA_GRAPHQL_ACCESS_KEY: admin-secret  
   bank-2:
+    image: bnk
     build: 
       context: .
       dockerfile: ./Dockerfile.bank
@@ -118,6 +120,7 @@ services:
       HASURA_GRAPHQL_ADMIN_SECRET: admin-secret
       HASURA_GRAPHQL_ACCESS_KEY: admin-secret  
   pcc:
+    image: pccc
     build: 
       context: .
       dockerfile: ./Dockerfile.pcc
@@ -129,6 +132,7 @@ services:
       HGE_ADMIN_SECRET: admin-secret
       NODE_TLS_REJECT_UNAUTHORIZED: "0" 
   reverseproxy-bank:
+    image :bankrvsprox
     build:
       dockerfile: ./Dockerfile.bank.nginx
     ports:

@@ -39,6 +39,7 @@ services:
       HASURA_GRAPHQL_INSECURE_SKIP_TLS_VERIFY: 'true'
 #FRONT:
   web_shop_1_front:
+    image: ws1f
     build: 
       context: .
       dockerfile: ./Dockerfile.webshop1front
@@ -49,6 +50,7 @@ services:
       REACT_APP_PSP_API_KEY: 7b273382-9ac1-4728-8489-2b93b6f59fae
 #ACTIONS 
   web_shop_1_actions:
+    image: ws1a
     build: 
       context: .
       dockerfile: ./Dockerfile.webshop1actions
@@ -69,6 +71,7 @@ services:
       NODE_TLS_REJECT_UNAUTHORIZED: "0" 
  
   reverseproxy-ws1:
+      image: rvprxyws1
       build:
         dockerfile: ./Dockerfile.ws1.nginx
       ports:

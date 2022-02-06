@@ -11,8 +11,6 @@ services:
       POSTGRES_PASSWORD: postgrespassword
   graphql-engine-web-shop-2:
     image: fedormelexin/graphql-engine-arm64:v2.1.0-beta.2
-    ports:
-      - '8082:8080'
     depends_on:
       - 'postgres-webshop-2'
     volumes:
@@ -40,11 +38,12 @@ services:
       EVENT_SECRET: event-secret
 #FRONT:
   web_shop_2_front:
+    image: ws2f
     build: 
       context: .
       dockerfile: ./Dockerfile.webshop2front
     environment:
-      REACT_APP_HGE_ENDPOINT: https://reverseproxy-ws1:8082
+      REACT_APP_HGE_ENDPOINT: https://localhost:8082
       SKIP_PREFLIGHT_CHECK: true
       PORT: 3002
       REACT_APP_PSP_API_KEY: 7b273382-9ac1-4728-8489-2b93b6f59fae
@@ -52,6 +51,7 @@ services:
 
 #ACTIONS 
   web_shop_2_actions:
+    image: ws2a
     build: 
       context: .
       dockerfile: ./Dockerfile.webshop2actions
@@ -73,6 +73,7 @@ services:
       NODE_TLS_REJECT_UNAUTHORIZED: "0" 
  
   reverseproxy-ws2:
+      image: rvpws2
       build:
         dockerfile: ./Dockerfile.ws2.nginx
       ports:
