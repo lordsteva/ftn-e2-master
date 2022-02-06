@@ -3,6 +3,7 @@ import getIntent from 'graphql/backend/getIntent';
 import getPaymentClientMetadata from 'graphql/backend/getPaymentClientMetadata';
 import insertOrder from 'graphql/backend/insertOrder';
 import updateExternalOrderId from 'graphql/backend/updateExternalOrderId';
+import logger from '../../logger/logger';
 
 export default async function handler(req, res) {
   const { apiKey, intent } = JSON.parse(req.body);
@@ -25,6 +26,8 @@ export default async function handler(req, res) {
     }),
   });
 
+  logger.info(`Added order : ${orderId} for payment: ${intent}`);
+
   const coingateresponse = await fetch(
     'https://api-sandbox.coingate.com/v2/orders',
 
@@ -45,10 +48,9 @@ export default async function handler(req, res) {
 
   const coingateresponseJson = await coingateresponse.json();
   await updateExternalOrderId({ external_id: coingateresponseJson.id.toString(), id: orderId });
-
-  //logger.info(`Created PayPal payment intent: ${id} for payment: ${intent}`);
-
-  // logger.info(`Added order ${orderId} for payment intent: ${intent}`);
+  logger.info(
+    `Created CoinGate order : ${coingateresponseJson.id.toString()} for payment: ${intent}`,
+  );
 
   res.status(200).json({ url: coingateresponseJson.payment_url });
 }

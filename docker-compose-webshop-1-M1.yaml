@@ -28,13 +28,22 @@ services:
       HASURA_GRAPHQL_ENABLED_LOG_TYPES: startup, http-log, webhook-log, websocket-log, query-log
       HASURA_GRAPHQL_ADMIN_SECRET: admin-secret
       HASURA_GRAPHQL_ACCESS_KEY: admin-secret  
+      HASURA_GRAPHQL_UNAUTHORIZED_ROLE: ANONYMOUS
+      HASURA_GRAPHQL_JWT_SECRET: "{
+        \"type\":\"HS256\",
+        \"key\": \"somerandompasswordsomerandompasswordsomerandompassword\",
+        \"claims_format\": \"stringified_json\"}"
+      ACTION_BASE_ENDPOINT: https://host.docker.internal:2389
+      ACTION_SECRET: action-secret
+      EVENT_SECRET: event-secret
+      HASURA_GRAPHQL_INSECURE_SKIP_TLS_VERIFY: 'true'
 #FRONT:
   web_shop_1_front:
     build: 
       context: .
       dockerfile: ./Dockerfile.webshop1front
     environment:
-      REACT_APP_HGE_ENDPOINT: https://reverseproxy-ws1:8080
+      REACT_APP_HGE_ENDPOINT: https://reverseproxy-ws1:8081
       SKIP_PREFLIGHT_CHECK: true
       PORT: 3001
       REACT_APP_PSP_API_KEY: 7b273382-9ac1-4728-8489-2b93b6f59fae
@@ -52,7 +61,7 @@ services:
       HGE_ADMIN_SECRET: admin-secret
       HGE_ENDPOINT: https://reverseproxy-ws1:8081
       TOKEN_KEY: somerandompasswordsomerandompasswordsomerandompassword
-      PSP_ENDPOINT: https://localhost:8080
+      PSP_ENDPOINT: https://host.docker.internal:8080
       PSP_API_KEY: 7b273382-9ac1-4728-8489-2b93b6f59fae
       PSP_API_SECRET: b5c81921-db55-45f8-817e-ac91cbd08200
       PSP_KEY_HEADER: X-Hasura-PSP_API_KEY
@@ -65,7 +74,10 @@ services:
           - 8081:8081
           - 2389:2389
           - 3001:3001
-      
+      depends_on:
+          - web_shop_1_actions
+          - web_shop_1_front
+
       restart: always
 
 volumes:

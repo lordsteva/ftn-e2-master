@@ -32,7 +32,7 @@ services:
         \"type\":\"HS256\",
         \"key\": \"somerandompasswordsomerandompasswordsomerandompassword\",
         \"claims_format\": \"stringified_json\"}"
-      ACTION_BASE_ENDPOINT: https://reverseproxy-psp:3000
+      ACTION_BASE_ENDPOINT: https://host.docker.internal:3000
       ACTION_SECRET: action-secret
       EVENT_SECRET: event-secret
   psp:

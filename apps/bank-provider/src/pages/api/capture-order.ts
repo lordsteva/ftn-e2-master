@@ -11,7 +11,7 @@ export default async function handler(req, res) {
     external_id: paymentId,
     payment_provider_id: config.APP_ID,
   });
-  logger.info(`New status saved for order ${merchantOrderId}`);
+  logger.info(`New status ${status} saved for order ${merchantOrderId}`);
   let url = urls.success_url;
   if (status === 'ERROR') {
     url = urls.error_url;

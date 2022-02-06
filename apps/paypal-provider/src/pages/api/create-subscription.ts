@@ -25,7 +25,7 @@ export default async function handler(req, res) {
   const { currency, amount, unit, duration } = await getIntent({ id: intent });
 
   const productBody = {
-    name: 'name',
+    name: 'Course',
     type: 'DIGITAL',
   };
   const productUrl = `${config.PAY_PAL_BASE_URL}/v1/catalogs/products`;
@@ -40,6 +40,7 @@ export default async function handler(req, res) {
   });
 
   const { id } = await product.json();
+  logger.info(`Created PayPal product : ${id} for payment: ${intent}`);
 
   const planBody = {
     product_id: id,
@@ -94,6 +95,7 @@ export default async function handler(req, res) {
     }),
   });
   const sRes = await sub.json();
+  logger.info(`Created PayPal subscription : ${sRes.id} for payment: ${intent}`);
 
   const { id: orderId } = await insertOrder({
     external_id: id,

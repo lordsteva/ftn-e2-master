@@ -42,6 +42,7 @@ services:
       BANK_CARD_ID : '036606'
       PCC_BASE_ADDRESS : https://reverseproxy-bank:2222
       NODE_TLS_REJECT_UNAUTHORIZED: "0" 
+      KEY: D635166546A576D5A7134743777217A
 #-------------------------
 #BANK 2 
   postgres-bank-2:
@@ -83,8 +84,10 @@ services:
       NEXT_PUBLIC_HOST_ADDRESS : https://localhost:1112
       BANK_ID : '050'
       BANK_CARD_ID : '558773'
-      PCC_BASE_ADDRESS : https://host.docker.internal:2222
-      NODE_TLS_REJECT_UNAUTHORIZED: "0" 
+      PCC_BASE_ADDRESS : https://reverseproxy-bank:2222
+      NODE_TLS_REJECT_UNAUTHORIZED: "0"
+      KEY: D635166546A576D5A7134743777217A
+ 
 # ------------------------
 # PCC
   postgres-pcc:

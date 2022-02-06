@@ -1,3 +1,5 @@
+import crypto from 'crypto';
+import { encrypt } from '../../aesUtils';
 import createOrder from '../../graphql/backend/createOrder';
 import getAccountByCard from '../../graphql/backend/getAccountByCard';
 import getPayment from '../../graphql/backend/getPayment';
@@ -16,7 +18,13 @@ export default async function handler(req, res) {
   const data = JSON.parse(req.body);
   let { card }: { card: Card } = data;
   const pan = card.pan.replace('-', '');
-  card = { ...card, holder: card.holder.toUpperCase(), pan };
+  card = {
+    ...card,
+    holder: await encrypt(card.holder.toUpperCase()),
+    pan: await encrypt(pan),
+    expire: await encrypt(card.expire),
+    ccv: crypto.createHash('sha256').update(card.ccv.toString()).digest('hex'),
+  };
   const payment = await getPayment({ payment_id: data.paymentId });
   const acquirer_order_timestamp = Date.now().toLocaleString().replace(',', '');
   const orderId = await createOrder({
@@ -24,7 +32,6 @@ export default async function handler(req, res) {
     acquirer_order_timestamp,
   });
   if (pan.substring(1, 7) === process.env.BANK_CARD_ID) {
-    console.log('banka 1 ');
     const account = await getAccountByCard(card);
     if (!account) {
       res.status(500).json({});
@@ -54,7 +61,7 @@ export default async function handler(req, res) {
       });
       const rrr = await resp.json();
       const { status, issuer_order_timestamp, issuer_order_id } = rrr;
-      console.log(rrr);
+
       await updateIssuerOrder({
         acquirer_order_id: orderId,
         status,
