@@ -9,6 +9,7 @@ const query = gql`
       failed_url
       success_url
       merchant_order_id
+      merchant_id
     }
   }
 `;
@@ -21,6 +22,7 @@ const getPayment = async (variables: {
   failed_url: string;
   success_url: string;
   merchant_order_id: string;
+  merchant_id: string;
 }> => {
   const res = await graphqlAdminClient.query({ query, variables });
   return res.data?.payment_by_pk;
