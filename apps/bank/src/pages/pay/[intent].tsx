@@ -37,8 +37,8 @@ const Home: React.FunctionComponent<HomeProps> = ({
                 className="flex flex-col justify-center mx-8 transition duration-200 ease-in transform border-solid cursor-pointer border-default border-lightGray hover:scale-110"
                 onClick={() => setcardForm(true)}
               >
-                <Image width={'120px'} src={card} />
-                <span className="mt-8 mb-16 text-center text-md text-whitesmoke">
+                <Image width={'120px'} src={card} wrapperClassName="pb-12" />
+                <span className="pt-2 mt-8 mb-16 text-center text-md text-whitesmoke">
                   <br />
                   Card form
                 </span>

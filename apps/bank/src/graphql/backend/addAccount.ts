@@ -17,7 +17,7 @@ const addAccount = async (): Promise<{
   merchantPass: string;
 }> => {
   const res = await graphqlAdminClient.mutate({ mutation });
-  return res.data.insert_account_one.number;
+  return res.data.insert_account_one;
 };
 
 export default addAccount;

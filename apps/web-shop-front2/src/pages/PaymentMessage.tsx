@@ -38,7 +38,7 @@ const PaymentMessage: FC<Props> = ({ title, type, onClick }) => {
         <Image src={type === PaymenntMessageType.SUCCESS ? success : failed} />
 
         <div className="p-4 mt-8 text-center">
-          <h5 className="mb-32 font-semibold text-xxl">{title}</h5>
+          <h5 className="mb-32 font-semibold text-xxl text-whitesmoke">{title}</h5>
 
           <Button
             buttonColor={type ? 'success' : 'red'}
