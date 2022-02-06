@@ -40,7 +40,7 @@ const SubscriptionCheckout: FC<Record<string, never>> = () => {
           },
         });
         window.location.replace(
-          `http://localhost:3000/choose-provider/${process.env.REACT_APP_PSP_API_KEY}/${createPaymentIntent.link}?subscribe=true`,
+          `https://localhost:3000/choose-provider/${process.env.REACT_APP_PSP_API_KEY}/${createPaymentIntent.link}?subscribe=true`,
         );
       }
     } catch (e) {

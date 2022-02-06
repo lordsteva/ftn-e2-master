@@ -1,1 +1,1 @@
-INSERT INTO "public"."payment_providers"("name", "logo", "id", "active", "base_url", "schema") VALUES (E'PayPal', E'PayPal.jpg', E'f9912c8f-8b3f-4bac-8a42-bd02aeb6d233', true, E'http://localhost:1234', '{}');
+INSERT INTO "public"."payment_providers"("name", "logo", "id", "active", "base_url", "schema") VALUES (E'PayPal', E'PayPal.jpg', E'f9912c8f-8b3f-4bac-8a42-bd02aeb6d233', true, E'https://localhost:1234', '{}');

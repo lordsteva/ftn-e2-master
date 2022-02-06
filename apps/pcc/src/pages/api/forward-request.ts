@@ -4,7 +4,7 @@
 import { encrypt } from '../../aesUtils';
 import upsertTransaction from '../../graphql/insertTransaction';
 
-const banks = { '036606': 'http://localhost:1111', '587737': 'http://localhost:1112' };
+const banks = { '036606': 'https://localhost:1111', '587737': 'https://localhost:1112' };
 export default async function handler(req, res) {
   const {
     card: { pan },

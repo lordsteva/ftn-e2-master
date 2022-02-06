@@ -49,9 +49,9 @@ export default async function handler(req, res) {
     amount,
     merchant_order_id: orderId,
     merchant_timestamp: Date.now().toLocaleString(),
-    success_url: `http://localhost:1235/payment/capture/${orderId}/`,
-    failed_url: `http://localhost:1235/payment/capture/${orderId}/`,
-    error_url: `http://localhost:1235/payment/capture/${orderId}/`,
+    success_url: `https://localhost:1235/payment/capture/${orderId}/`,
+    failed_url: `https://localhost:1235/payment/capture/${orderId}/`,
+    error_url: `https://localhost:1235/payment/capture/${orderId}/`,
   };
 
   const resp = await fetch(`${bankBaseUrl}/api/create-payment`, {
