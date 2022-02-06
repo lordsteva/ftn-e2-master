@@ -1,0 +1,88 @@
+version: '3.3'
+services:
+
+#WEBSHOP 1
+  postgres-webshop-1:
+    image: postgres:12
+    restart: always
+    volumes:
+      - db_data_web_shop_1:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: postgrespassword
+  graphql-engine-web-shop-1:
+    image: hasura/graphql-engine:v2.0.0-alpha.11
+    depends_on:
+      - 'postgres-webshop-1'
+    restart: always
+    volumes:
+      - type: bind
+        source: ./certificates/cert.crt
+        target: /etc/ssl/certs/selfsigned.crt
+        read_only: true
+    extra_hosts:
+      - 'host.docker.internal:host-gateway'
+    environment:
+      HASURA_GRAPHQL_DATABASE_URL: postgres://postgres:postgrespassword@postgres-webshop-1:5432/postgres
+      HASURA_GRAPHQL_ENABLE_CONSOLE: true
+      HASURA_GRAPHQL_DEV_MODE: true
+      HASURA_GRAPHQL_ENABLED_LOG_TYPES: startup, http-log, webhook-log, websocket-log, query-log
+      HASURA_GRAPHQL_ADMIN_SECRET: admin-secret
+      HASURA_GRAPHQL_ACCESS_KEY: admin-secret  
+      HASURA_GRAPHQL_UNAUTHORIZED_ROLE: ANONYMOUS
+      HASURA_GRAPHQL_JWT_SECRET: "{
+        \"type\":\"HS256\",
+        \"key\": \"somerandompasswordsomerandompasswordsomerandompassword\",
+        \"claims_format\": \"stringified_json\"}"
+      ACTION_BASE_ENDPOINT: http://web_shop_1_actions:2389
+      ACTION_SECRET: action-secret
+      EVENT_SECRET: event-secret
+      HASURA_GRAPHQL_INSECURE_SKIP_TLS_VERIFY: 'true'
+#FRONT:
+  web_shop_1_front:
+    image: ws1f
+    build: 
+      context: .
+      dockerfile: ./Dockerfile.webshop1front
+    environment:
+      REACT_APP_HGE_ENDPOINT: https://localhost:8081
+      SKIP_PREFLIGHT_CHECK: true
+      PORT: 3001
+      REACT_APP_PSP_API_KEY: 7b273382-9ac1-4728-8489-2b93b6f59fae
+#ACTIONS 
+  web_shop_1_actions:
+    image: ws1a
+    build: 
+      context: .
+      dockerfile: ./Dockerfile.webshop1actions
+    extra_hosts:
+      - 'host.docker.internal:host-gateway'
+
+    environment:
+      PORT: 2389
+      HASURA_ADMIN_SECRET_HEADER_NAME: x-hasura-admin-secret
+      HGE_ADMIN_SECRET: admin-secret
+      HGE_ENDPOINT: https://reverseproxy-ws1:8081
+      TOKEN_KEY: somerandompasswordsomerandompasswordsomerandompassword
+      PSP_ENDPOINT: https://host.docker.internal:8080
+      PSP_API_KEY: 7b273382-9ac1-4728-8489-2b93b6f59fae
+      PSP_API_SECRET: b5c81921-db55-45f8-817e-ac91cbd08200
+      PSP_KEY_HEADER: X-Hasura-PSP_API_KEY
+      PSP_SECRET_HEADER: X-Hasura-PSP_SECRET
+      NODE_TLS_REJECT_UNAUTHORIZED: "0" 
+ 
+  reverseproxy-ws1:
+      image: rvprxyws1
+      build:
+        dockerfile: ./Dockerfile.ws1.nginx
+      ports:
+          - 8081:8081
+          - 2389:2389
+          - 3001:3001
+      depends_on:
+          - web_shop_1_actions
+          - web_shop_1_front
+
+      restart: always
+
+volumes:
+  db_data_web_shop_1:
