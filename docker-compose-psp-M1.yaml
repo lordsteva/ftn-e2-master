@@ -51,7 +51,7 @@ services:
 #-------------------------
 # BITCOIN PROVIDER
   btc-provider:
-    image:btc-pr
+    image: btc-pr
     build: 
       context: .
       dockerfile: ./Dockerfile.bitcoinprovider

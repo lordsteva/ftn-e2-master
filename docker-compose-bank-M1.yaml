@@ -132,7 +132,7 @@ services:
       HGE_ADMIN_SECRET: admin-secret
       NODE_TLS_REJECT_UNAUTHORIZED: "0" 
   reverseproxy-bank:
-    image :bankrvsprox
+    image: bankrvsprox
     build:
       dockerfile: ./Dockerfile.bank.nginx
     ports:
