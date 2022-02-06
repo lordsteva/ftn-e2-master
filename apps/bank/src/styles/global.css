@@ -7,10 +7,6 @@
 
 @tailwind utilities;
 
-html,
-body {
-}
-
 @layer base {
   @font-face {
     font-family: 'Montserrat', sans-serif;

@@ -22,9 +22,11 @@ custom_types:
   input_objects:
   - name: RandInput
   - name: OneTimeLinkInput
+  - name: OneTimeLinkInput2
   objects:
   - name: RandOutput
   - name: OneTimeLinkOutput
   - name: LoginResponse
   - name: RegistrationResponse
+  - name: OneTimeLinkOutput2
   scalars: []

@@ -10,7 +10,7 @@ const config = {
   PSP_KEY_HEADER: process.env.PSP_KEY_HEADER,
   PSP_SECRET_HEADER: process.env.PSP_SECRET_HEADER,
   API_KEY_WAGE: process.env.API_KEY_WAGE,
-  API_SECRET_WAGE: process.env.API_SECRET_WAGE
+  API_SECRET_WAGE: process.env.API_SECRET_WAGE,
 };
 
 export default config;

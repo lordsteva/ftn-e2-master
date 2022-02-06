@@ -9,6 +9,8 @@ const query = gql`
       success_url
       fail_url
       error_url
+      unit
+      duration
     }
   }
 `;
@@ -21,6 +23,8 @@ const getIntent = async (variables: {
   success_url: string;
   fail_url: string;
   error_url: string;
+  unit?: string;
+  duration?: string;
 }> => {
   const res = await graphqlAdminClient.query({ query, variables });
   return res.data.payment_intents_by_pk;

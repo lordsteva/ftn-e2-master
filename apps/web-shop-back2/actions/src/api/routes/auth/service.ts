@@ -32,7 +32,7 @@ export const login = async (req: Request, resp: Response) => {
       },
       config.TOKEN_KEY,
       {
-        expiresIn: '24h',
+        expiresIn: '240h',
       },
     );
     logger.info(`Successful login with email:${username}`);

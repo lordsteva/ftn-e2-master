@@ -1,0 +1,104 @@
+version: '3.3'
+services:
+#PSP
+  postgres-psp:
+    image: postgres:12
+    restart: always
+    volumes:
+    - db_data_psp:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: postgrespassword
+  graphql-engine-psp:
+    image: fedormelexin/graphql-engine-arm64:v2.1.0-beta.2
+    depends_on:
+    - "postgres"
+    restart: always
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - type: bind
+        source: ./certificates/cert.crt
+        target: /etc/ssl/certs/selfsigned.crt
+        read_only: true
+    environment:
+      HASURA_GRAPHQL_DATABASE_URL: postgres://postgres:postgrespassword@postgres-psp:5432/postgres
+      HASURA_GRAPHQL_ENABLE_CONSOLE: "true" 
+      HASURA_GRAPHQL_DEV_MODE: "true"
+      HASURA_GRAPHQL_ENABLED_LOG_TYPES: startup, http-log, webhook-log, websocket-log, query-log
+      HASURA_GRAPHQL_UNAUTHORIZED_ROLE: ANONYMOUS
+      HASURA_GRAPHQL_ADMIN_SECRET: admin-secret
+      HASURA_GRAPHQL_ACCESS_KEY: admin-secret
+      HASURA_GRAPHQL_JWT_SECRET: "{
+        \"type\":\"HS256\",
+        \"key\": \"somerandompasswordsomerandompasswordsomerandompassword\",
+        \"claims_format\": \"stringified_json\"}"
+      ACTION_BASE_ENDPOINT: https://reverseproxy-psp:3000
+      ACTION_SECRET: action-secret
+      EVENT_SECRET: event-secret
+  psp:
+    build: 
+      context: .
+      dockerfile: ./Dockerfile.psp
+    environment:
+      NEXT_PUBLIC_HGE_ENDPOINT: https://reverseproxy-psp:8080
+      SKIP_PREFLIGHT_CHECK: true
+      HASURA_ADMIN_SECRET_HEADER_NAME: x-hasura-admin-secret
+      HGE_ADMIN_SECRET: admin-secret
+      TOKEN_KEY: somerandompasswordsomerandompasswordsomerandompassword
+      NODE_TLS_REJECT_UNAUTHORIZED: "0" 
+
+#-------------------------
+# BITCOIN PROVIDER
+  btc-provider:
+    build: 
+      context: .
+      dockerfile: ./Dockerfile.bitcoinprovider
+    environment:
+      NEXT_PUBLIC_HOST_ADDRESS: https://localhost:1236
+      HASURA_ADMIN_SECRET_HEADER_NAME: x-hasura-admin-secret
+      HGE_ADMIN_SECRET:  admin-secret
+      HGE_ENDPOINT: https://reverseproxy-psp:8080
+      APP_ID: 336ee769-8e1e-4df6-9e01-cd376f38b50e
+      NGROK: https://6994-80-74-161-154.ngrok.io
+      NODE_TLS_REJECT_UNAUTHORIZED: "0" 
+
+#-------------------------
+# BANK PROVIDER 
+  bank-provider:
+      build: 
+        context: .
+        dockerfile: ./Dockerfile.bankprovider
+      environment:
+        NEXT_PUBLIC_HOST_ADDRESS: https://localhost:1235
+        HASURA_ADMIN_SECRET_HEADER_NAME: x-hasura-admin-secret
+        HGE_ADMIN_SECRET: admin-secret
+        HGE_ENDPOINT: https://reverseproxy-psp:8080
+        APP_ID: 3722a7bb-47fa-4222-b2de-0c7008a9f3d0
+        NODE_TLS_REJECT_UNAUTHORIZED: "0" 
+
+#-------------------------
+# PAYPAL PROVIDER 
+  paypal-provider:
+      build: 
+        context: .
+        dockerfile: ./Dockerfile.paypalprovider
+      environment:
+        NEXT_PUBLIC_HOST_ADDRESS: https://localhost:1234
+        HASURA_ADMIN_SECRET_HEADER_NAME: x-hasura-admin-secret
+        HGE_ADMIN_SECRET: admin-secret
+        HGE_ENDPOINT: https://reverseproxy-psp:8080
+        APP_ID: f9912c8f-8b3f-4bac-8a42-bd02aeb6d233
+        PAY_PAL_BASE_URL: https://api-m.sandbox.paypal.com
+        NODE_TLS_REJECT_UNAUTHORIZED: "0" 
+  reverseproxy-psp:
+      build:
+        dockerfile: ./Dockerfile.psp.nginx
+      ports:
+          - 8080:8080
+          - 1234:1234
+          - 1235:1235
+          - 1236:1236          
+          - 3000:3000
+      restart: always
+volumes:
+  db_data_psp:

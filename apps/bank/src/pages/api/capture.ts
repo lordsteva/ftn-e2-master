@@ -2,6 +2,7 @@ import createOrder from '../../graphql/backend/createOrder';
 import getAccountByCard from '../../graphql/backend/getAccountByCard';
 import getPayment from '../../graphql/backend/getPayment';
 import updateAccount from '../../graphql/backend/updateAccount';
+import updateIssuerOrder from '../../graphql/backend/updateIssuerOrder';
 import updateOrder from '../../graphql/backend/updateOrder';
 
 type Card = {
@@ -16,35 +17,57 @@ export default async function handler(req, res) {
   let { card }: { card: Card } = data;
   const pan = card.pan.replace('-', '');
   card = { ...card, holder: card.holder.toUpperCase(), pan };
-
+  const payment = await getPayment({ payment_id: data.paymentId });
+  const acquirer_order_timestamp = Date.now().toLocaleString().replace(',', '');
+  const orderId = await createOrder({
+    payment_id: data.paymentId,
+    acquirer_order_timestamp,
+  });
   if (pan.substring(1, 7) === process.env.BANK_CARD_ID) {
+    console.log('banka 1 ');
     const account = await getAccountByCard(card);
-
-    const payment = await getPayment({ payment_id: data.paymentId });
-
-    const orderId = await createOrder({
-      payment_id: data.paymentId,
-      acquirer_order_timestamp: Date.now().toLocaleString(),
-    });
-
-    if (account.available > payment.amount) {
+    if (!account) {
+      res.status(500).json({});
+      return;
+    }
+    if (account.available >= payment.amount) {
       const available = account.available - payment.amount;
       const reserved = account.reserved + payment.amount;
       await updateAccount({ available, reserved, number: account.number });
-      await updateOrder({ acquirer_order_id: orderId, status: 'COMLPETED' });
-      res.status(200).json({ status: 'COMLPETED' });
+      const resp = await updateOrder({ acquirer_order_id: orderId, status: 'COMPLETED' });
+      //TODO ttransfer money
+      res.status(200).json(resp);
     } else {
-      await updateOrder({ acquirer_order_id: orderId, status: 'FAILED' });
-      res.status(200).json({ status: 'FAILED' });
+      const resp = await updateOrder({ acquirer_order_id: orderId, status: 'FAILED' });
+      res.status(200).json(resp);
     }
   } else {
-    // TODO contact PCC
-    // TODO update order status based on PCC response  (save to db: status, issuer id, issuer timestamp)
-    // TODO return to the frontend: status
-
-    // change status to 200 if everytnihg ok (200, COMPLETED returned from PCC)
-    // 500 if an error occurs (throw 500 from PCC)
-    //200 and status FAILED if there is not enough money (return 200 and FAILED from PCC)
-    res.status(500).json({});
+    try {
+      const resp = await fetch(`${process.env.PCC_BASE_ADDRESS}/api/forward-request`, {
+        method: 'POST',
+        body: JSON.stringify({
+          card,
+          acquirer_order_timestamp,
+          acquirer_order_id: orderId,
+          amount: payment.amount,
+        }),
+      });
+      const rrr = await resp.json();
+      const { status, issuer_order_timestamp, issuer_order_id } = rrr;
+      console.log(rrr);
+      await updateIssuerOrder({
+        acquirer_order_id: orderId,
+        status,
+        issuer_order_timestamp,
+        issuer_order_id,
+      });
+      if (status === 'COMPLETED') {
+        //transferm oney TODO
+      }
+      res.status(200).json(rrr);
+    } catch (e) {
+      console.log(e);
+      res.status(500).json({});
+    }
   }
 }

@@ -8,7 +8,10 @@ const mutation = gql`
     $fail_url: String!
     $success_url: String!
     $currency: String!
+    $error_url: String!
     $api_secret: String!
+    $duration: String
+    $unit: String
   ) {
     createPaymentIntent(
       data: {
@@ -18,6 +21,9 @@ const mutation = gql`
         currency: $currency
         success_url: $success_url
         fail_url: $fail_url
+        error_url: $error_url
+        duration: $duration
+        unit: $unit
       }
     ) {
       link
@@ -32,6 +38,9 @@ const generatePaymentintent = async (variables: {
   currency: string;
   success_url: string;
   fail_url: string;
+  error_url: string;
+  duration?: string;
+  unit?: string;
 }): Promise<{ link: string }> => {
   const res = await pspClient.mutate({ mutation, variables });
 
