@@ -9,6 +9,7 @@ select_permissions:
     - id
     - logo
     - name
+    - subscription
     filter: {}
   role: ANONYMOUS
 - permission:
@@ -18,5 +19,6 @@ select_permissions:
     - id
     - logo
     - name
+    - subscription
     filter: {}
   role: USER

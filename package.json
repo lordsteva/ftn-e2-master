@@ -7,6 +7,9 @@
     "apps/web-shop-back2/actions/"
   ],
   "name": "team21",
+  "scripts": {
+    "lerna-dockerize": "lerna-dockerize --template-dockerfile-name Dockerfile.template"
+  },
   "private": true,
   "devDependencies": {
     "@rushstack/eslint-patch": "1.0.2",
@@ -31,6 +34,7 @@
     "husky": "^7.0.4",
     "jest": "^25.3.0",
     "lerna": "^4.0.0",
+    "lerna-dockerize": "^0.8.4",
     "postcss": "7",
     "supertest": "^4.0.2",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat",

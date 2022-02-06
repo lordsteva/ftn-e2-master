@@ -1,0 +1,6 @@
+FROM node:16.1-alpine3.13 as base
+WORKDIR /app/
+COPY . .
+COPY ./.yarn/releases/yarn-1.18.0.cjs ./.yarn/releases/yarn-1.18.0.cjs
+WORKDIR /app/apps/web-shop-front2
+CMD ["yarn","run","dev"]

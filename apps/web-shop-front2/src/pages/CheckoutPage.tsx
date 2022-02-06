@@ -24,7 +24,7 @@ const CheckoutPage: FC = () => {
 
   let orderTotal = 0;
   cartItems?.map((item: CartItem) => {
-    orderTotal += item.product.price
+    orderTotal += item.product.price;
   });
 
   async function continueToPayment(data: CheckoutDataForm) {
@@ -70,7 +70,9 @@ const CheckoutPage: FC = () => {
       <h1 className="mb-32 text-h1 text-whitesmoke"> Checkout </h1>
       <div className="flex justify-between">
         <div className="flex flex-col w-2/5 px-40">
-          <h2 className="mb-24 font-medium text-left text-h3 text-whitesmoke">Contact information</h2>
+          <h2 className="mb-24 font-medium text-left text-h3 text-whitesmoke">
+            Contact information
+          </h2>
           <CheckoutForm continueToPayment={continueToPayment} />
         </div>
         <div className="flex flex-col w-3/5 px-40">
@@ -86,7 +88,7 @@ const CheckoutPage: FC = () => {
                   />
                   <div className="flex flex-col flex-1 pb-12 mx-24">
                     <div className="flex justify-between text-xl font-medium text-gray-900">
-                      <h3 className='text-whitesmoke'>{item.product.name}</h3>
+                      <h3 className="text-whitesmoke">{item.product.name}</h3>
                       <p className="ml-4 text-whitesmoke">${item.product.price}</p>
                     </div>
                   </div>

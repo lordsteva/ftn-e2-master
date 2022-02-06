@@ -8,6 +8,10 @@ const mutation = gql`
       _set: { status: $status }
     ) {
       status
+      acquirer_order_timestamp
+      acquirer_order_id
+      issuer_order_id
+      issuer_order_timestamp
     }
   }
 `;
@@ -15,9 +19,15 @@ const mutation = gql`
 const updateOrder = async (variables: {
   acquirer_order_id: string;
   status: string;
-}): Promise<string> => {
+}): Promise<{
+  status: string;
+  acquirer_order_timestamp: string;
+  acquirer_order_id: string;
+  issuer_order_id: string;
+  issuer_order_timestamp: string;
+}> => {
   const res = await graphqlAdminClient.mutate({ mutation, variables });
-  return res.data.update_order_by_pk.status;
+  return res.data.update_order_by_pk;
 };
 
 export default updateOrder;

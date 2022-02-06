@@ -1900,7 +1900,7 @@
     npmlog "^4.1.2"
     slash "^3.0.0"
 
-"@lerna/command@4.0.0":
+"@lerna/command@4.0.0", "@lerna/command@^4.0.0":
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/@lerna/command/-/command-4.0.0.tgz#991c7971df8f5bf6ae6e42c808869a55361c1b98"
   integrity sha512-LM9g3rt5FsPNFqIHUeRwWXLNHJ5NKzOwmVKZ8anSp4e1SPrv2HNc1V02/9QyDDZK/w+5POXH5lxZUI1CHaOK/A==
@@ -1997,7 +1997,7 @@
     "@lerna/validation-error" "4.0.0"
     p-map "^4.0.0"
 
-"@lerna/filter-options@4.0.0":
+"@lerna/filter-options@4.0.0", "@lerna/filter-options@^4.0.0":
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/@lerna/filter-options/-/filter-options-4.0.0.tgz#ac94cc515d7fa3b47e2f7d74deddeabb1de5e9e6"
   integrity sha512-vV2ANOeZhOqM0rzXnYcFFCJ/kBWy/3OA58irXih9AMTAlQLymWAK0akWybl++sUJ4HB9Hx12TOqaXbYS2NM5uw==
@@ -2256,7 +2256,7 @@
     npmlog "^4.1.2"
     upath "^2.0.1"
 
-"@lerna/project@4.0.0":
+"@lerna/project@4.0.0", "@lerna/project@^4.0.0":
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/@lerna/project/-/project-4.0.0.tgz#ff84893935833533a74deff30c0e64ddb7f0ba6b"
   integrity sha512-o0MlVbDkD5qRPkFKlBZsXZjoNTWPyuL58564nSfZJ6JYNmgAptnWPB2dQlAc7HWRZkmnC2fCkEdoU+jioPavbg==
@@ -2358,7 +2358,7 @@
     npm-lifecycle "^3.1.5"
     npmlog "^4.1.2"
 
-"@lerna/run-topologically@4.0.0":
+"@lerna/run-topologically@4.0.0", "@lerna/run-topologically@^4.0.0":
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/@lerna/run-topologically/-/run-topologically-4.0.0.tgz#af846eeee1a09b0c2be0d1bfb5ef0f7b04bb1827"
   integrity sha512-EVZw9hGwo+5yp+VL94+NXRYisqgAlj0jWKWtAIynDCpghRxCE5GMO3xrQLmQgqkpUl9ZxQFpICgYv5DW4DksQA==
@@ -10775,6 +10775,19 @@ last-call-webpack-plugin@^3.0.0:
   dependencies:
     lodash "^4.17.5"
     webpack-sources "^1.1.0"
+
+lerna-dockerize@^0.8.4:
+  version "0.8.4"
+  resolved "https://registry.yarnpkg.com/lerna-dockerize/-/lerna-dockerize-0.8.4.tgz#eaf0367927217320a6f64a0fb0eb57b929e039e8"
+  integrity sha512-MHMbG5s1AMmENs+LMwDTpExFgDZgKRn9kV50NxRr1FfLZ8xub/1yCBII54Sza/cWkJselftG10hbZW0a3fFoNw==
+  dependencies:
+    "@lerna/command" "^4.0.0"
+    "@lerna/filter-options" "^4.0.0"
+    "@lerna/project" "^4.0.0"
+    "@lerna/run-topologically" "^4.0.0"
+    logform "^2.2.0"
+    winston "^3.3.3"
+    yargs "^17.0.1"
 
 lerna@^4.0.0:
   version "4.0.0"
