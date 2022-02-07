@@ -30,6 +30,13 @@ services:
       HASURA_GRAPHQL_ACCESS_KEY: admin-secret  
   bank-1:
     image: bnk
+    restart: always
+    volumes:
+      - type: bind
+        source: .
+        target: /app
+        read_only: false
+
     build: 
       context: .
       dockerfile: ./Dockerfile.bank
@@ -75,6 +82,12 @@ services:
       HASURA_GRAPHQL_ACCESS_KEY: admin-secret  
   bank-2:
     image: bnk
+    restart: always
+    volumes:
+      - type: bind
+        source: .
+        target: /app
+        read_only: false
     build: 
       context: .
       dockerfile: ./Dockerfile.bank
@@ -120,7 +133,13 @@ services:
       HASURA_GRAPHQL_ADMIN_SECRET: admin-secret
       HASURA_GRAPHQL_ACCESS_KEY: admin-secret  
   pcc:
+    volumes:
+        - type: bind
+          source: .
+          target: /app
+          read_only: false
     image: pccc
+    restart: always
     build: 
       context: .
       dockerfile: ./Dockerfile.pcc

@@ -38,7 +38,13 @@ services:
       EVENT_SECRET: event-secret
 #FRONT:
   web_shop_2_front:
+    restart: always
     image: ws2f
+    volumes:
+      - type: bind
+        source: .
+        target: /app
+        read_only: false
     build: 
       context: .
       dockerfile: ./Dockerfile.webshop2front
@@ -52,6 +58,12 @@ services:
 #ACTIONS 
   web_shop_2_actions:
     image: ws2a
+    restart: always
+    volumes:
+      - type: bind
+        source: .
+        target: /app
+        read_only: false
     build: 
       context: .
       dockerfile: ./Dockerfile.webshop2actions
@@ -76,6 +88,7 @@ services:
 
   reverseproxy-ws2:
       image: rvpws2
+      restart: always
       build:
         dockerfile: ./Dockerfile.ws2.nginx
       ports:

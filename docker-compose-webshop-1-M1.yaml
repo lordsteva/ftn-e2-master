@@ -40,6 +40,12 @@ services:
 #FRONT:
   web_shop_1_front:
     image: ws1f
+    restart: always
+    volumes:
+      - type: bind
+        source: .
+        target: /app
+        read_only: false
     build: 
       context: .
       dockerfile: ./Dockerfile.webshop1front
@@ -51,6 +57,12 @@ services:
 #ACTIONS 
   web_shop_1_actions:
     image: ws1a
+    restart: always
+    volumes:
+      - type: bind
+        source: .
+        target: /app
+        read_only: false
     build: 
       context: .
       dockerfile: ./Dockerfile.webshop1actions

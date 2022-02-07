@@ -9,7 +9,9 @@ export default async function handler(req, res) {
   // TODO check with a bank
   const bankUrl = await getBankBaseUrl(bankId);
   try {
-    // await fetch(`${bankUrl}/check-merchant`, {
+
+    // await fetch(`${bankUrl}/api/check-merchant`, {
+    //   method:'POST',
     //   body: JSON.stringify({ merchantId, merchantPass }),
     // });
 

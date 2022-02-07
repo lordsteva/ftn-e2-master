@@ -37,6 +37,11 @@ services:
       EVENT_SECRET: event-secret
   psp:
     image: psp
+    volumes:
+        - type: bind
+          source: .
+          target: /app
+          read_only: false
     build: 
       context: .
       dockerfile: ./Dockerfile.psp
@@ -52,6 +57,12 @@ services:
 # BITCOIN PROVIDER
   btc-provider:
     image: btc-pr
+    restart: always
+    volumes:
+      - type: bind
+        source: .
+        target: /app
+        read_only: false
     build: 
       context: .
       dockerfile: ./Dockerfile.bitcoinprovider
@@ -68,6 +79,12 @@ services:
 # BANK PROVIDER 
   bank-provider:
       image: bnk-pr
+      restart: always
+      volumes:
+        - type: bind
+          source: .
+          target: /app
+          read_only: false
       build: 
         context: .
         dockerfile: ./Dockerfile.bankprovider
@@ -83,6 +100,12 @@ services:
 # PAYPAL PROVIDER 
   paypal-provider: 
       image: pp-provider
+      restart: always
+      volumes:
+        - type: bind
+          source: .
+          target: /app
+          read_only: false
       build: 
         context: .
         dockerfile: ./Dockerfile.paypalprovider
@@ -96,6 +119,7 @@ services:
         NODE_TLS_REJECT_UNAUTHORIZED: "0" 
   reverseproxy-psp:
       image: rvprpsp
+      
       build:
         dockerfile: ./Dockerfile.psp.nginx
       ports:

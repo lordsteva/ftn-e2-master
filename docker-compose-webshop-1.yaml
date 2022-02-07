@@ -39,7 +39,13 @@ services:
       HASURA_GRAPHQL_INSECURE_SKIP_TLS_VERIFY: 'true'
 #FRONT:
   web_shop_1_front:
+    restart: always
     image: ws1f
+    volumes:
+      - type: bind
+        source: .
+        target: /app
+        read_only: false
     build: 
       context: .
       dockerfile: ./Dockerfile.webshop1front
@@ -50,6 +56,12 @@ services:
       REACT_APP_PSP_API_KEY: 7b273382-9ac1-4728-8489-2b93b6f59fae
 #ACTIONS 
   web_shop_1_actions:
+    restart: always
+    volumes:
+        - type: bind
+          source: .
+          target: /app
+          read_only: false
     image: ws1a
     build: 
       context: .
