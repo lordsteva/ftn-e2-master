@@ -71,6 +71,9 @@ services:
       PSP_KEY_HEADER: X-Hasura-PSP_API_KEY
       PSP_SECRET_HEADER: X-Hasura-PSP_SECRET
       NODE_TLS_REJECT_UNAUTHORIZED: "0" 
+      API_KEY_WAGE: 75ba3303-0653-4af8-8708-08446f5b3a04
+      API_SECRET_WAGE: e496a166-f223-40de-b336-6580531be741
+
  
   reverseproxy-ws2:
       image: rvpws2

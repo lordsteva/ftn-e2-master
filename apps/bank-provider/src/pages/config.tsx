@@ -1,7 +1,7 @@
 import { Button, Input, Select } from '@team21/ui-components';
 import config from 'config/constants';
 import getApiLinkMetadata from 'graphql/backend/getApiLinkMetadata';
-import getBanks from 'graphql/backend/getbanks';
+import getBanks from 'graphql/backend/getBanks';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 
