@@ -25,7 +25,9 @@
   },
   "scripts": {
     "start": "next dev",
-    "dev": "next dev",
+    "dev": "next dev",    
+    "prod": "next start",
+
     "build": "next build",
     "test": "next test"
   },

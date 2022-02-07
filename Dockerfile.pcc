@@ -1,4 +1,4 @@
 FROM node:16.1-alpine3.13 as base
 
 WORKDIR /app/apps/pcc
-CMD ["yarn","start"]
+CMD ["yarn","run","prod"]

@@ -4,6 +4,7 @@
   "scripts": {
     "dev": "next dev -p 1236",
     "start": "next dev -p 1236",
+    "prod": "next start -p 1236",
     "build": "next build",
     "build-prod": "next build",
     "build:tailwind": "postcss src/scss/base.scss -o src/scss/tailwind.scss",

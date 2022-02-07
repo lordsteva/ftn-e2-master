@@ -28,6 +28,8 @@
   "scripts": {
     "start": "next dev -p 1111",
     "dev": "next dev -p 1111",
+    "prod": "next srart -p 1111",
+
     "build": "next build",
     "test": "next test"
   },
