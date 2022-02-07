@@ -9,9 +9,9 @@ export default async function handler(req, res) {
   // TODO check with a bank
   const bankUrl = await getBankBaseUrl(bankId);
   try {
-    await fetch(`${bankUrl}/check-merchant`, {
-      body: JSON.stringify({ merchantId, merchantPass }),
-    });
+    // await fetch(`${bankUrl}/check-merchant`, {
+    //   body: JSON.stringify({ merchantId, merchantPass }),
+    // });
 
     await upsertApiProviderLink({
       metadata,
@@ -21,6 +21,7 @@ export default async function handler(req, res) {
     logger.info(`Upadated client info for merchantId ${merchantId}`);
     res.status(200).json({ api_key_id });
   } catch (e) {
+    console.log(e);
     logger.info(`Failed to update config for merchantId ${merchantId}`);
     res.status(404).json({});
   }
