@@ -10,9 +10,9 @@ export const createPaymentIntent = async (req: Request, resp: Response) => {
   // TODO use provided data
   const { amount, currency, order_id } = req.body.input.data;
   // TODO: update urls, move to constants
-  const success_url = 'https://localhost:3001/success';
-  const fail_url = 'https://localhost:3001/fail';
-  const error_url = 'https://localhost:3001/error';
+  const success_url = 'https://192.168.43.234:3001/success';
+  const fail_url = 'https://192.168.43.234:3001/fail';
+  const error_url = 'https://192.168.43.234:3001/error';
 
   logger.info(`Creating payment intent for order: ${order_id}`);
   const { link } = await generatePaymentintent({

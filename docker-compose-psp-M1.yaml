@@ -47,7 +47,7 @@ services:
       dockerfile: ./Dockerfile.psp
     environment:
       NEXT_PUBLIC_HGE_ENDPOINT: https://reverseproxy-psp:8080
-      SKIP_PREFLIGHT_CHECK: true
+      SKIP_PREFLIGHT_CHECK: 'true'
       HASURA_ADMIN_SECRET_HEADER_NAME: x-hasura-admin-secret
       HGE_ADMIN_SECRET: admin-secret
       TOKEN_KEY: somerandompasswordsomerandompasswordsomerandompassword
@@ -67,7 +67,7 @@ services:
       context: .
       dockerfile: ./Dockerfile.bitcoinprovider
     environment:
-      NEXT_PUBLIC_HOST_ADDRESS: https://localhost:1236
+      NEXT_PUBLIC_HOST_ADDRESS: https://192.168.43.234:1236
       HASURA_ADMIN_SECRET_HEADER_NAME: x-hasura-admin-secret
       HGE_ADMIN_SECRET:  admin-secret
       HGE_ENDPOINT: https://reverseproxy-psp:8080
@@ -89,7 +89,7 @@ services:
         context: .
         dockerfile: ./Dockerfile.bankprovider
       environment:
-        NEXT_PUBLIC_HOST_ADDRESS: https://localhost:1235
+        NEXT_PUBLIC_HOST_ADDRESS: https://192.168.43.234:1235
         HASURA_ADMIN_SECRET_HEADER_NAME: x-hasura-admin-secret
         HGE_ADMIN_SECRET: admin-secret
         HGE_ENDPOINT: https://reverseproxy-psp:8080
@@ -110,7 +110,7 @@ services:
         context: .
         dockerfile: ./Dockerfile.paypalprovider
       environment:
-        NEXT_PUBLIC_HOST_ADDRESS: https://localhost:1234
+        NEXT_PUBLIC_HOST_ADDRESS: https://192.168.43.234:1234
         HASURA_ADMIN_SECRET_HEADER_NAME: x-hasura-admin-secret
         HGE_ADMIN_SECRET: admin-secret
         HGE_ENDPOINT: https://reverseproxy-psp:8080
@@ -121,6 +121,7 @@ services:
       image: rvprpsp
       
       build:
+        context: .
         dockerfile: ./Dockerfile.psp.nginx
       ports:
           - 8080:8080

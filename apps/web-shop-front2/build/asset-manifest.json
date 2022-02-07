@@ -1,0 +1,28 @@
+{
+  "files": {
+    "main.css": "/static/css/main.9970991b.chunk.css",
+    "main.js": "/static/js/main.050b240d.chunk.js",
+    "main.js.map": "/static/js/main.050b240d.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.5c2251a4.js",
+    "runtime-main.js.map": "/static/js/runtime-main.5c2251a4.js.map",
+    "static/css/2.9a7a7ba3.chunk.css": "/static/css/2.9a7a7ba3.chunk.css",
+    "static/js/2.ade5df96.chunk.js": "/static/js/2.ade5df96.chunk.js",
+    "static/js/2.ade5df96.chunk.js.map": "/static/js/2.ade5df96.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/2.9a7a7ba3.chunk.css.map": "/static/css/2.9a7a7ba3.chunk.css.map",
+    "static/css/main.9970991b.chunk.css.map": "/static/css/main.9970991b.chunk.css.map",
+    "static/js/2.ade5df96.chunk.js.LICENSE.txt": "/static/js/2.ade5df96.chunk.js.LICENSE.txt",
+    "static/media/failed.a7222140.jpg": "/static/media/failed.a7222140.jpg",
+    "static/media/index.css": "/static/media/fontawesome-webfont.f691f37e.woff",
+    "static/media/placeholder.3c0a422b.jpg": "/static/media/placeholder.3c0a422b.jpg",
+    "static/media/success.ac81e080.jpg": "/static/media/success.ac81e080.jpg",
+    "static/media/webShopBanner.2bef6c30.jpg": "/static/media/webShopBanner.2bef6c30.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.5c2251a4.js",
+    "static/css/2.9a7a7ba3.chunk.css",
+    "static/js/2.ade5df96.chunk.js",
+    "static/css/main.9970991b.chunk.css",
+    "static/js/main.050b240d.chunk.js"
+  ]
+}

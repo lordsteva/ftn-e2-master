@@ -12,6 +12,7 @@ const query = gql`
 const getOrderStatusFromPSP = async (variables: {
   payment_intent_id: string;
 }): Promise<{ state: string }> => {
+  console.log(process.env);
   const res = await pspClient.query({ query, variables });
   return res.data.orders?.[0];
 };
