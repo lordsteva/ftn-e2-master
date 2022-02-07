@@ -85,7 +85,7 @@ services:
         - type: bind
           source: .
           target: /app
-         read_only: false
+          read_only: false
       build: 
         context: .
         dockerfile: ./Dockerfile.bankprovider
@@ -106,7 +106,7 @@ services:
         - type: bind
           source: .
           target: /app
-         read_only: false
+          read_only: false
       build: 
         context: .
         dockerfile: ./Dockerfile.paypalprovider
