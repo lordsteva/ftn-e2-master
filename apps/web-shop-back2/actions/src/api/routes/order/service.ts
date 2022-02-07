@@ -13,9 +13,9 @@ export const createPaymentIntent = async (req: Request, resp: Response) => {
   // TODO use provided data
   const { amount, currency, order_id, duration, unit } = req.body.input.data;
   // TODO: update urls, move to constants
-  const success_url = 'https://localhost:3002/success';
-  const fail_url = 'https://localhost:3002/fail';
-  const error_url = 'https://localhost:3002/error';
+  const success_url = 'https://192.168.43.74:3002/success';
+  const fail_url = 'https://192.168.43.74:3002/fail';
+  const error_url = 'https://192.168.43.74:3002/error';
   logger.info(`Creating payment intent for ${duration ? 'subscription' : 'order'}: ${order_id}`);
   const { link } = await generatePaymentintent({
     amount: `${amount}`,
@@ -60,9 +60,9 @@ export const createWageIntent = async (req: Request, resp: Response) => {
   // TODO use provided data
   const { amount, currency, order_id } = req.body.input.data;
   // TODO: update urls, move to constants
-  const success_url = 'https://localhost:3002/success';
-  const fail_url = 'https://localhost:3002/fail';
-  const error_url = 'https://localhost:3002/error';
+  const success_url = 'https://192.168.43.74:3002/success';
+  const fail_url = 'https://192.168.43.74:3002/fail';
+  const error_url = 'https://192.168.43.74:3002/error';
 
   logger.info(`Creating for wage: ${order_id}`);
   const { link } = await generatePaymentintent({

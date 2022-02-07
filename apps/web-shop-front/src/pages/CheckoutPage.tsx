@@ -55,8 +55,10 @@ const CheckoutPage: FC = () => {
 
       await createOrderProducts({ variables: { objects, cart_id } });
 
-      for(const item of cartItems){
-        await updateProductsQty({ variables: { id: item.product.id, quantity: item.product.quantity - item.quantity }})
+      for (const item of cartItems) {
+        await updateProductsQty({
+          variables: { id: item.product.id, quantity: item.product.quantity - item.quantity },
+        });
       }
 
       const {
@@ -65,7 +67,7 @@ const CheckoutPage: FC = () => {
         variables: { amount: orderTotal, currency: 'USD', order_id: orderId },
       });
       window.location.replace(
-        `https://localhost:3000/choose-provider/${process.env.REACT_APP_PSP_API_KEY}/${createPaymentIntent.link}`,
+        `https://192.168.43.234:3000/choose-provider/${process.env.REACT_APP_PSP_API_KEY}/${createPaymentIntent.link}`,
       );
     }
 
@@ -77,7 +79,9 @@ const CheckoutPage: FC = () => {
       <h1 className="mb-32 text-h1 text-whitesmoke"> Checkout </h1>
       <div className="flex justify-between">
         <div className="flex flex-col w-2/5 px-40">
-          <h2 className="mb-24 font-medium text-left text-h3 text-whitesmoke">Contact information</h2>
+          <h2 className="mb-24 font-medium text-left text-h3 text-whitesmoke">
+            Contact information
+          </h2>
           <CheckoutForm continueToPayment={continueToPayment} />
         </div>
         <div className="flex flex-col w-3/5 px-40">
@@ -93,7 +97,7 @@ const CheckoutPage: FC = () => {
                   />
                   <div className="flex flex-col flex-1 pb-12 mx-24">
                     <div className="flex justify-between text-xl font-medium text-gray-900">
-                      <h3 className='text-whitesmoke'>{item.product.name}</h3>
+                      <h3 className="text-whitesmoke">{item.product.name}</h3>
                       <p className="ml-4 text-whitesmoke">${item.product.price}</p>
                     </div>
                     <div className="flex items-end justify-between flex-1 text-md">

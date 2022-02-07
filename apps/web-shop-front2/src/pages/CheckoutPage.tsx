@@ -58,7 +58,7 @@ const CheckoutPage: FC = () => {
         variables: { amount: orderTotal, currency: 'USD', order_id: orderId },
       });
       window.location.replace(
-        `https://localhost:3000/choose-provider/${process.env.REACT_APP_PSP_API_KEY}/${createPaymentIntent.link}`,
+        `https://192.168.43.234/choose-provider/${process.env.REACT_APP_PSP_API_KEY}/${createPaymentIntent.link}`,
       );
     }
 
