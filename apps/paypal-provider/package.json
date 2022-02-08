@@ -3,9 +3,8 @@
   "version": "0.1.0",
   "scripts": {
     "dev": "next dev -p 1234",
-    "start": "next dev -p 1234",    
+    "start": "next dev -p 12345",
     "prod": "next start -p 1234",
-
     "build": "next build",
     "build-prod": "next build",
     "build:tailwind": "postcss src/scss/base.scss -o src/scss/tailwind.scss",
