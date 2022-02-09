@@ -53,7 +53,7 @@ const WagePage: FC<Record<string, never>> = () => {
           },
         });
         window.location.replace(
-          `https://localhost:3000/choose-provider/${process.env.REACT_APP_PSP_API_KEY}/${createWageIntent.link}`,
+          `https://192.168.43.74:3000/choose-provider/${process.env.REACT_APP_PSP_API_KEY}/${createWageIntent.link}`,
         );
       }
     } catch (e) {

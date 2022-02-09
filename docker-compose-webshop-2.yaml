@@ -23,8 +23,8 @@ services:
       - 'host.docker.internal:host-gateway'
     environment:
       HASURA_GRAPHQL_DATABASE_URL: postgres://postgres:postgrespassword@postgres-webshop-2:5432/postgres
-      HASURA_GRAPHQL_ENABLE_CONSOLE: true
-      HASURA_GRAPHQL_DEV_MODE: true
+      HASURA_GRAPHQL_ENABLE_CONSOLE: 'true'
+      HASURA_GRAPHQL_DEV_MODE: 'true'
       HASURA_GRAPHQL_ENABLED_LOG_TYPES: startup, http-log, webhook-log, websocket-log, query-log
       HASURA_GRAPHQL_ADMIN_SECRET: admin-secret
       HASURA_GRAPHQL_ACCESS_KEY: admin-secret  
@@ -37,23 +37,23 @@ services:
       ACTION_SECRET: action-secret
       EVENT_SECRET: event-secret
 #FRONT:
-  web_shop_2_front:
-    image: ws2f
-    restart: always
-    volumes:
-      - type: bind
-        source: .
-        target: /app
-        read_only: false
-    build: 
-      context: .
-      dockerfile: ./Dockerfile.webshop2front
-    environment:
-      REACT_APP_HGE_ENDPOINT: https://localhost:8082
-      SKIP_PREFLIGHT_CHECK: true
-      PORT: 3002
-      REACT_APP_PSP_API_KEY: 7b273382-9ac1-4728-8489-2b93b6f59fae
-      NODE_TLS_REJECT_UNAUTHORIZED: "0" 
+  # web_shop_2_front:
+  #   image: ws2f
+  #   restart: always
+  #   volumes:
+  #     - type: bind
+  #       source: .
+  #       target: /app
+  #       read_only: false
+  #   build: 
+  #     context: .
+  #     dockerfile: ./Dockerfile.webshop2front
+  #   environment:
+  #     REACT_APP_HGE_ENDPOINT: https://192.168.43.74:8082
+  #     SKIP_PREFLIGHT_CHECK: 'true'
+  #     PORT: 3002
+  #     REACT_APP_PSP_API_KEY: 7b273382-9ac1-4728-8489-2b93b6f59fae
+  #     NODE_TLS_REJECT_UNAUTHORIZED: "0" 
 
 #ACTIONS 
   web_shop_2_actions:
@@ -77,9 +77,9 @@ services:
       HGE_ADMIN_SECRET: admin-secret
       HGE_ENDPOINT: https://reverseproxy-ws2:8082
       TOKEN_KEY: somerandompasswordsomerandompasswordsomerandompassword
-      PSP_ENDPOINT: https://host.docker.internal:8080
-      PSP_API_KEY: 7b273382-9ac1-4728-8489-2b93b6f59fae
-      PSP_API_SECRET: b5c81921-db55-45f8-817e-ac91cbd08200
+      PSP_ENDPOINT: https://192.168.43.234:8080
+      PSP_API_KEY: 9710d4e2-a56c-41c5-a3a2-239857078ce1
+      PSP_API_SECRET: be76c7a9-6f75-4622-ab93-f00d0c7b1622
       PSP_KEY_HEADER: X-Hasura-PSP_API_KEY
       PSP_SECRET_HEADER: X-Hasura-PSP_SECRET
       NODE_TLS_REJECT_UNAUTHORIZED: "0" 
@@ -91,6 +91,7 @@ services:
       image: rvpws2
       restart: always
       build:
+        context: .
         dockerfile: ./Dockerfile.ws2.nginx
       ports:
           - 8082:8082

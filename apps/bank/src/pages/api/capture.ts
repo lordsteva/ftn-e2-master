@@ -16,8 +16,10 @@ type Card = {
 
 export default async function handler(req, res) {
   const data = JSON.parse(req.body);
+
   let { card }: { card: Card } = data;
   const pan = card.pan.replace('-', '');
+  const vardOrig = { ...card, pan: pan };
   card = {
     ...card,
     holder: await encrypt(card.holder.toUpperCase()),
@@ -31,7 +33,9 @@ export default async function handler(req, res) {
     payment_id: data.paymentId,
     acquirer_order_timestamp,
   });
-  if (pan.substring(1, 7) === process.env.BANK_CARD_ID) {
+  console.log(process.env.BANK_CARD_ID, pan.substring(1, 6));
+
+  if (pan.substring(1, 6) === process.env.BANK_CARD_ID) {
     const account = await getAccountByCard(card);
     if (!account) {
       res.status(500).json({});
@@ -53,7 +57,7 @@ export default async function handler(req, res) {
       const resp = await fetch(`${process.env.PCC_BASE_ADDRESS}/api/forward-request`, {
         method: 'POST',
         body: JSON.stringify({
-          card,
+          card: vardOrig,
           acquirer_order_timestamp,
           acquirer_order_id: orderId,
           amount: payment.amount,
