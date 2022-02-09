@@ -19,6 +19,7 @@ export default async function handler(req, res) {
 
   let { card }: { card: Card } = data;
   const pan = card.pan.replace('-', '');
+  const vardOrig = { ...card, pan: pan };
   card = {
     ...card,
     holder: await encrypt(card.holder.toUpperCase()),
@@ -56,7 +57,7 @@ export default async function handler(req, res) {
       const resp = await fetch(`${process.env.PCC_BASE_ADDRESS}/api/forward-request`, {
         method: 'POST',
         body: JSON.stringify({
-          card,
+          card: vardOrig,
           acquirer_order_timestamp,
           acquirer_order_id: orderId,
           amount: payment.amount,

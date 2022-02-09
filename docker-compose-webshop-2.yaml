@@ -78,8 +78,8 @@ services:
       HGE_ENDPOINT: https://reverseproxy-ws2:8082
       TOKEN_KEY: somerandompasswordsomerandompasswordsomerandompassword
       PSP_ENDPOINT: https://192.168.43.234:8080
-      PSP_API_KEY: 7b273382-9ac1-4728-8489-2b93b6f59fae
-      PSP_API_SECRET: b5c81921-db55-45f8-817e-ac91cbd08200
+      PSP_API_KEY: 9710d4e2-a56c-41c5-a3a2-239857078ce1
+      PSP_API_SECRET: be76c7a9-6f75-4622-ab93-f00d0c7b1622
       PSP_KEY_HEADER: X-Hasura-PSP_API_KEY
       PSP_SECRET_HEADER: X-Hasura-PSP_SECRET
       NODE_TLS_REJECT_UNAUTHORIZED: "0" 

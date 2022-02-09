@@ -27,7 +27,7 @@ export default async function handler(req, res) {
     });
     const resData = await response.json();
     console.log(resData);
-    await upsertTransaction({ id, transaction_data: JSON.stringify(resData) });
+    await upsertTransaction({ id, transaction_data: await encrypt(JSON.stringify(resData)) });
     res.status(200).json({ ...resData });
   } catch (e) {
     console.log(e);
